@@ -1,9 +1,9 @@
 import React from "react";
-import './Profile.css';
+import classes from './Profile.module.css';
 
 
 const Profile =()=> {
-    return  <div className='content'>
+    return  <div className={classes.content}>
         <div>
             <img src="https://c4.wallpaperflare.com/wallpaper/244/947/795/cool-berlin-wallpaper-83635-wallpaper-preview.jpg" alt=""/>
         </div>

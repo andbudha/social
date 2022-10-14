@@ -2,3 +2,7 @@
     grid-area: nav;
     background-color: bisque;
 }
+
+.item a {
+    color: crimson;
+}
