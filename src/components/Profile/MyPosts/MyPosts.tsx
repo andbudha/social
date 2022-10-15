@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './MyPosts.module.css';
+import Post from "./Post/Post";
 
 
 const MyPosts =()=> {
@@ -10,13 +11,10 @@ const MyPosts =()=> {
                 New Posts
             </div>
             <div className={classes.posts}>
-                <div className={classes.item}>
-                    <img src="https://banner2.cleanpng.com/20180904/vji/kisspng-avatar-image-computer-icons-likengo-usertesting-index-5b8ec1242fdcf5.6000571015360822121961.jpg" alt="avatar-img"/>
-                    post 1
-                </div>
-                <div>
-                    post 2
-                </div>
+                <Post/>
+                <Post/>
+                <Post/>
+                <Post/>
             </div>
         </div>
     );
