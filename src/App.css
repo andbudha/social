@@ -10,3 +10,16 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 5px;
 }
+
+.app-wrapper-content {
+  grid-area: content;
+  background-color: aquamarine;
+}
+
+
+/* content img must be left */
+.app-wrapper-content img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
