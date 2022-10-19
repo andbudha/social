@@ -15,9 +15,6 @@ const App =()=> {
                 <div className='app-wrapper-content'>
                     <Route path='/profile' component={Profile}/>
                     <Route path='/dialogues' component={Dialogues}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
                 </div>
             </div>
         </BrowserRouter>

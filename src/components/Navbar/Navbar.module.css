@@ -1,8 +1,10 @@
 .nav {
     grid-area: nav;
     background-color: bisque;
+    padding: 15px;
 }
 
 .item a {
     color: crimson;
+    text-decoration: none;
 }
