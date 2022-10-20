@@ -6,10 +6,10 @@ import {NavLink} from "react-router-dom";
 const Navbar =()=> {
     return  <nav className={classes.nav}>
         <div className={classes.item}>
-            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/profile" activeClassName={classes.activeLink}>Profile</NavLink>
         </div>
         <div className={classes.item}>
-            <NavLink to="/dialogues" >Messages</NavLink>
+            <NavLink to="/dialogues" activeClassName={classes.activeLink}>Messages</NavLink>
         </div>
         <div className={classes.item}>
             <NavLink to="/news">News</NavLink>
