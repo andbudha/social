@@ -1,24 +1,16 @@
 import React from "react";
+import classes from "./Profile.module.css.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-type ProfileType ={
-    message: string
-}
 
-const Profile =(props: ProfileType)=> {
-    return  <div>
+const Profile =()=> {
+    return  (
         <div>
-            <img src="https://c4.wallpaperflare.com/wallpaper/244/947/795/cool-berlin-wallpaper-83635-wallpaper-preview.jpg" alt=""/>
+            <ProfileInfo/>
+            <MyPosts/>
         </div>
-        <div>
-            <br/>
-            {props.message}
-            <br/>
-            <br/>
-            avatar + description
-        </div>
-        <MyPosts/>
-    </div>
+    );
 }
 
 export default Profile;
