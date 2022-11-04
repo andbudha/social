@@ -9,7 +9,7 @@ type DialogueItemType = {
 }
 
 const DialogueItem =(props: DialogueItemType)=> {
-    let path = "/dialogue/" + props.id;
+    let path = "/dialogues/" + props.id;
     return(
         <div className={`${classes.dialogue} ${classes.active}`}>
             <NavLink to={path}>{props.name}</NavLink>
