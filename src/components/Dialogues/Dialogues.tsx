@@ -42,8 +42,8 @@ const Dialogues=()=>{
 
     let messageData = [
         {id: 1, message: 'Hi...'},
-        {id: 1, message: 'How are you?'},
-        {id: 1, message: 'Are you free today?'}
+        {id: 2, message: 'How are you?'},
+        {id: 3, message: 'Are you free today?'}
     ]
 
     return(
