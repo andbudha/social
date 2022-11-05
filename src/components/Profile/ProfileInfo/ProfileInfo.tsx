@@ -6,7 +6,7 @@ const ProfileInfo =()=> {
     return  (
         <div>
             <div>
-                <img src="https://c4.wallpaperflare.com/wallpaper/244/947/795/cool-berlin-wallpaper-83635-wallpaper-preview.jpg" alt=""/>
+                <img src="https://r4.wallpaperflare.com/wallpaper/477/376/886/mountain-near-orange-and-white-cloud-photo-blue-lake-blue-lake-wallpaper-f66b198d49a8475987966dd398d96553.jpg" alt="nightcity image"/>
             </div>
             <div className={classes.description_block}>
                 avatar + description
