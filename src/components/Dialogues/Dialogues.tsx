@@ -6,6 +6,7 @@ import Message from "./Message/Message";
 //main component
 let Dialogues=()=>{
 
+
     let dialoguesData = [
         {id: 1, name: 'Andrei'},
         {id: 2, name: 'Delia'},
