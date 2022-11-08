@@ -1,34 +1,7 @@
 import classes from'./Dialogues.module.css'
-import {NavLink} from "react-router-dom";
+import DialogueItem from "./DialogueItem/DialogueItem";
+import Message from "./Message/Message";
 
-
-//subcomponents
-type DialogueItemType = {
-    name: string
-    id: number
-}
-
-const DialogueItem =(props: DialogueItemType)=> {
-    let path = "/dialogues/" + props.id;
-    return(
-        <div className={`${classes.dialogue} ${classes.active}`}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    );
-}
-
-type MessageType = {
-    message: string
-    id: number
-}
-
-const Message =(props: MessageType)=> {
-    return(
-        <div className={classes.message}>
-            {props.message}
-        </div>
-    );
-}
 
 //main component
 let Dialogues=()=>{
