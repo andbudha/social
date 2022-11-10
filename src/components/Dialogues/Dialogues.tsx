@@ -1,30 +1,19 @@
 import classes from'./Dialogues.module.css'
 import DialogueItem from "./DialogueItem/DialogueItem";
 import Message from "./Message/Message";
+import {DialoguesDataType} from "../../index";
+import {MessageDataType} from "../../index";
 
 
-//main component
-let Dialogues=()=>{
 
+let Dialogues=(props: DialoguesDataType & MessageDataType)=>{
 
-    let dialoguesData = [
-        {id: 1, name: 'Andrei'},
-        {id: 2, name: 'Delia'},
-        {id: 3, name: 'Natalia'},
-        {id: 4, name: 'Dorian'}
-    ]
     //dialoguesData mapping
-    let dialoguesElements = dialoguesData
+    let dialoguesElements = props.dialoguesData
         .map(d => <DialogueItem name={d.name} id={d.id}/>);
 
-    let messageData = [
-        {id: 1, message: 'Hi...'},
-        {id: 2, message: 'How are you?'},
-        {id: 3, message: 'Are you free today?'}
-    ]
-
     //messageData mapping
-    let messageElements = messageData
+    let messageElements = props.messageData
         .map(m=> <Message id={m.id} message={m.message}/>);
 
     return(
