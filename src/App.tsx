@@ -23,14 +23,13 @@ const App =(props: AppPropsType)=> {
                     <Route
                         path='/profile/'
                         render={()=><Profile
-                            posts={props.state.profilePage.posts}
+                            state={props.state}
                         />}/>
 
                     <Route
                         path='/dialogues/'
                         render={()=><Dialogues
-                            dialogues={props.state.messagePage.dialogues}
-                            messages = {props.state.messagePage.messages}
+                            state={props.state}
                         />}/>
                 </div>
             </div>
