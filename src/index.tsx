@@ -2,6 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import state from "./redux/state";
+
+
+
+
+//main component
+ReactDOM.render(
+    <App state={state}/>,
+  document.getElementById('root')
+);
+
+
+
+
+
+/*
 
 //post data
 export type PostsType = {
@@ -54,12 +70,6 @@ let messageData = [
     {id: 3, message: 'Are you free today?'}
 ]
 
-//main component
-ReactDOM.render(
-    <App
-        posts={posts}
-        dialoguesData={dialoguesData}
-        messageData={messageData}
-    />,
-  document.getElementById('root')
-);
+
+
+ */
