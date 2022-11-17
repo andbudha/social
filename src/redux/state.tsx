@@ -53,4 +53,15 @@ let state = {
     }
 }
 
+export const addPost = (postMessage: string) => {
+    debugger
+    const newPost: PostType = {
+        id: 5,
+        message: postMessage,
+        likeCount: 13
+    };
+
+  state.profilePage.posts.push(newPost);
+}
+
 export default state;

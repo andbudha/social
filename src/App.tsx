@@ -10,6 +10,7 @@ import {RootStateType} from "./redux/state";
 
 type AppPropsType = {
     state: RootStateType
+    addPost: (postMessage: string)=> void
 }
 
 const App =(props: AppPropsType)=> {
@@ -23,6 +24,7 @@ const App =(props: AppPropsType)=> {
                         path='/profile/'
                         render={()=><Profile
                             state={props.state}
+                            addPost={props.addPost}
                         />}/>
 
                     <Route
