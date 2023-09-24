@@ -1,21 +1,16 @@
-import React from "react";
-import MyPosts from "./MyPosts/MyPosts";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {RootStateType} from "../../redux/state";
+import { ProfilePageType } from '../../redux/state';
+import { MyPosts } from './MyPosts/MyPosts';
+import { ProfileDetails } from './ProfileDetails/ProfileDetals';
 
-type ProfilePropsType = {
-    state: RootStateType
-    addPost: (postMessage: string)=> void
-}
-
-const Profile =(props: ProfilePropsType)=> {
-
-    return  (
-        <div>
-            <ProfileInfo/>
-            <MyPosts posts={props.state.profilePage.posts} addPost={props.addPost}/>
-        </div>
-    );
-}
-
-export default Profile;
+type ProfilePropsTye = {
+  profilePage: ProfilePageType;
+  addPost: (newPost: string | undefined) => void;
+};
+export const Profile: React.FC<ProfilePropsTye> = (props) => {
+  return (
+    <div>
+      <ProfileDetails />
+      <MyPosts posts={props.profilePage.posts} addPost={props.addPost} />
+    </div>
+  );
+};

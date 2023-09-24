@@ -1,26 +1,52 @@
-import React from "react";
-import classes from './Navbar.module.css';
-import {NavLink} from "react-router-dom";
+import { Link } from 'react-router-dom';
+import styles from './Navbar.module.css';
+import { NavLink } from 'react-router-dom';
 
-
-const Navbar =()=> {
-    return  <nav className={classes.nav}>
-        <div className={classes.item}>
-            <NavLink to="/profile" activeClassName={classes.activeLink}>Profile</NavLink>
+export const Navbar = () => {
+  return (
+    <div>
+      <nav className={styles.nav}>
+        <div>
+          <NavLink
+            className={(link) => (link.isActive ? styles.active : styles.item)}
+            to={'profile'}
+          >
+            Profile
+          </NavLink>
         </div>
-        <div className={classes.item}>
-            <NavLink to="/dialogues" activeClassName={classes.activeLink}>Messages</NavLink>
+        <div>
+          <NavLink
+            className={(link) => (link.isActive ? styles.active : styles.item)}
+            to={'dialogues'}
+          >
+            Messages
+          </NavLink>
         </div>
-        <div className={classes.item}>
-            <NavLink to="/news">News</NavLink>
+        <div>
+          <NavLink
+            className={(link) => (link.isActive ? styles.active : styles.item)}
+            to={'news'}
+          >
+            News
+          </NavLink>
         </div>
-        <div className={classes.item}>
-            <NavLink to="/music">Music</NavLink>
+        <div>
+          <NavLink
+            className={(link) => (link.isActive ? styles.active : styles.item)}
+            to={'music'}
+          >
+            Music
+          </NavLink>
         </div>
-        <div className={classes.item}>
-            <NavLink to="/settings">Settings</NavLink>
+        <div>
+          <NavLink
+            className={(link) => (link.isActive ? styles.active : styles.item)}
+            to={'settings'}
+          >
+            Settings
+          </NavLink>
         </div>
-    </nav>
-}
-
-export default Navbar;
+      </nav>
+    </div>
+  );
+};

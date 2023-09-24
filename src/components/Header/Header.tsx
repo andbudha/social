@@ -1,13 +1,10 @@
-import React from "react";
-import classes from './Header.module.css';
+import styles from './Header.module.css';
+import logo_img from '../../img/lion2.png';
 
-
-const Header =()=> {
-    return (
-        <header className={classes.header}>
-            <img src="https://images-platform.99static.com//X2Itn0ho4uuz80gMnEqcBmdbJnY=/1230x635:1730x1135/fit-in/590x590/99designs-contests-attachments/75/75719/attachment_75719077" alt=""/>
-        </header>
-    );
-}
-
-export default Header;
+export const Header = () => {
+  return (
+    <header className={styles.header}>
+      <img className={styles.logo} src={logo_img} alt="lion" />
+    </header>
+  );
+};

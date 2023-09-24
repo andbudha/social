@@ -1,24 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .dialogues {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
+  display: grid;
+  grid-template-columns: 3fr 9fr;
 }
 
-.dialogue_items {
-   padding: 10px;
+.participants {
+  padding: 15px;
 }
 
-.dialogue.active {
-    color: crimson;
-}
-
-.dialogue {
-
-}
-
-.messages {
- padding: 10px;
-}
-
-.message {
-
+.conversations {
+  padding: 15px;
 }

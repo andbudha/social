@@ -1,32 +1,23 @@
-import classes from'./Dialogues.module.css'
-import DialogueItem from "./DialogueItem/DialogueItem";
-import Message from "./Message/Message";
-import {RootStateType} from "../../redux/state";
+import { MessagePageType } from '../../redux/state';
+import { Conversation } from './Conversation/Conversation';
+import styles from './Dialogues.module.css';
+import { Participant } from './Participant/Participant';
 
 type DialoguesPropsType = {
-    state: RootStateType
-}
+  messagePage: MessagePageType;
+};
+export const Dialogues: React.FC<DialoguesPropsType> = (props) => {
+  const participantList = props.messagePage.participants.map((body) => (
+    <Participant key={body.id} name={body.name} id={body.id} />
+  ));
 
-const Dialogues=(props: DialoguesPropsType)=>{
-
-    //dialogueData mapping
-    let dialoguesElements = props.state.messagePage.dialogues
-        .map(d => <DialogueItem name={d.name} id={d.id}/>);
-
-    //messageData mapping
-    let messageElements = props.state.messagePage.messages
-        .map(m=> <Message id={m.id} message={m.message}/>);
-
-    return(
-        <div className={classes.dialogues}>
-            <div className={classes.dialogue_items}>
-                {dialoguesElements}
-            </div>
-            <div className={classes.messages}>
-                {messageElements}
-            </div>
-        </div>
-    );
-}
-
-export default Dialogues;
+  const messageList = props.messagePage.messages.map((msg) => (
+    <Conversation key={msg.id} message={msg.message} id={msg.id} />
+  ));
+  return (
+    <div className={styles.dialogues}>
+      <div className={styles.participants}>{participantList}</div>
+      <div className={styles.conversations}>{messageList}</div>
+    </div>
+  );
+};

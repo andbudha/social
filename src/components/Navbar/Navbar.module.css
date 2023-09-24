@@ -1,15 +1,20 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .nav {
-    grid-area: nav;
-    background-color: bisque;
-    padding: 15px;
+  grid-area: nav;
+  background-color: orange;
+  height: 100%;
+  padding: 20px;
 }
 
-.item a {
-    color: crimson;
-    text-decoration: none;
+a {
+  color: #fff;
+  text-decoration: none;
 }
 
-.item a.activeLink {
-    color: blueviolet;
+a.active {
+  color: navy;
 }
-

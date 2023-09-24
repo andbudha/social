@@ -1,45 +1,40 @@
-import React from "react";
-import classes from './MyPosts.module.css';
-import Post from "./Post/Post";
-import {PostType} from "../../../redux/state";
+import React, { RefObject } from 'react';
+import { PostType } from '../../../redux/state';
+import styles from './MyPosts.module.css';
+import { Post } from './Post/Post';
 
 type MyPostsPropsType = {
-    posts: Array<PostType>
-    addPost: (postMessage: string)=> void
-}
+  posts: PostType[];
+  addPost: (newPost: string | undefined) => void;
+};
+export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+  const postList = props.posts.map((post) => (
+    <Post key={post.id} post={post} />
+  ));
 
-const MyPosts =(props: MyPostsPropsType)=> {
-
-    let postElements = props
-        .posts.map(p=><Post message={p.message} likeCount={p.likeCount}/>
-        );
-
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
-
-    const addPost =()=>{
-        if(newPostElement.current){
-            props.addPost(newPostElement.current.value);
-            newPostElement.current.value='';
-        }
-
-    }
-
-    return (
-        <div className={classes.posts_block}>
-            <h2>My Posts</h2>
-            <div>
-                <div>
-                    <textarea ref={newPostElement}></textarea>
-                </div>
-                <div>
-                    <button onClick={addPost}>Add Post</button>
-                </div>
-            </div>
-            <div className={classes.posts}>
-                {postElements}
-            </div>
+  //creating reference to the textarea
+  const newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
+  //adding post func
+  const addPostHandler = () => {
+    props.addPost(newPostElement.current?.value);
+  };
+  return (
+    <div className={styles.myposts_block}>
+      <h3> My Posts</h3>
+      <div>
+        <div>
+          <textarea
+            ref={newPostElement}
+            name="message_text"
+            cols={30}
+            rows={6}
+          ></textarea>
         </div>
-    );
-}
-
-export default MyPosts;
+        <div>
+          <button onClick={addPostHandler}>add post</button>
+        </div>
+      </div>
+      <div className={styles.post_block}>{postList}</div>
+    </div>
+  );
+};
