@@ -1,6 +1,6 @@
 import { ProfilePageType } from '../../redux/state';
 import { MyPosts } from './MyPosts/MyPosts';
-import { ProfileDetails } from './ProfileDetails/ProfileDetals';
+import { ProfileDetails } from './ProfileDetails/ProfileDetails';
 
 type ProfilePropsTye = {
   profilePage: ProfilePageType;
