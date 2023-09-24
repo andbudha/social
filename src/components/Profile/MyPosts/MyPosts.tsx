@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React, { ChangeEvent, RefObject } from 'react';
 import { PostType } from '../../../redux/state';
 import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
@@ -18,6 +18,11 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   const addPostHandler = () => {
     props.addPost(newPostElement.current?.value);
   };
+  //textarea value catching func
+  const postTypeInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    console.log(e.currentTarget.value);
+  };
+
   return (
     <div className={styles.myposts_block}>
       <h3> My Posts</h3>
@@ -28,7 +33,8 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
             name="message_text"
             cols={30}
             rows={6}
-          ></textarea>
+            onChange={postTypeInHandler}
+          />
         </div>
         <div>
           <button onClick={addPostHandler}>add post</button>
