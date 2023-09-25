@@ -6,6 +6,8 @@ import { Post } from './Post/Post';
 type MyPostsPropsType = {
   posts: PostType[];
   addPost: (newPost: string | undefined) => void;
+  newPostText: string;
+  updatePostText: (newText: string) => void;
 };
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   const postList = props.posts.map((post) => (
@@ -17,10 +19,12 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   //adding post func
   const addPostHandler = () => {
     props.addPost(newPostElement.current?.value);
+    props.updatePostText('');
   };
   //textarea value catching func
-  const postTypeInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const valueCatchingInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     console.log(e.currentTarget.value);
+    props.updatePostText(e.currentTarget.value);
   };
 
   return (
@@ -33,7 +37,8 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
             name="message_text"
             cols={30}
             rows={6}
-            onChange={postTypeInHandler}
+            onChange={valueCatchingInHandler}
+            value={props.newPostText}
           />
         </div>
         <div>

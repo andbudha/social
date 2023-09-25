@@ -12,6 +12,7 @@ import { StateType } from './redux/state';
 type AppPropsType = {
   state: StateType;
   addPost: (newPost: string | undefined) => void;
+  updatePostText: (newText: string) => void;
 };
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -27,6 +28,7 @@ const App: React.FC<AppPropsType> = (props) => {
               <Profile
                 profilePage={props.state.profilePage}
                 addPost={props.addPost}
+                updatePostText={props.updatePostText}
               />
             </div>
           }

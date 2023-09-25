@@ -17,6 +17,7 @@ export type MessageType = {
 };
 export type ProfilePageType = {
   posts: PostType[];
+  newPostText: string;
 };
 
 export type MessagePageType = {
@@ -35,6 +36,7 @@ export const state: StateType = {
       { id: 1, message: 'Hi, how are you?', likeCount: 15 },
       { id: 2, message: 'It is my first post!', likeCount: 25 },
     ],
+    newPostText: '',
   },
   messagePage: {
     participants: [
@@ -62,4 +64,8 @@ export const addPost = (newPost: string | undefined) => {
   renderEntireTree(state);
 };
 
-console.log(state.profilePage.posts);
+//input value catching func
+export const updatePostText = (newText: string) => {
+  state.profilePage.newPostText = newText;
+  renderEntireTree(state);
+};
