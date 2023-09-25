@@ -5,7 +5,7 @@ import { Post } from './Post/Post';
 
 type MyPostsPropsType = {
   posts: PostType[];
-  addPost: (newPost: string | undefined) => void;
+  addPost: () => void;
   newPostText: string;
   updatePostText: (newText: string) => void;
 };
@@ -14,11 +14,9 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     <Post key={post.id} post={post} />
   ));
 
-  //creating reference to the textarea
-  const newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
   //adding post func
   const addPostHandler = () => {
-    props.addPost(newPostElement.current?.value);
+    props.addPost();
     props.updatePostText('');
   };
   //textarea value catching func
@@ -33,7 +31,6 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
       <div>
         <div>
           <textarea
-            ref={newPostElement}
             name="message_text"
             cols={30}
             rows={6}

@@ -55,10 +55,10 @@ export const state: StateType = {
 };
 
 //post adding func
-export const addPost = (newPost: string | undefined) => {
+export const addPost = () => {
   state.profilePage.posts.push({
     id: 999,
-    message: newPost,
+    message: state.profilePage.newPostText,
     likeCount: 6,
   });
   renderEntireTree(state);
