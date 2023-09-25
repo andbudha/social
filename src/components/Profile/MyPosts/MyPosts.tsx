@@ -1,4 +1,4 @@
-import React, { ChangeEvent, RefObject } from 'react';
+import React, { ChangeEvent } from 'react';
 import { PostType } from '../../../redux/state';
 import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
@@ -20,7 +20,6 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   };
   //textarea value catching func
   const valueCatchingInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    console.log(e.currentTarget.value);
     props.updatePostText(e.currentTarget.value);
   };
 

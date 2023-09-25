@@ -1,4 +1,10 @@
-import { renderEntireTree } from '../render';
+let onPostAdding = () => {
+  console.log('Hello');
+};
+
+export const subscribe = (observer: () => void) => {
+  onPostAdding = observer;
+};
 
 export type PostType = {
   id: number;
@@ -62,11 +68,11 @@ export const addPost = () => {
     likeCount: 6,
   });
   state.profilePage.newPostText = '';
-  renderEntireTree(state);
+  onPostAdding();
 };
 
 //input value catching func
 export const updatePostText = (newText: string) => {
   state.profilePage.newPostText = newText;
-  renderEntireTree(state);
+  onPostAdding();
 };
