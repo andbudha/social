@@ -17,7 +17,6 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   //adding post func
   const addPostHandler = () => {
     props.addPost();
-    props.updatePostText('');
   };
   //textarea value catching func
   const valueCatchingInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

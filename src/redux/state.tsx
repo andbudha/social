@@ -61,6 +61,7 @@ export const addPost = () => {
     message: state.profilePage.newPostText,
     likeCount: 6,
   });
+  state.profilePage.newPostText = '';
   renderEntireTree(state);
 };
 
