@@ -31,7 +31,6 @@ export const Dialogues: React.FC<DialoguesPropsType> = (props) => {
   //message adding func
   const addMessageHandler = () => {
     props.dispatch(addMessageAC());
-    // props.dispatch(updateMessageTextAC(''));
   };
   return (
     <div className={styles.dialogues}>
