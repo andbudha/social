@@ -37,17 +37,22 @@ export type StoreType = {
 };
 
 //Action-Types
-export type ActionTypes = AddPostActionType | UpdatePost;
+export type ActionTypes = addPostACType | updatePostACType;
+type addPostACType = ReturnType<typeof addPostAC>;
 
-export type AddPostActionType = {
-  type: 'ADD-NEW-POST';
+type updatePostACType = ReturnType<typeof updatePostAC>;
+
+//Action Creators
+export const addPostAC = () => {
+  return { type: 'ADD-NEW-POST' } as const;
 };
 
-export type UpdatePost = {
-  type: 'UPDATE-POST';
-  newText: string;
+export const updatePostAC = (newPost: string) => {
+  return {
+    type: 'UPDATE-POST',
+    newText: newPost,
+  } as const;
 };
-
 //store
 export const store: StoreType = {
   _state: {

@@ -1,5 +1,10 @@
 import React, { ChangeEvent } from 'react';
-import { ActionTypes, PostType } from '../../../redux/state';
+import {
+  ActionTypes,
+  PostType,
+  addPostAC,
+  updatePostAC,
+} from '../../../redux/state';
 import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
 
@@ -15,12 +20,12 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
   //adding post func
   const addPostHandler = () => {
-    props.dispatch({ type: 'ADD-NEW-POST' });
+    props.dispatch(addPostAC());
   };
   //textarea value catching func
   const valueCatchingInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newPost = e.currentTarget.value;
-    props.dispatch({ type: 'UPDATE-POST', newText: newPost });
+    props.dispatch(updatePostAC(newPost));
   };
 
   return (
