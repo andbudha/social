@@ -7,12 +7,13 @@ import { Profile } from './components/Profile/Profile';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { StateType } from './redux/state';
+import { ActionTypes, StateType } from './redux/state';
 
 type AppPropsType = {
   state: StateType;
-  addPost: () => void;
-  updatePostText: (newText: string) => void;
+  dispatch: (action: ActionTypes) => void;
+  // addPost: () => void;
+  // updatePostText: (newText: string) => void;
 };
 
 const App: React.FC<AppPropsType> = (props) => {

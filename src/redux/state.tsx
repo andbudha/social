@@ -31,10 +31,23 @@ export type StateType = {
 export type StoreType = {
   _state: StateType;
   _onPostAdding: () => void;
-  addPost: () => void;
-  updatePostText: (newText: string) => void;
   subscribe: (observer: () => void) => void;
   getState: () => StateType;
+  // addPost: () => void;
+  // updatePostText: (newText: string) => void;
+  dispatch: (action: ActionTypes) => void;
+};
+
+//Action-Types
+export type ActionTypes = AddPostActionType | UpdatePost;
+
+export type AddPostActionType = {
+  type: 'ADD-NEW-POST';
+};
+
+export type UpdatePost = {
+  type: 'UPDATE-POST';
+  newText: string;
 };
 
 //store
@@ -65,24 +78,38 @@ export const store: StoreType = {
       ],
     },
   },
+  _onPostAdding() {},
   getState() {
     return this._state;
-  },
-  _onPostAdding() {},
-  addPost() {
-    this._state.profilePage.posts.push({
-      id: 999,
-      message: this._state.profilePage.newPostText,
-      likeCount: 6,
-    });
-    this._state.profilePage.newPostText = '';
-    this._onPostAdding();
-  },
-  updatePostText(newText: string) {
-    this._state.profilePage.newPostText = newText;
-    this._onPostAdding();
   },
   subscribe(observer: () => void) {
     this._onPostAdding = observer;
   },
+  dispatch(action) {
+    if (action.type === 'ADD-NEW-POST') {
+      this._state.profilePage.posts.push({
+        id: 999,
+        message: this._state.profilePage.newPostText,
+        likeCount: 6,
+      });
+      this._state.profilePage.newPostText = '';
+      this._onPostAdding();
+    } else if (action.type === 'UPDATE-POST') {
+      this._state.profilePage.newPostText = action.newText;
+      this._onPostAdding();
+    }
+  },
+  // addPost() {
+  //   this._state.profilePage.posts.push({
+  //     id: 999,
+  //     message: this._state.profilePage.newPostText,
+  //     likeCount: 6,
+  //   });
+  //   this._state.profilePage.newPostText = '';
+  //   this._onPostAdding();
+  // },
+  // updatePostText(newText: string) {
+  //   this._state.profilePage.newPostText = newText;
+  //   this._onPostAdding();
+  // },
 };
