@@ -65,6 +65,8 @@ export const addMessageAC = () => {
 };
 
 export const updateMessageTextAC = (newMessage: string) => {
+  console.log(newMessage);
+
   return { type: 'UPDATE-MESSAGE-TEXT', newText: newMessage };
 };
 //store

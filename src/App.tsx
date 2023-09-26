@@ -35,7 +35,11 @@ const App: React.FC<AppPropsType> = (props) => {
           path="/dialogues/*"
           element={
             <div className="app_content_wrapper">
-              <Dialogues messagePage={props.state.messagePage} />
+              <Dialogues
+                messagePage={props.state.messagePage}
+                dispatch={props.dispatch}
+                newMessageText={props.state.messagePage.newMessageText}
+              />
             </div>
           }
         />
