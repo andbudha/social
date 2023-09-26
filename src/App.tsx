@@ -28,8 +28,9 @@ const App: React.FC<AppPropsType> = (props) => {
             <div className="app_content_wrapper">
               <Profile
                 profilePage={props.state.profilePage}
-                addPost={props.addPost}
-                updatePostText={props.updatePostText}
+                dispatch={props.dispatch}
+                // addPost={props.addPost}
+                // updatePostText={props.updatePostText}
               />
             </div>
           }

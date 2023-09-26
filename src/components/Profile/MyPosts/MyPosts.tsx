@@ -1,13 +1,14 @@
 import React, { ChangeEvent } from 'react';
-import { PostType } from '../../../redux/state';
+import { ActionTypes, PostType } from '../../../redux/state';
 import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
 
 type MyPostsPropsType = {
   posts: PostType[];
-  addPost: () => void;
+  dispatch: (action: ActionTypes) => void;
   newPostText: string;
-  updatePostText: (newText: string) => void;
+  // updatePostText: (newText: string) => void;
+  // addPost: () => void;
 };
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   const postList = props.posts.map((post) => (
@@ -16,11 +17,12 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
   //adding post func
   const addPostHandler = () => {
-    props.addPost();
+    props.dispatch({ type: 'ADD-NEW-POST' });
   };
   //textarea value catching func
   const valueCatchingInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.updatePostText(e.currentTarget.value);
+    const newPost = e.currentTarget.value;
+    props.dispatch({ type: 'UPDATE-POST', newText: newPost });
   };
 
   return (
