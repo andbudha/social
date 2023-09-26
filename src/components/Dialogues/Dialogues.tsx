@@ -4,7 +4,7 @@ import {
   MessagePageType,
   addMessageAC,
   updateMessageTextAC,
-} from '../../redux/state';
+} from '../../redux/store';
 import { Conversation } from './Conversation/Conversation';
 import styles from './Dialogues.module.css';
 import { Participant } from './Participant/Participant';

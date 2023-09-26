@@ -4,7 +4,7 @@ import {
   PostType,
   addPostAC,
   updatePostAC,
-} from '../../../redux/state';
+} from '../../../redux/store';
 import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
 

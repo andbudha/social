@@ -1,5 +1,8 @@
-import { DialogueReducerActionTypes } from './dialogue-reducer';
-import { profileReducerActionTypes } from './profile-reducer';
+import {
+  DialogueReducer,
+  DialogueReducerActionTypes,
+} from './dialogue-reducer';
+import { ProfileReducer, ProfileReducerActionTypes } from './profile-reducer';
 
 export type PostType = {
   id: number;
@@ -42,13 +45,8 @@ export type StoreType = {
 
 //Action-Types
 export type ActionTypes =
-  | profileReducerActionTypes
+  | ProfileReducerActionTypes
   | DialogueReducerActionTypes;
-
-// type addPostACType = ReturnType<typeof addPostAC>;
-// type updatePostACType = ReturnType<typeof updatePostAC>;
-// type addMessageACType = ReturnType<typeof addMessageAC>;
-// type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
 //Action Creators
 export const addPostAC = () => {
   return { type: 'ADD-NEW-POST' } as const;
@@ -107,27 +105,8 @@ export const store: StoreType = {
     this._rerenderOnStateChange = observer;
   },
   dispatch(action) {
-    if (action.type === 'ADD-NEW-POST') {
-      this._state.profilePage.posts.push({
-        id: 999,
-        message: this._state.profilePage.newPostText,
-        likeCount: 6,
-      });
-      this._state.profilePage.newPostText = '';
-      this._rerenderOnStateChange();
-    } else if (action.type === 'UPDATE-POST') {
-      this._state.profilePage.newPostText = action.newText;
-      this._rerenderOnStateChange();
-    } else if (action.type === 'ADD-MESSAGE') {
-      this._state.messagePage.messages.push({
-        id: 111,
-        message: this._state.messagePage.newMessageText,
-      });
-      this._state.messagePage.newMessageText = '';
-      this._rerenderOnStateChange();
-    } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-      this._state.messagePage.newMessageText = action.newText;
-      this._rerenderOnStateChange();
-    }
+    this._state.profilePage = ProfileReducer(this._state.profilePage, action);
+    this._state.messagePage = DialogueReducer(this._state.messagePage, action);
+    this._rerenderOnStateChange();
   },
 };

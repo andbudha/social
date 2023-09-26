@@ -1,5 +1,5 @@
 import avatar from '../../../../img/avatar.png';
-import { PostType } from '../../../../redux/state';
+import { PostType } from '../../../../redux/store';
 import styles from './Post.module.css';
 
 type PostPropsType = {
