@@ -17,8 +17,10 @@ export const Dialogues: React.FC<DialoguesPropsType> = (props) => {
   return (
     <div className={styles.dialogues}>
       <div className={styles.participants}>{participantList}</div>
-      <div>
+      <div className={styles.conversation_box}>
         <div className={styles.conversations}>{messageList}</div>
+        <textarea className={styles.msg_textarea} id="" cols={40} rows={5} />
+        <button className={styles.msg_button}>add message</button>
       </div>
     </div>
   );

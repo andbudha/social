@@ -12,6 +12,15 @@
   padding: 15px;
 }
 
-.conversations {
+.conversation_box {
+  width: 400px;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.conversation_box .msg_textarea {
+  margin-top: 10px;
+}
+.conversation_box .msg_button {
+  margin-top: 10px;
 }
