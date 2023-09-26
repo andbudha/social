@@ -21,6 +21,7 @@ export type ProfilePageType = {
 export type MessagePageType = {
   participants: ParticipantType[];
   messages: MessageType[];
+  newMessageText: string;
 };
 
 export type StateType = {
@@ -30,18 +31,23 @@ export type StateType = {
 
 export type StoreType = {
   _state: StateType;
-  _onPostAdding: () => void;
+  _rerenderOnStateChange: () => void;
   subscribe: (observer: () => void) => void;
   getState: () => StateType;
   dispatch: (action: ActionTypes) => void;
 };
 
 //Action-Types
-export type ActionTypes = addPostACType | updatePostACType;
+export type ActionTypes =
+  | addPostACType
+  | updatePostACType
+  | addMessageACType
+  | updateMessageTextACType;
+
 type addPostACType = ReturnType<typeof addPostAC>;
-
 type updatePostACType = ReturnType<typeof updatePostAC>;
-
+type addMessageACType = ReturnType<typeof addMessageAC>;
+type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
 //Action Creators
 export const addPostAC = () => {
   return { type: 'ADD-NEW-POST' } as const;
@@ -52,6 +58,14 @@ export const updatePostAC = (newPost: string) => {
     type: 'UPDATE-POST',
     newText: newPost,
   } as const;
+};
+
+export const addMessageAC = () => {
+  return { type: 'ADD-MESSAGE' } as const;
+};
+
+export const updateMessageTextAC = (newMessage: string) => {
+  return { type: 'UPDATE-MESSAGE-TEXT', newText: newMessage };
 };
 //store
 export const store: StoreType = {
@@ -79,14 +93,15 @@ export const store: StoreType = {
           message: 'Never mind, I am still interested in this position.',
         },
       ],
+      newMessageText: '',
     },
   },
-  _onPostAdding() {},
+  _rerenderOnStateChange() {},
   getState() {
     return this._state;
   },
   subscribe(observer: () => void) {
-    this._onPostAdding = observer;
+    this._rerenderOnStateChange = observer;
   },
   dispatch(action) {
     if (action.type === 'ADD-NEW-POST') {
@@ -96,10 +111,20 @@ export const store: StoreType = {
         likeCount: 6,
       });
       this._state.profilePage.newPostText = '';
-      this._onPostAdding();
+      this._rerenderOnStateChange();
     } else if (action.type === 'UPDATE-POST') {
       this._state.profilePage.newPostText = action.newText;
-      this._onPostAdding();
+      this._rerenderOnStateChange();
+    } else if (action.type === 'ADD-MESSAGE') {
+      this._state.messagePage.messages.push({
+        id: 111,
+        message: this._state.messagePage.newMessageText,
+      });
+      this._state.messagePage.newMessageText = '';
+      this._rerenderOnStateChange();
+    } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+      this._state.messagePage.newMessageText = action.newText;
+      this._rerenderOnStateChange();
     }
   },
 };

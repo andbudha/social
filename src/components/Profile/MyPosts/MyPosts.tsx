@@ -34,7 +34,6 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
       <div>
         <div>
           <textarea
-            name="message_text"
             cols={30}
             rows={6}
             onChange={valueCatchingInHandler}

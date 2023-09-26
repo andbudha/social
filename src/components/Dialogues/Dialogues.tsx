@@ -17,7 +17,9 @@ export const Dialogues: React.FC<DialoguesPropsType> = (props) => {
   return (
     <div className={styles.dialogues}>
       <div className={styles.participants}>{participantList}</div>
-      <div className={styles.conversations}>{messageList}</div>
+      <div>
+        <div className={styles.conversations}>{messageList}</div>
+      </div>
     </div>
   );
 };
