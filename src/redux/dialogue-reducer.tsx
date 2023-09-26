@@ -1,5 +1,9 @@
 import { ActionTypes, MessagePageType } from './state';
 
+export type DialogueReducerActionTypes =
+  | addMessageACType
+  | updateMessageTextACType;
+
 export const DialogueReducer = (
   state: MessagePageType,
   action: ActionTypes
@@ -22,10 +26,13 @@ export const DialogueReducer = (
   }
 };
 
+type addMessageACType = ReturnType<typeof addMessageAC>;
+
 export const addMessageAC = () => {
   return { type: 'ADD-MESSAGE' } as const;
 };
 
+type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
 export const updateMessageTextAC = (newMessage: string) => {
   console.log(newMessage);
 
