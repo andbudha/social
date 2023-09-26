@@ -7,8 +7,6 @@ type MyPostsPropsType = {
   posts: PostType[];
   dispatch: (action: ActionTypes) => void;
   newPostText: string;
-  // updatePostText: (newText: string) => void;
-  // addPost: () => void;
 };
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   const postList = props.posts.map((post) => (

@@ -33,8 +33,6 @@ export type StoreType = {
   _onPostAdding: () => void;
   subscribe: (observer: () => void) => void;
   getState: () => StateType;
-  // addPost: () => void;
-  // updatePostText: (newText: string) => void;
   dispatch: (action: ActionTypes) => void;
 };
 
@@ -99,17 +97,4 @@ export const store: StoreType = {
       this._onPostAdding();
     }
   },
-  // addPost() {
-  //   this._state.profilePage.posts.push({
-  //     id: 999,
-  //     message: this._state.profilePage.newPostText,
-  //     likeCount: 6,
-  //   });
-  //   this._state.profilePage.newPostText = '';
-  //   this._onPostAdding();
-  // },
-  // updatePostText(newText: string) {
-  //   this._state.profilePage.newPostText = newText;
-  //   this._onPostAdding();
-  // },
 };

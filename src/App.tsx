@@ -12,8 +12,6 @@ import { ActionTypes, StateType } from './redux/state';
 type AppPropsType = {
   state: StateType;
   dispatch: (action: ActionTypes) => void;
-  // addPost: () => void;
-  // updatePostText: (newText: string) => void;
 };
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -29,8 +27,6 @@ const App: React.FC<AppPropsType> = (props) => {
               <Profile
                 profilePage={props.state.profilePage}
                 dispatch={props.dispatch}
-                // addPost={props.addPost}
-                // updatePostText={props.updatePostText}
               />
             </div>
           }
