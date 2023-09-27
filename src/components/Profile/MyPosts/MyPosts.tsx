@@ -9,8 +9,9 @@ import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
 
 type MyPostsPropsType = {
+  addPost: () => void;
+  updatePostValue: (newPost: string) => void;
   posts: PostType[];
-  dispatch: (action: ActionTypes) => void;
   newPostText: string;
 };
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -20,12 +21,12 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
   //adding post func
   const addPostHandler = () => {
-    props.dispatch(addPostAC());
+    props.addPost();
   };
   //textarea value catching func
-  const valueCatchingInHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const inputValueUpdatingHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newPost = e.currentTarget.value;
-    props.dispatch(updatePostAC(newPost));
+    props.updatePostValue(newPost);
   };
 
   return (
@@ -36,7 +37,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
           <textarea
             cols={30}
             rows={6}
-            onChange={valueCatchingInHandler}
+            onChange={inputValueUpdatingHandler}
             value={props.newPostText}
           />
         </div>

@@ -1,5 +1,5 @@
 import { ActionTypes, ProfilePageType } from '../../redux/store';
-import { MyPosts } from './MyPosts/MyPosts';
+import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 import { ProfileDetails } from './ProfileDetails/ProfileDetails';
 
 type ProfilePropsTye = {
@@ -10,7 +10,7 @@ export const Profile: React.FC<ProfilePropsTye> = (props) => {
   return (
     <div>
       <ProfileDetails />
-      <MyPosts
+      <MyPostsContainer
         posts={props.profilePage.posts}
         newPostText={props.profilePage.newPostText}
         dispatch={props.dispatch}
