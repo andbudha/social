@@ -8,9 +8,10 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import { ActionTypes, StateType } from './redux/store';
+import { AppRootStateType } from './redux/redux-store';
 
 type AppPropsType = {
-  state: StateType;
+  state: AppRootStateType;
   dispatch: (action: ActionTypes) => void;
 };
 
@@ -25,7 +26,7 @@ const App: React.FC<AppPropsType> = (props) => {
           element={
             <div className="app_content_wrapper">
               <Profile
-                profilePage={props.state.profilePage}
+                profilePage={props.state.profiles}
                 dispatch={props.dispatch}
               />
             </div>
@@ -36,9 +37,9 @@ const App: React.FC<AppPropsType> = (props) => {
           element={
             <div className="app_content_wrapper">
               <Dialogues
-                messagePage={props.state.messagePage}
+                messagePage={props.state.dialogues}
                 dispatch={props.dispatch}
-                newMessageText={props.state.messagePage.newMessageText}
+                newMessageText={props.state.dialogues.newMessageText}
               />
             </div>
           }
