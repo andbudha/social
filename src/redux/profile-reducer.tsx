@@ -2,7 +2,18 @@ import { ActionTypes, ProfilePageType } from './store';
 
 export type ProfileReducerActionTypes = addPostACType | updatePostACType;
 
-export const ProfileReducer = (state: ProfilePageType, action: ActionTypes) => {
+const initialState = {
+  posts: [
+    { id: 1, message: 'Hi, how are you?', likeCount: 15 },
+    { id: 2, message: 'It is my first post!', likeCount: 25 },
+  ],
+  newPostText: '',
+};
+
+export const ProfileReducer = (
+  state: ProfilePageType = initialState,
+  action: ActionTypes
+) => {
   switch (action.type) {
     case 'ADD-NEW-POST': {
       state.posts.push({

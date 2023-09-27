@@ -4,8 +4,27 @@ export type DialogueReducerActionTypes =
   | addMessageACType
   | updateMessageTextACType;
 
+const initialState = {
+  participants: [
+    { id: 1, name: 'Dorian' },
+    { id: 2, name: 'Delia' },
+    { id: 3, name: 'Natalia' },
+    { id: 4, name: 'Andrei' },
+  ],
+  messages: [
+    { id: 1, message: 'Hey, there...are you ok?' },
+    { id: 2, message: 'Still mad with me?' },
+    { id: 3, message: "I will be at Joe's." },
+    {
+      id: 4,
+      message: 'Never mind, I am still interested in this position.',
+    },
+  ],
+  newMessageText: '',
+};
+
 export const DialogueReducer = (
-  state: MessagePageType,
+  state: MessagePageType = initialState,
   action: ActionTypes
 ) => {
   switch (action.type) {
