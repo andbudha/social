@@ -12,7 +12,9 @@ import { Participant } from './Participant/Participant';
 type DialoguesPropsType = {
   messagePage: MessagePageType;
   newMessageText: string;
-  dispatch: (action: ActionTypes) => void;
+  updateMessageValue: (newMessageValue: string) => void;
+  addMessage: () => void;
+  // dispatch: (action: ActionTypes) => void;
 };
 export const Dialogues: React.FC<DialoguesPropsType> = (props) => {
   const participantList = props.messagePage.participants.map((body) => (
@@ -25,12 +27,12 @@ export const Dialogues: React.FC<DialoguesPropsType> = (props) => {
 
   //input value catching handler
   const inputValueCatchingHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const newMessage = e.currentTarget.value;
-    props.dispatch(updateMessageTextAC(newMessage));
+    const newMessageValue = e.currentTarget.value;
+    props.updateMessageValue(newMessageValue);
   };
   //message adding func
   const addMessageHandler = () => {
-    props.dispatch(addMessageAC());
+    props.addMessage();
   };
   return (
     <div className={styles.dialogues}>
