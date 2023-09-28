@@ -1,4 +1,5 @@
-import { ActionTypes, MessagePageType } from './store';
+import { ActionTypes } from '../types/action-types';
+import { MessagePageType } from '../types/store-types';
 
 export type DialogueReducerActionTypes =
   | addMessageACType

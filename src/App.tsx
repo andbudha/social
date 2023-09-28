@@ -6,9 +6,9 @@ import { Profile } from './components/Profile/Profile';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { ActionTypes } from './redux/store';
 import { AppRootStateType } from './redux/redux-store';
 import { DialoguesContainer } from './components/Dialogues/DialoguesContainer';
+import { ActionTypes } from './types/action-types';
 
 type AppPropsType = {
   state: AppRootStateType;

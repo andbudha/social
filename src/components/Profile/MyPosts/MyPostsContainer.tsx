@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  ActionTypes,
-  PostType,
-  addPostAC,
-  updatePostAC,
-} from '../../../redux/store';
+
 import { MyPosts } from './MyPosts';
+import { PostType } from '../../../types/store-types';
+import { ActionTypes } from '../../../types/action-types';
+import { addPostAC, updatePostAC } from '../../../redux/profile-reducer';
 
 type MyPostsCotainerPropsType = {
   posts: PostType[];

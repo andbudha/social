@@ -1,13 +1,8 @@
 import { ChangeEvent } from 'react';
-import {
-  ActionTypes,
-  MessagePageType,
-  addMessageAC,
-  updateMessageTextAC,
-} from '../../redux/store';
 import { Conversation } from './Conversation/Conversation';
 import styles from './Dialogues.module.css';
 import { Participant } from './Participant/Participant';
+import { MessagePageType } from '../../types/store-types';
 
 type DialoguesPropsType = {
   messagePage: MessagePageType;

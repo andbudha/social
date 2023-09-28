@@ -1,4 +1,5 @@
-import { ActionTypes, ProfilePageType } from './store';
+import { ActionTypes } from '../types/action-types';
+import { ProfilePageType } from '../types/store-types';
 
 export type ProfileReducerActionTypes = addPostACType | updatePostACType;
 

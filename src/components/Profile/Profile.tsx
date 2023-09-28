@@ -1,4 +1,5 @@
-import { ActionTypes, ProfilePageType } from '../../redux/store';
+import { ActionTypes } from '../../types/action-types';
+import { ProfilePageType } from '../../types/store-types';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 import { ProfileDetails } from './ProfileDetails/ProfileDetails';
 

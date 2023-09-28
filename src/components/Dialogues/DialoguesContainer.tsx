@@ -1,10 +1,10 @@
+import { MessagePageType } from '../../types/store-types';
+import { Dialogues } from './Dialogues';
 import {
-  ActionTypes,
-  MessagePageType,
   addMessageAC,
   updateMessageTextAC,
-} from '../../redux/store';
-import { Dialogues } from './Dialogues';
+} from '../../redux/dialogue-reducer';
+import { ActionTypes } from '../../types/action-types';
 
 type DialoguesConainerPropsType = {
   messagePage: MessagePageType;
