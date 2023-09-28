@@ -5,6 +5,7 @@ import {
   updateMessageTextAC,
 } from '../../redux/dialogue-reducer';
 import { connect } from 'react-redux';
+import { ActionTypes } from '../../types/action-types';
 
 const mapStateToProps = (state: StateType) => {
   return {
@@ -12,7 +13,7 @@ const mapStateToProps = (state: StateType) => {
     messagePage: state.messagePage,
   };
 };
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: (action: ActionTypes) => void) => {
   return {
     updateMessageValue: (newMessageValue: string) => {
       dispatch(updateMessageTextAC(newMessageValue));

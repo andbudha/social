@@ -2,6 +2,7 @@ import { MyPosts } from './MyPosts';
 import { StateType } from '../../../types/store-types';
 import { addPostAC, updatePostAC } from '../../../redux/profile-reducer';
 import { connect } from 'react-redux';
+import { ActionTypes } from '../../../types/action-types';
 
 const mapStateToProps = (state: StateType) => {
   return {
@@ -10,7 +11,7 @@ const mapStateToProps = (state: StateType) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: (action: ActionTypes) => void) => {
   return {
     addPost: () => {
       dispatch(addPostAC());
