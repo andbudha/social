@@ -5,7 +5,7 @@ export type DialogueReducerActionTypes =
   | addMessageACType
   | updateMessageTextACType;
 
-const initialState = {
+const initialState: MessagePageType = {
   participants: [
     { id: 1, name: 'Dorian' },
     { id: 2, name: 'Delia' },
@@ -27,7 +27,7 @@ const initialState = {
 export const DialogueReducer = (
   state: MessagePageType = initialState,
   action: ActionTypes
-) => {
+): MessagePageType => {
   switch (action.type) {
     case 'ADD-MESSAGE': {
       state.messages.push({

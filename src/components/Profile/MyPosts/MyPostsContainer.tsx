@@ -25,6 +25,7 @@ export const connectMyPostsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(MyPosts);
+
 //OLD CODE
 
 // import React from 'react';
