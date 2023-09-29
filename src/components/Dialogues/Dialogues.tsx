@@ -2,21 +2,14 @@ import { ChangeEvent } from 'react';
 import { Conversation } from './Conversation/Conversation';
 import styles from './Dialogues.module.css';
 import { Participant } from './Participant/Participant';
-import { MessagePageType } from '../../types/store-types';
+import { DialoguesConainerPropsType } from './DialoguesContainer';
 
-type DialoguesPropsType = {
-  messagePage: MessagePageType;
-  newMessageText: string;
-  updateMessageValue: (newMessageValue: string) => void;
-  addMessage: () => void;
-  // dispatch: (action: ActionTypes) => void;
-};
-export const Dialogues: React.FC<DialoguesPropsType> = (props) => {
-  const participantList = props.messagePage.participants.map((body) => (
+export const Dialogues: React.FC<DialoguesConainerPropsType> = (props) => {
+  const participantList = props.participants.map((body) => (
     <Participant key={body.id} name={body.name} id={body.id} />
   ));
 
-  const messageList = props.messagePage.messages.map((msg) => (
+  const messageList = props.messages.map((msg) => (
     <Conversation key={msg.id} message={msg.message} id={msg.id} />
   ));
 

@@ -1,15 +1,9 @@
 import React, { ChangeEvent } from 'react';
 import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
-import { PostType } from '../../../types/store-types';
+import { MyPostsContainerPropsType } from './MyPostsContainer';
 
-type MyPostsPropsType = {
-  addPost: () => void;
-  updatePostValue: (newPost: string) => void;
-  posts: PostType[];
-  newPostText: string;
-};
-export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+export const MyPosts: React.FC<MyPostsContainerPropsType> = (props) => {
   const postList = props.posts.map((post) => (
     <Post key={post.id} post={post} />
   ));
@@ -21,7 +15,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   //textarea value catching func
   const inputValueUpdatingHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newPost = e.currentTarget.value;
-    props.updatePostValue(newPost);
+    props.updatePost(newPost);
   };
 
   return (

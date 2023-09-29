@@ -6,14 +6,9 @@ import { Profile } from './components/Profile/Profile';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { AppRootStateType } from './redux/redux-store';
-import { DialoguesContainer } from './components/Dialogues/DialoguesContainer';
-import { ActionTypes } from './types/action-types';
+import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
 
-type AppPropsType = {
-  state: AppRootStateType;
-  dispatch: (action: ActionTypes) => void;
-};
+type AppPropsType = {};
 
 const App: React.FC<AppPropsType> = (props) => {
   return (
@@ -25,10 +20,7 @@ const App: React.FC<AppPropsType> = (props) => {
           path="/profile"
           element={
             <div className="app_content_wrapper">
-              <Profile
-                profilePage={props.state.profiles}
-                dispatch={props.dispatch}
-              />
+              <Profile />
             </div>
           }
         />
@@ -36,11 +28,7 @@ const App: React.FC<AppPropsType> = (props) => {
           path="/dialogues/*"
           element={
             <div className="app_content_wrapper">
-              <DialoguesContainer
-                messagePage={props.state.dialogues}
-                dispatch={props.dispatch}
-                newMessageText={props.state.dialogues.newMessageText}
-              />
+              <DialogueContainer />
             </div>
           }
         />

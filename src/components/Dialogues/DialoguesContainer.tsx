@@ -1,14 +1,19 @@
-import { MessagePageType } from '../../types/store-types';
+import { MessageType, ParticipantType } from '../../types/store-types';
 import { Dialogues } from './Dialogues';
 import {
   addMessageAC,
   updateMessageTextAC,
 } from '../../redux/dialogue-reducer';
 import { connect } from 'react-redux';
-import { ActionTypes } from '../../types/action-types';
 import { AppRootStateType } from '../../redux/redux-store';
+import { Dispatch } from 'redux';
 
-const mapStateToProps = (state: AppRootStateType): MessagePageType => {
+type mapStateToPropsType = {
+  participants: ParticipantType[];
+  messages: MessageType[];
+  newMessageText: string;
+};
+const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     participants: state.dialogues.participants,
     messages: state.dialogues.messages,
@@ -20,9 +25,10 @@ type MapDispatchPropsType = {
   updateMessageValue: (newMessageValue: string) => void;
   addMessage: () => void;
 };
-const mapDispatchToProps = (
-  dispatch: (action: ActionTypes) => void
-): MapDispatchPropsType => {
+
+export type DialoguesConainerPropsType = MapDispatchPropsType &
+  mapStateToPropsType;
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   return {
     updateMessageValue: (newMessageValue: string) => {
       dispatch(updateMessageTextAC(newMessageValue));
@@ -32,7 +38,7 @@ const mapDispatchToProps = (
     },
   };
 };
-export const connectDialogueContainer = connect(
+export const DialogueContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Dialogues);
