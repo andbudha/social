@@ -30,15 +30,30 @@ export const DialogueReducer = (
 ): MessagePageType => {
   switch (action.type) {
     case 'ADD-MESSAGE': {
-      state.messages.push({
+      const stateCopy = {
+        ...state,
+        participants: [
+          ...state.participants.map((participant) => ({ ...participant })),
+        ],
+        messages: [...state.messages.map((msg) => ({ ...msg }))],
+        newMessageText: '',
+      };
+      stateCopy.messages.push({
         id: 111,
         message: state.newMessageText,
       });
-      state.newMessageText = '';
-      return state;
+      return stateCopy;
     }
     case 'UPDATE-MESSAGE-TEXT': {
-      state.newMessageText = action.newText;
+      const stateCopy = {
+        ...state,
+        participants: [
+          ...state.participants.map((participant) => ({ ...participant })),
+        ],
+        messages: [...state.messages.map((msg) => ({ ...msg }))],
+        newMessageText: '',
+      };
+      stateCopy.newMessageText = action.newText;
       return state;
     }
     default:
