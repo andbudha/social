@@ -1,4 +1,4 @@
-import { StateType } from '../../types/store-types';
+import { MessagePageType } from '../../types/store-types';
 import { Dialogues } from './Dialogues';
 import {
   addMessageAC,
@@ -6,14 +6,23 @@ import {
 } from '../../redux/dialogue-reducer';
 import { connect } from 'react-redux';
 import { ActionTypes } from '../../types/action-types';
+import { AppRootStateType } from '../../redux/redux-store';
 
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: AppRootStateType): MessagePageType => {
   return {
-    newMessageText: state.messagePage.newMessageText,
-    messagePage: state.messagePage,
+    participants: state.dialogues.participants,
+    messages: state.dialogues.messages,
+    newMessageText: state.dialogues.newMessageText,
   };
 };
-const mapDispatchToProps = (dispatch: (action: ActionTypes) => void) => {
+
+type MapDispatchPropsType = {
+  updateMessageValue: (newMessageValue: string) => void;
+  addMessage: () => void;
+};
+const mapDispatchToProps = (
+  dispatch: (action: ActionTypes) => void
+): MapDispatchPropsType => {
   return {
     updateMessageValue: (newMessageValue: string) => {
       dispatch(updateMessageTextAC(newMessageValue));
