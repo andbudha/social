@@ -21,6 +21,7 @@ export const Dialogues: React.FC<DialoguesConainerPropsType> = (props) => {
   //message adding func
   const addMessageHandler = () => {
     props.addMessage();
+    props.updateMessageValue('');
   };
   return (
     <div className={styles.dialogues}>

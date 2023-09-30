@@ -54,7 +54,7 @@ export const DialogueReducer = (
         newMessageText: '',
       };
       stateCopy.newMessageText = action.newText;
-      return state;
+      return stateCopy;
     }
     default:
       return state;
