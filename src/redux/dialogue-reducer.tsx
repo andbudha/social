@@ -36,7 +36,7 @@ export const DialogueReducer = (
           ...state.participants.map((participant) => ({ ...participant })),
         ],
         messages: [...state.messages.map((msg) => ({ ...msg }))],
-        newMessageText: '',
+        newMessageText: state.newMessageText,
       };
       stateCopy.messages.push({
         id: 111,

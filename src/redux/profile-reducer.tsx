@@ -17,17 +17,26 @@ export const ProfileReducer = (
 ): ProfilePageType => {
   switch (action.type) {
     case 'ADD-NEW-POST': {
-      state.posts.push({
+      const stateCopy = {
+        ...state,
+        posts: [...state.posts.map((post) => ({ ...post }))],
+        newPostText: state.newPostText,
+      };
+      stateCopy.posts.push({
         id: 999,
         message: state.newPostText,
         likeCount: 6,
       });
-      state.newPostText = '';
-      return state;
+      return stateCopy;
     }
     case 'UPDATE-POST': {
-      state.newPostText = action.newText;
-      return state;
+      const stateCopy = {
+        ...state,
+        posts: [...state.posts.map((post) => ({ ...post }))],
+        newPostText: state.newPostText,
+      };
+      stateCopy.newPostText = action.newText;
+      return stateCopy;
     }
     default: {
       return state;
