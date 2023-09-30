@@ -69,7 +69,5 @@ export const addMessageAC = () => {
 
 type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
 export const updateMessageTextAC = (newMessage: string) => {
-  console.log(newMessage);
-
   return { type: 'UPDATE-MESSAGE-TEXT', newText: newMessage };
 };
