@@ -1,4 +1,21 @@
-const initialState = [
+
+export type UsersComponentActionTypes = followUserACType | unfollowUserACType;
+
+type UserLocationType = {
+  country: string;
+  city: string;
+}
+type UsersInitialStateType = {
+  id: number;
+  followed: boolean;
+  firstName: string;
+  secondName: string;
+  position: string;
+  location: UserLocationType
+}
+
+
+const initialState: UsersInitialStateType[] = [
   {
     id: 1,
     followed: true,
@@ -33,9 +50,12 @@ const initialState = [
   },
 ];
 
-export const UsersReducer = (state: any, action: any) => {
+export const UsersReducer = (state: UsersInitialStateType[] = initialState, action: UsersComponentActionTypes): UsersInitialStateType[] => {
   switch (action.type) {
-    case 'XXX': {
+    case 'FOLLOW-USER': {
+      return state;
+    }
+    case 'UNFOLLOW-USER': {
       return state;
     }
     default: {
@@ -43,3 +63,14 @@ export const UsersReducer = (state: any, action: any) => {
     }
   }
 };
+//action creators and types
+
+type followUserACType = ReturnType<typeof followUserAC>
+export const followUserAC = (followedStatus: boolean, userID: number) => {
+  return ({ type: 'FOLLOW-USER', payload: { followedStatus } }) as const
+}
+type unfollowUserACType = ReturnType<typeof unfollowUserAC>
+export const unfollowUserAC = (followedStatus: boolean, userID: number) => {
+  return ({ type: 'UNFOLLOW-USER', payload: { followedStatus } }) as const
+}
+
