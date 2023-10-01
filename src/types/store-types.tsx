@@ -1,5 +1,3 @@
-import { ActionTypes } from './action-types';
-
 //profile reducer types
 export type PostType = {
   id: number;

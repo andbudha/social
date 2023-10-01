@@ -1,4 +1,3 @@
-import { ActionTypes } from '../types/action-types';
 import { MessagePageType } from '../types/store-types';
 
 const initialState: MessagePageType = {
@@ -20,9 +19,10 @@ const initialState: MessagePageType = {
   newMessageText: '',
 };
 
+type DialogueReducerActionTypes = addMessageACType | updateMessageTextACType;
 export const DialogueReducer = (
   state: MessagePageType = initialState,
-  action: ActionTypes
+  action: DialogueReducerActionTypes
 ): MessagePageType => {
   switch (action.type) {
     case 'ADD-MESSAGE': {
@@ -49,7 +49,7 @@ export const DialogueReducer = (
         messages: [...state.messages.map((msg) => ({ ...msg }))],
         newMessageText: '',
       };
-      stateCopy.newMessageText = action.newText;
+      stateCopy.newMessageText = action.payload.newText;
       return stateCopy;
     }
     default:
@@ -57,13 +57,12 @@ export const DialogueReducer = (
   }
 };
 
-export type addMessageACType = ReturnType<typeof addMessageAC>;
-
+type addMessageACType = ReturnType<typeof addMessageAC>;
 export const addMessageAC = () => {
   return { type: 'ADD-MESSAGE' } as const;
 };
 
-export type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
+type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
 export const updateMessageTextAC = (newMessage: string) => {
-  return { type: 'UPDATE-MESSAGE-TEXT', newText: newMessage };
+  return { type: 'UPDATE-MESSAGE-TEXT', payload: { newText: newMessage } };
 };

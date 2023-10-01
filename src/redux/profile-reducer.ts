@@ -1,4 +1,3 @@
-import { ActionTypes } from '../types/action-types';
 import { ProfilePageType } from '../types/store-types';
 
 const initialState: ProfilePageType = {
@@ -9,9 +8,10 @@ const initialState: ProfilePageType = {
   newPostText: '',
 };
 
+type ProfileReducerActionTypes = addPostACType | updatePostACType;
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
-  action: ActionTypes
+  action: ProfileReducerActionTypes
 ): ProfilePageType => {
   switch (action.type) {
     case 'ADD-NEW-POST': {
@@ -33,7 +33,7 @@ export const ProfileReducer = (
         posts: [...state.posts.map((post) => ({ ...post }))],
         newPostText: state.newPostText,
       };
-      stateCopy.newPostText = action.newText;
+      stateCopy.newPostText = action.payload.newText;
       return stateCopy;
     }
     default: {
@@ -42,15 +42,15 @@ export const ProfileReducer = (
   }
 };
 
-export type addPostACType = ReturnType<typeof addPostAC>;
+type addPostACType = ReturnType<typeof addPostAC>;
 export const addPostAC = () => {
   return { type: 'ADD-NEW-POST' } as const;
 };
 
-export type updatePostACType = ReturnType<typeof updatePostAC>;
+type updatePostACType = ReturnType<typeof updatePostAC>;
 export const updatePostAC = (newPost: string) => {
   return {
     type: 'UPDATE-POST',
-    newText: newPost,
+    payload: { newText: newPost },
   } as const;
 };
