@@ -1,4 +1,4 @@
-import { UsersInitialStateType } from '../types/store-types';
+import { UserType, UsersInitialStateType } from '../types/store-types';
 
 const initialState: UsersInitialStateType = {
   users: [
@@ -36,17 +36,35 @@ const initialState: UsersInitialStateType = {
     },
   ],
 };
-type UsersReducerType = followUserACType | unfollowUserACType;
+
+type UsersReducerType = followUserACType | unfollowUserACType | setUsersACType;
 export const UsersReducer = (
   state: UsersInitialStateType = initialState,
   action: UsersReducerType
 ): UsersInitialStateType => {
   switch (action.type) {
+    case 'SET-USERS': {
+      return { ...state, users: [...state.users, ...action.payload.users] };
+    }
     case 'FOLLOW-USER': {
-      return state;
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.id === action.payload.userID
+            ? { ...user, followed: true }
+            : { ...user }
+        ),
+      };
     }
     case 'UNFOLLOW-USER': {
-      return state;
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.id === action.payload.userID
+            ? { ...user, followed: false }
+            : { ...user }
+        ),
+      };
     }
     default: {
       return state;
@@ -54,15 +72,18 @@ export const UsersReducer = (
   }
 };
 //action creators and types
-
+type setUsersACType = ReturnType<typeof setUsersAC>;
+export const setUsersAC = (users: UserType[]) => {
+  return { type: 'SET-USERS', payload: { users } } as const;
+};
 type followUserACType = ReturnType<typeof followUserAC>;
-export const followUserAC = (followedStatus: boolean, userID: number) => {
-  return { type: 'FOLLOW-USER', payload: { followedStatus, userID } } as const;
+export const followUserAC = (userID: number) => {
+  return { type: 'FOLLOW-USER', payload: { userID } } as const;
 };
 type unfollowUserACType = ReturnType<typeof unfollowUserAC>;
-export const unfollowUserAC = (followedStatus: boolean, userID: number) => {
+export const unfollowUserAC = (userID: number) => {
   return {
     type: 'UNFOLLOW-USER',
-    payload: { followedStatus, userID },
+    payload: { userID },
   } as const;
 };
