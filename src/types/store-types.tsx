@@ -32,13 +32,17 @@ export type UserLocationType = {
   country: string;
   city: string;
 };
-export type UsersInitialStateType = {
+export type UserType = {
   id: number;
   followed: boolean;
   firstName: string;
   secondName: string;
   position: string;
   location: UserLocationType;
+};
+
+export type UsersInitialStateType = {
+  users: UserType[];
 };
 
 // export type StateType = {

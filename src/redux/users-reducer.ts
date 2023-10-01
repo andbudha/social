@@ -1,52 +1,48 @@
 import { UsersInitialStateType } from '../types/store-types';
 
-const initialState: UsersInitialStateType[] = [
-  {
-    id: 1,
-    followed: true,
-    firstName: 'Andrei',
-    secondName: 'Bartov',
-    position: 'unemployed',
-    location: { country: 'Germany', city: 'Berlin' },
-  },
-  {
-    id: 2,
-    followed: false,
-    firstName: 'Delia',
-    secondName: 'Bartov',
-    position: 'pupil',
-    location: { country: 'Germany', city: 'Dresden' },
-  },
-  {
-    id: 3,
-    followed: true,
-    firstName: 'Natalia',
-    secondName: 'Bartov',
-    position: 'teacher',
-    location: { country: 'Germany', city: 'Berlin' },
-  },
-  {
-    id: 4,
-    followed: false,
-    firstName: 'Dorian',
-    secondName: 'Bartov',
-    position: 'student',
-    location: { country: 'Germany', city: 'Frankfurt' },
-  },
-];
+const initialState: UsersInitialStateType = {
+  users: [
+    {
+      id: 1,
+      followed: true,
+      firstName: 'Andrei',
+      secondName: 'Bartov',
+      position: 'unemployed',
+      location: { country: 'Germany', city: 'Berlin' },
+    },
+    {
+      id: 2,
+      followed: false,
+      firstName: 'Delia',
+      secondName: 'Bartov',
+      position: 'pupil',
+      location: { country: 'Germany', city: 'Dresden' },
+    },
+    {
+      id: 3,
+      followed: true,
+      firstName: 'Natalia',
+      secondName: 'Bartov',
+      position: 'teacher',
+      location: { country: 'Germany', city: 'Berlin' },
+    },
+    {
+      id: 4,
+      followed: false,
+      firstName: 'Dorian',
+      secondName: 'Bartov',
+      position: 'student',
+      location: { country: 'Germany', city: 'Frankfurt' },
+    },
+  ],
+};
 type UsersReducerType = followUserACType | unfollowUserACType;
 export const UsersReducer = (
-  state: UsersInitialStateType[] = initialState,
+  state: UsersInitialStateType = initialState,
   action: UsersReducerType
-): UsersInitialStateType[] => {
+): UsersInitialStateType => {
   switch (action.type) {
     case 'FOLLOW-USER': {
-      const stateCopy = state.map((user) => ({ ...user }));
-      stateCopy.map((user) =>
-        user.id === action.payload.userID
-          ? { ...user, followed: action.payload.followedStatus }
-          : { ...user }
-      );
       return state;
     }
     case 'UNFOLLOW-USER': {
