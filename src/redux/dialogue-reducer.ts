@@ -1,10 +1,6 @@
 import { ActionTypes } from '../types/action-types';
 import { MessagePageType } from '../types/store-types';
 
-export type DialogueReducerActionTypes =
-  | addMessageACType
-  | updateMessageTextACType;
-
 const initialState: MessagePageType = {
   participants: [
     { id: 1, name: 'Dorian' },
@@ -61,13 +57,13 @@ export const DialogueReducer = (
   }
 };
 
-type addMessageACType = ReturnType<typeof addMessageAC>;
+export type addMessageACType = ReturnType<typeof addMessageAC>;
 
 export const addMessageAC = () => {
   return { type: 'ADD-MESSAGE' } as const;
 };
 
-type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
+export type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
 export const updateMessageTextAC = (newMessage: string) => {
   return { type: 'UPDATE-MESSAGE-TEXT', newText: newMessage };
 };

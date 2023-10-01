@@ -1,19 +1,5 @@
-
-export type UsersComponentActionTypes = followUserACType | unfollowUserACType;
-
-type UserLocationType = {
-  country: string;
-  city: string;
-}
-type UsersInitialStateType = {
-  id: number;
-  followed: boolean;
-  firstName: string;
-  secondName: string;
-  position: string;
-  location: UserLocationType
-}
-
+import { ActionTypes } from "../types/action-types";
+import { UsersInitialStateType } from "../types/store-types";
 
 const initialState: UsersInitialStateType[] = [
   {
@@ -50,7 +36,7 @@ const initialState: UsersInitialStateType[] = [
   },
 ];
 
-export const UsersReducer = (state: UsersInitialStateType[] = initialState, action: UsersComponentActionTypes): UsersInitialStateType[] => {
+export const UsersReducer = (state: UsersInitialStateType[] = initialState, action: ActionTypes): UsersInitialStateType[] => {
   switch (action.type) {
     case 'FOLLOW-USER': {
       return state;
@@ -65,12 +51,12 @@ export const UsersReducer = (state: UsersInitialStateType[] = initialState, acti
 };
 //action creators and types
 
-type followUserACType = ReturnType<typeof followUserAC>
+export type followUserACType = ReturnType<typeof followUserAC>
 export const followUserAC = (followedStatus: boolean, userID: number) => {
-  return ({ type: 'FOLLOW-USER', payload: { followedStatus } }) as const
+  return ({ type: 'FOLLOW-USER', payload: { followedStatus, userID } }) as const
 }
-type unfollowUserACType = ReturnType<typeof unfollowUserAC>
+export type unfollowUserACType = ReturnType<typeof unfollowUserAC>
 export const unfollowUserAC = (followedStatus: boolean, userID: number) => {
-  return ({ type: 'UNFOLLOW-USER', payload: { followedStatus } }) as const
+  return ({ type: 'UNFOLLOW-USER', payload: { followedStatus, userID } }) as const
 }
 

@@ -1,8 +1,6 @@
 import { ActionTypes } from '../types/action-types';
 import { ProfilePageType } from '../types/store-types';
 
-export type ProfileReducerActionTypes = addPostACType | updatePostACType;
-
 const initialState: ProfilePageType = {
   posts: [
     { id: 1, message: 'Hi, how are you?', likeCount: 15 },
@@ -44,12 +42,12 @@ export const ProfileReducer = (
   }
 };
 
-type addPostACType = ReturnType<typeof addPostAC>;
+export type addPostACType = ReturnType<typeof addPostAC>;
 export const addPostAC = () => {
   return { type: 'ADD-NEW-POST' } as const;
 };
 
-type updatePostACType = ReturnType<typeof updatePostAC>;
+export type updatePostACType = ReturnType<typeof updatePostAC>;
 export const updatePostAC = (newPost: string) => {
   return {
     type: 'UPDATE-POST',

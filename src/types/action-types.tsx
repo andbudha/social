@@ -1,7 +1,15 @@
-import { DialogueReducerActionTypes } from '../redux/dialogue-reducer';
-import { ProfileReducerActionTypes } from '../redux/profile-reducer';
+import {
+  addMessageACType,
+  updateMessageTextACType,
+} from '../redux/dialogue-reducer';
+import { addPostACType, updatePostACType } from '../redux/profile-reducer';
+import { followUserACType, unfollowUserACType } from '../redux/users-reducer';
 
 //Action-Types
 export type ActionTypes =
-  | ProfileReducerActionTypes
-  | DialogueReducerActionTypes;
+  | addPostACType
+  | updatePostACType
+  | addMessageACType
+  | updateMessageTextACType
+  | followUserACType
+  | unfollowUserACType;

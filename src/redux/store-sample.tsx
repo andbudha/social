@@ -1,8 +1,6 @@
-import {
-  DialogueReducer,
-  DialogueReducerActionTypes,
-} from './dialogue-reducer';
-import { ProfileReducer, ProfileReducerActionTypes } from './profile-reducer';
+import { ActionTypes } from '../types/action-types';
+import { DialogueReducer } from './dialogue-reducer';
+import { ProfileReducer } from './profile-reducer';
 
 export type PostType = {
   id: number;
@@ -43,10 +41,6 @@ export type StoreType = {
   dispatch: (action: ActionTypes) => void;
 };
 
-//Action-Types
-export type ActionTypes =
-  | ProfileReducerActionTypes
-  | DialogueReducerActionTypes;
 //Action Creators
 export const addPostAC = () => {
   return { type: 'ADD-NEW-POST' } as const;
