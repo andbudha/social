@@ -7,7 +7,7 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
-import { Users } from './components/Users/Users';
+import { UsersContainer } from './components/Users/UsersContainer';
 
 type AppPropsType = {};
 
@@ -37,7 +37,7 @@ const App: React.FC<AppPropsType> = (props) => {
           path="/users"
           element={
             <div className="app_content_wrapper">
-              <Users />
+              <UsersContainer />
             </div>
           }
         />

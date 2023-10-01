@@ -1,8 +1,17 @@
 import styles from './Users.module.css';
-export const Users = () => {
+import { UsersContainerPropsType } from './UsersContainer';
+
+export const Users: React.FC<UsersContainerPropsType> = (props) => {
+  const userList = props.users.map((user) => {
+    return (
+      <ul>
+        <li>{user.firstName}</li>
+      </ul>
+    );
+  });
   return (
     <div>
-      <div>Users</div>
+      <div>{userList}</div>
     </div>
   );
 };
