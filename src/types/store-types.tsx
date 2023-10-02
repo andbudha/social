@@ -27,19 +27,17 @@ export type MessagePageType = {
 };
 
 //users reducer types
-
-export type UserLocationType = {
-  country: string;
-  city: string;
+export type UserPhotoType = {
+  small: string;
+  large: string;
 };
+
 export type UserType = {
   id: number;
+  name: string;
+  status: string;
+  photos: UserPhotoType;
   followed: boolean;
-  profileImg: string;
-  firstName: string;
-  secondName: string;
-  position: string;
-  location: UserLocationType;
 };
 
 export type UsersInitialStateType = {
