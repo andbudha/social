@@ -1,5 +1,5 @@
 import styles from './ProfileDetails.module.css';
-import social_media from '../../../img/social_media.png';
+import social_media from '../../../images/logos/social_media.png';
 
 export const ProfileDetails = () => {
   return (

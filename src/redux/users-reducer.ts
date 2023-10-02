@@ -1,12 +1,15 @@
 import { UserType, UsersInitialStateType } from '../types/store-types';
-import profileImage from '../img/avatar.png';
+import andeiProfileImg from '../images/avatars/ava1.png';
+import dorianProfileImg from '../images/avatars/ava2.png';
+import deliaProfileImg from '../images/avatars/ava3.png';
+import nataliaProfileImg from '../images/avatars/ava4.png';
 
 const initialState: UsersInitialStateType = {
   users: [
     {
       id: 1,
       followed: true,
-      profileImg: profileImage,
+      profileImg: andeiProfileImg,
       firstName: 'Andrei',
       secondName: 'Bartov',
       position: 'unemployed',
@@ -15,7 +18,7 @@ const initialState: UsersInitialStateType = {
     {
       id: 2,
       followed: false,
-      profileImg: profileImage,
+      profileImg: deliaProfileImg,
       firstName: 'Delia',
       secondName: 'Bartov',
       position: 'pupil',
@@ -24,7 +27,7 @@ const initialState: UsersInitialStateType = {
     {
       id: 3,
       followed: true,
-      profileImg: profileImage,
+      profileImg: nataliaProfileImg,
       firstName: 'Natalia',
       secondName: 'Bartov',
       position: 'teacher',
@@ -33,7 +36,7 @@ const initialState: UsersInitialStateType = {
     {
       id: 4,
       followed: false,
-      profileImg: profileImage,
+      profileImg: dorianProfileImg,
       firstName: 'Dorian',
       secondName: 'Bartov',
       position: 'student',

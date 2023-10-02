@@ -1,4 +1,4 @@
-import avatar from '../../../../img/avatar.png';
+import avatar from '../../../../images/logos/avatar.png';
 import { PostType } from '../../../../types/store-types';
 import styles from './Post.module.css';
 

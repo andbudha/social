@@ -35,7 +35,7 @@ export type UserLocationType = {
 export type UserType = {
   id: number;
   followed: boolean;
-  profileImg: string | undefined;
+  profileImg: string;
   firstName: string;
   secondName: string;
   position: string;
