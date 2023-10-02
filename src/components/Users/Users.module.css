@@ -3,3 +3,54 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.user_card {
+  border-radius: 5px;
+  width: 500px;
+  height: 100px;
+  padding: 4px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+.user_img_and_btn_box {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.user_img_box {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.img {
+  width: 50px;
+}
+.follow_btn {
+  width: 70px;
+  height: 22px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.user_presentation_box {
+  width: 350px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.user_presentation_box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
