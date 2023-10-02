@@ -17,6 +17,6 @@
 
 .app_content_wrapper {
   grid-area: content;
-  background-color: antiquewhite;
+  background-color: #f8f0e5;
   height: 100%;
 }

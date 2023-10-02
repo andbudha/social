@@ -5,7 +5,7 @@
 }
 .header {
   grid-area: header;
-  background-color: #3085c3;
+  background-color: #4b527e;
   height: 100%;
   width: 100%;
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .logo {
-  width: 50px;
+  width: 80px;
   margin: 15px;
   color: #fff;
 }

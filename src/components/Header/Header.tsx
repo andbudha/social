@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import logo_img from '../../images/logos/lion2.png';
+import logo_img from '../../images/logos/social_media.png';
 
 export const Header = () => {
   return (

@@ -5,7 +5,7 @@
 }
 .nav {
   grid-area: nav;
-  background-color: orange;
+  background-color: #7c81ad;
   height: 100%;
   padding: 20px;
 }
