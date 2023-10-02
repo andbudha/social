@@ -1,47 +1,47 @@
 import { UserType, UsersInitialStateType } from '../types/store-types';
-import andeiProfileImg from '../images/avatars/ava1.png';
-import dorianProfileImg from '../images/avatars/ava2.png';
-import deliaProfileImg from '../images/avatars/ava3.png';
-import nataliaProfileImg from '../images/avatars/ava4.png';
+// import andeiProfileImg from '../images/avatars/ava1.png';
+// import dorianProfileImg from '../images/avatars/ava2.png';
+// import deliaProfileImg from '../images/avatars/ava3.png';
+// import nataliaProfileImg from '../images/avatars/ava4.png';
 
 const initialState: UsersInitialStateType = {
   users: [
-    {
-      id: 1,
-      followed: true,
-      profileImg: andeiProfileImg,
-      firstName: 'Andrei',
-      secondName: 'Bartov',
-      position: 'unemployed',
-      location: { country: 'Germany', city: 'Berlin' },
-    },
-    {
-      id: 2,
-      followed: false,
-      profileImg: deliaProfileImg,
-      firstName: 'Delia',
-      secondName: 'Bartov',
-      position: 'pupil',
-      location: { country: 'Germany', city: 'Dresden' },
-    },
-    {
-      id: 3,
-      followed: true,
-      profileImg: nataliaProfileImg,
-      firstName: 'Natalia',
-      secondName: 'Bartov',
-      position: 'teacher',
-      location: { country: 'Germany', city: 'Berlin' },
-    },
-    {
-      id: 4,
-      followed: false,
-      profileImg: dorianProfileImg,
-      firstName: 'Dorian',
-      secondName: 'Bartov',
-      position: 'student',
-      location: { country: 'Germany', city: 'Frankfurt' },
-    },
+    // {
+    //   id: 1,
+    //   followed: true,
+    //   profileImg: andeiProfileImg,
+    //   firstName: 'Andrei',
+    //   secondName: 'Bartov',
+    //   position: 'unemployed',
+    //   location: { country: 'Germany', city: 'Berlin' },
+    // },
+    // {
+    //   id: 2,
+    //   followed: false,
+    //   profileImg: deliaProfileImg,
+    //   firstName: 'Delia',
+    //   secondName: 'Bartov',
+    //   position: 'pupil',
+    //   location: { country: 'Germany', city: 'Dresden' },
+    // },
+    // {
+    //   id: 3,
+    //   followed: true,
+    //   profileImg: nataliaProfileImg,
+    //   firstName: 'Natalia',
+    //   secondName: 'Bartov',
+    //   position: 'teacher',
+    //   location: { country: 'Germany', city: 'Berlin' },
+    // },
+    // {
+    //   id: 4,
+    //   followed: false,
+    //   profileImg: dorianProfileImg,
+    //   firstName: 'Dorian',
+    //   secondName: 'Bartov',
+    //   position: 'student',
+    //   location: { country: 'Germany', city: 'Frankfurt' },
+    // },
   ],
 };
 

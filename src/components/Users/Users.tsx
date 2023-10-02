@@ -1,8 +1,51 @@
 import styles from './Users.module.css';
 import { UsersContainerPropsType } from './UsersContainer';
-import profileImg from '../../img/lion2.png';
+import andeiProfileImg from '../../images/avatars/ava1.png';
+import dorianProfileImg from '../../images/avatars/ava2.png';
+import deliaProfileImg from '../../images/avatars/ava3.png';
+import nataliaProfileImg from '../../images/avatars/ava4.png';
 
 export const Users: React.FC<UsersContainerPropsType> = (props) => {
+  if (props.users.length === 0) {
+    props.setUsers([
+      {
+        id: 1,
+        followed: true,
+        profileImg: andeiProfileImg,
+        firstName: 'Andrei',
+        secondName: 'Bartov',
+        position: 'unemployed',
+        location: { country: 'Germany', city: 'Berlin' },
+      },
+      {
+        id: 2,
+        followed: false,
+        profileImg: deliaProfileImg,
+        firstName: 'Delia',
+        secondName: 'Bartov',
+        position: 'pupil',
+        location: { country: 'Germany', city: 'Dresden' },
+      },
+      {
+        id: 3,
+        followed: true,
+        profileImg: nataliaProfileImg,
+        firstName: 'Natalia',
+        secondName: 'Bartov',
+        position: 'teacher',
+        location: { country: 'Germany', city: 'Berlin' },
+      },
+      {
+        id: 4,
+        followed: false,
+        profileImg: dorianProfileImg,
+        firstName: 'Dorian',
+        secondName: 'Bartov',
+        position: 'student',
+        location: { country: 'Germany', city: 'Frankfurt' },
+      },
+    ]);
+  }
   return (
     <div>
       {props.users.map((user) => {
@@ -17,7 +60,21 @@ export const Users: React.FC<UsersContainerPropsType> = (props) => {
                 />
               </div>
               <div className={styles.user_btn_box}>
-                <button className={styles.follow_btn}>follow</button>
+                {user.followed ? (
+                  <button
+                    onClick={() => props.unfollowUser(user.id)}
+                    className={styles.follow_btn}
+                  >
+                    follow
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => props.followUser(user.id)}
+                    className={styles.follow_btn}
+                  >
+                    unfollow
+                  </button>
+                )}
               </div>
             </div>
             <div className={styles.user_presentation_box}>
