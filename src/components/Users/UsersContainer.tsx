@@ -5,6 +5,7 @@ import { UserType } from '../../types/store-types';
 import { Dispatch } from 'redux';
 import {
   followUserAC,
+  selectUserPageAC,
   setUsersAC,
   unfollowUserAC,
 } from '../../redux/users-reducer';
@@ -29,6 +30,7 @@ type mapDispatchToPropsType = {
   setUsers: (users: UserType[]) => void;
   followUser: (userID: number) => void;
   unfollowUser: (userID: number) => void;
+  selectUserPage: (page: number) => void;
 };
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
@@ -40,6 +42,9 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     },
     unfollowUser: (userID: number) => {
       dispatch(unfollowUserAC(userID));
+    },
+    selectUserPage: (page: number) => {
+      dispatch(selectUserPageAC(page));
     },
   };
 };

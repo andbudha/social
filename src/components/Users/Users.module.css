@@ -11,9 +11,13 @@ navbar - #7C81AD
 nav-page-background - #f8f0e5
 font - #fff
 */
+.page_number_box {
+  margin: 5px 0;
+}
 .page_number {
-  margin: 0 5px;
+  margin: 7px;
   color: #4b527e;
+  cursor: pointer;
 }
 
 .slected_page {

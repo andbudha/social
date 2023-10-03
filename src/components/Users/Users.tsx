@@ -7,7 +7,9 @@ import { UsersContainerPropsType } from './UsersContainer';
 export class Users extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
     axios
-      .get('https://social-network.samuraijs.com/api/1.0/users')
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=${this.props.usersPerPage}`
+      )
       .then((response) => {
         this.props.setUsers(response.data.items);
       });
@@ -23,13 +25,18 @@ export class Users extends React.Component<UsersContainerPropsType> {
       pages.push(i);
     }
 
+    const selectUserPageHandler = (page: number) => {
+      this.props.selectUserPage(page);
+    };
+
     return (
       <div>
-        <div>
+        <div className={styles.page_number_box}>
           {pages.map((page) => {
             return (
               <span
                 key={page}
+                onClick={() => selectUserPageHandler(page)}
                 className={`${styles.page_number} ${
                   this.props.selectedPage === page && styles.slected_page
                 }`}

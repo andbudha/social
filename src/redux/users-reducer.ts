@@ -2,12 +2,16 @@ import { UserType, UsersInitialStateType } from '../types/store-types';
 
 const initialState: UsersInitialStateType = {
   users: [],
-  usersPerPage: 8,
-  amountOfUsers: 92,
-  selectedPage: 2,
+  usersPerPage: 5,
+  amountOfUsers: 50,
+  selectedPage: 1,
 };
 
-type UsersReducerType = followUserACType | unfollowUserACType | setUsersACType;
+type UsersReducerType =
+  | followUserACType
+  | unfollowUserACType
+  | setUsersACType
+  | selectUserPageACType;
 export const UsersReducer = (
   state: UsersInitialStateType = initialState,
   action: UsersReducerType
@@ -36,6 +40,9 @@ export const UsersReducer = (
         ),
       };
     }
+    case 'SELECT-USER-PAGE': {
+      return { ...state, selectedPage: action.payload.page };
+    }
     default: {
       return state;
     }
@@ -56,4 +63,8 @@ export const unfollowUserAC = (userID: number) => {
     type: 'UNFOLLOW-USER',
     payload: { userID },
   } as const;
+};
+type selectUserPageACType = ReturnType<typeof selectUserPageAC>;
+export const selectUserPageAC = (page: number) => {
+  return { type: 'SELECT-USER-PAGE', payload: { page } } as const;
 };
