@@ -42,17 +42,7 @@ export type UserType = {
 
 export type UsersInitialStateType = {
   users: UserType[];
+  usersPerPage: number;
+  amountOfUsers: number;
+  selectedPage: number;
 };
-
-// export type StateType = {
-//   profilePage: ProfilePageType;
-//   messagePage: MessagePageType;
-// };
-
-// export type StoreType = {
-//   _state: StateType;
-//   _rerenderOnStateChange: () => void;
-//   subscribe: (observer: () => void) => void;
-//   getState: () => StateType;
-//   dispatch: (action: ActionTypes) => void;
-// };

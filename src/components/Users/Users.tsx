@@ -5,7 +5,7 @@ import axios from 'axios';
 import { UsersContainerPropsType } from './UsersContainer';
 
 export class Users extends React.Component<UsersContainerPropsType> {
-  componentDidMount(): void {
+  componentDidMount() {
     axios
       .get('https://social-network.samuraijs.com/api/1.0/users')
       .then((response) => {
@@ -13,8 +13,32 @@ export class Users extends React.Component<UsersContainerPropsType> {
       });
   }
   render() {
+    const amountOfPages = Math.ceil(
+      this.props.amountOfUsers / this.props.usersPerPage
+    );
+
+    const pages: number[] = [];
+
+    for (let i = 1; i <= amountOfPages; i++) {
+      pages.push(i);
+    }
+
     return (
       <div>
+        <div>
+          {pages.map((page) => {
+            return (
+              <span
+                key={page}
+                className={`${styles.page_number} ${
+                  this.props.selectedPage === page && styles.slected_page
+                }`}
+              >
+                {page}
+              </span>
+            );
+          })}
+        </div>
         {this.props.users.map((user) => {
           return (
             <div key={user.id} className={styles.user_card}>

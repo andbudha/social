@@ -11,6 +11,15 @@ navbar - #7C81AD
 nav-page-background - #f8f0e5
 font - #fff
 */
+.page_number {
+  margin: 0 5px;
+  color: #4b527e;
+}
+
+.slected_page {
+  font-weight: 1000;
+  text-decoration: underline 2px;
+}
 
 .user_card {
   border-radius: 20px;

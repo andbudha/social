@@ -12,9 +12,17 @@ import { Users } from './Users';
 
 type mapStateToPropsType = {
   users: UserType[];
+  usersPerPage: number;
+  amountOfUsers: number;
+  selectedPage: number;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
-  return { users: state.users.users };
+  return {
+    users: state.users.users,
+    usersPerPage: state.users.usersPerPage,
+    amountOfUsers: state.users.amountOfUsers,
+    selectedPage: state.users.selectedPage,
+  };
 };
 
 type mapDispatchToPropsType = {

@@ -2,6 +2,9 @@ import { UserType, UsersInitialStateType } from '../types/store-types';
 
 const initialState: UsersInitialStateType = {
   users: [],
+  usersPerPage: 8,
+  amountOfUsers: 92,
+  selectedPage: 2,
 };
 
 type UsersReducerType = followUserACType | unfollowUserACType | setUsersACType;
