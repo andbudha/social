@@ -2,8 +2,8 @@ import { UserType, UsersInitialStateType } from '../types/store-types';
 
 const initialState: UsersInitialStateType = {
   users: [],
-  usersPerPage: 5,
-  amountOfUsers: 50,
+  usersPerPage: 6,
+  amountOfUsers: 75,
   selectedPage: 1,
 };
 
@@ -18,7 +18,7 @@ export const UsersReducer = (
 ): UsersInitialStateType => {
   switch (action.type) {
     case 'SET-USERS': {
-      return { ...state, users: [...state.users, ...action.payload.users] };
+      return { ...state, users: action.payload.users };
     }
     case 'FOLLOW-USER': {
       return {

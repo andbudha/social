@@ -12,8 +12,20 @@ export class Users extends React.Component<UsersContainerPropsType> {
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
+        console.log(response.data);
       });
   }
+
+  selectUserPageHandler = (page: number) => {
+    this.props.selectUserPage(page);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPerPage}`
+      )
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+      });
+  };
   render() {
     const amountOfPages = Math.ceil(
       this.props.amountOfUsers / this.props.usersPerPage
@@ -25,10 +37,6 @@ export class Users extends React.Component<UsersContainerPropsType> {
       pages.push(i);
     }
 
-    const selectUserPageHandler = (page: number) => {
-      this.props.selectUserPage(page);
-    };
-
     return (
       <div>
         <div className={styles.page_number_box}>
@@ -36,7 +44,7 @@ export class Users extends React.Component<UsersContainerPropsType> {
             return (
               <span
                 key={page}
-                onClick={() => selectUserPageHandler(page)}
+                onClick={() => this.selectUserPageHandler(page)}
                 className={`${styles.page_number} ${
                   this.props.selectedPage === page && styles.slected_page
                 }`}
