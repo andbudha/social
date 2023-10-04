@@ -1,12 +1,38 @@
-//profile reducer types
+//profile page reducer types
+export type ProfileContactsType = {
+  github: string;
+  vk: string;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  website: string;
+  youtube: string;
+  mainLink: string;
+};
+
+export type ProfilePhotoType = {
+  small: string | null;
+  large: string | null;
+};
+export type UserProfileType = {
+  userId: number;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: string;
+  fullName: string;
+  contacts: ProfileContactsType;
+  photos: ProfilePhotoType;
+};
+
 export type PostType = {
   id: number;
   message: string | undefined;
   likeCount: number;
 };
+
 export type ProfilePageType = {
   posts: PostType[];
   newPostText: string;
+  userProfile: UserProfileType | null;
 };
 
 //dialogue reducer types

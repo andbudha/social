@@ -6,6 +6,7 @@ const initialState: ProfilePageType = {
     { id: 2, message: 'It is my first post!', likeCount: 25 },
   ],
   newPostText: '',
+  userProfile: null,
 };
 
 type ProfileReducerActionTypes = addPostACType | updatePostACType;
