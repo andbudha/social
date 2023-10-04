@@ -3,6 +3,7 @@ import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
 import { Loader } from '../common/Loader/Loader';
+import { NavLink } from 'react-router-dom';
 
 type UsersPropsType = {
   pages: number[];
@@ -21,11 +22,13 @@ export class Users extends React.Component<UsersPropsType> {
             <div key={user.id} className={styles.user_card}>
               <div className={styles.user_img_and_btn_box}>
                 <div className={styles.user_img_box}>
-                  <img
-                    className={styles.img}
-                    src={user.photos.small || profileImage}
-                    alt="user img"
-                  />
+                  <NavLink to={`/profile/${user.id}`}>
+                    <img
+                      className={styles.img}
+                      src={user.photos.small || profileImage}
+                      alt="user img"
+                    />
+                  </NavLink>
                 </div>
                 <div className={styles.user_btn_box}>
                   {user.followed ? (

@@ -2,12 +2,12 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { Navbar } from './components/Navbar/Navbar';
-import { Profile } from './components/Profile/Profile';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
 import { UsersContainer } from './components/Users/UsersContainer';
+import { ProfileContainer } from './components/Profile/ProfileContainer';
 
 type AppPropsType = {};
 
@@ -18,10 +18,10 @@ const App: React.FC<AppPropsType> = (props) => {
       <Navbar />
       <Routes>
         <Route
-          path="/profile"
+          path="/profile/*"
           element={
             <div className="app_content_wrapper">
-              <Profile />
+              <ProfileContainer />
             </div>
           }
         />
