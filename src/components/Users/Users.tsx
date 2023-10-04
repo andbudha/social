@@ -17,7 +17,6 @@ export class Users extends React.Component<UsersPropsType> {
     return (
       <div>
         <div className={styles.page_number_box}>
-          <Loader />
           {this.props.pages.map((page) => {
             return (
               <span

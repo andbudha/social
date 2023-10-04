@@ -4,6 +4,7 @@ import { AppRootStateType } from '../../redux/redux-store';
 import { UserType } from '../../types/store-types';
 import { Dispatch } from 'redux';
 import {
+  fetchDataAC,
   followUserAC,
   selectUserPageAC,
   setUsersAC,
@@ -12,14 +13,17 @@ import {
 import React from 'react';
 import axios from 'axios';
 import { Users } from './Users';
+import { Loader } from '../Loader/Loader';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
+    this.props.fetchData(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=${this.props.usersPerPage}`
       )
       .then((response) => {
+        this.props.fetchData(false);
         this.props.setUsers(response.data.items);
         console.log(response.data);
       });
@@ -27,11 +31,13 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
 
   selectUserPageHandler = (page: number) => {
     this.props.selectUserPage(page);
+    this.props.fetchData(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPerPage}`
       )
       .then((response) => {
+        this.props.fetchData(false);
         this.props.setUsers(response.data.items);
       });
   };
@@ -49,14 +55,18 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
 
     return (
       <div>
-        <Users
-          pages={pages}
-          selectedPage={this.props.selectedPage}
-          users={this.props.users}
-          selectUserPageHandler={this.selectUserPageHandler}
-          followUser={this.props.followUser}
-          unfollowUser={this.props.unfollowUser}
-        />
+        {this.props.isFetchingData ? (
+          <Loader />
+        ) : (
+          <Users
+            pages={pages}
+            selectedPage={this.props.selectedPage}
+            users={this.props.users}
+            selectUserPageHandler={this.selectUserPageHandler}
+            followUser={this.props.followUser}
+            unfollowUser={this.props.unfollowUser}
+          />
+        )}
       </div>
     );
   }
@@ -67,6 +77,7 @@ type mapStateToPropsType = {
   usersPerPage: number;
   amountOfUsers: number;
   selectedPage: number;
+  isFetchingData: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -74,6 +85,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     usersPerPage: state.users.usersPerPage,
     amountOfUsers: state.users.amountOfUsers,
     selectedPage: state.users.selectedPage,
+    isFetchingData: state.users.isFetchingData,
   };
 };
 
@@ -82,6 +94,7 @@ type mapDispatchToPropsType = {
   followUser: (userID: number) => void;
   unfollowUser: (userID: number) => void;
   selectUserPage: (page: number) => void;
+  fetchData: (isFetchingData: boolean) => void;
 };
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
@@ -96,6 +109,9 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     },
     selectUserPage: (page: number) => {
       dispatch(selectUserPageAC(page));
+    },
+    fetchData: (isFetchingData: boolean) => {
+      dispatch(fetchDataAC(isFetchingData));
     },
   };
 };

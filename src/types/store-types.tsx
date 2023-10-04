@@ -45,4 +45,5 @@ export type UsersInitialStateType = {
   usersPerPage: number;
   amountOfUsers: number;
   selectedPage: number;
+  isFetchingData: boolean;
 };

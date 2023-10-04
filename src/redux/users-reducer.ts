@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { UserType, UsersInitialStateType } from '../types/store-types';
 
 const initialState: UsersInitialStateType = {
@@ -5,13 +6,15 @@ const initialState: UsersInitialStateType = {
   usersPerPage: 6,
   amountOfUsers: 75,
   selectedPage: 1,
+  isFetchingData: false,
 };
 
 type UsersReducerType =
   | followUserACType
   | unfollowUserACType
   | setUsersACType
-  | selectUserPageACType;
+  | selectUserPageACType
+  | fetchDataACType;
 export const UsersReducer = (
   state: UsersInitialStateType = initialState,
   action: UsersReducerType
@@ -43,6 +46,9 @@ export const UsersReducer = (
     case 'SELECT-USER-PAGE': {
       return { ...state, selectedPage: action.payload.page };
     }
+    case 'SET-LOADER': {
+      return { ...state, isFetchingData: action.payload.isFetchingData };
+    }
     default: {
       return state;
     }
@@ -67,4 +73,8 @@ export const unfollowUserAC = (userID: number) => {
 type selectUserPageACType = ReturnType<typeof selectUserPageAC>;
 export const selectUserPageAC = (page: number) => {
   return { type: 'SELECT-USER-PAGE', payload: { page } } as const;
+};
+type fetchDataACType = ReturnType<typeof fetchDataAC>;
+export const fetchDataAC = (isFetchingData: boolean) => {
+  return { type: 'SET-LOADER', payload: { isFetchingData } } as const;
 };
