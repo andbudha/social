@@ -1,4 +1,4 @@
-import { ProfilePageType } from '../types/store-types';
+import { ProfilePageType, UserProfileType } from '../types/store-types';
 
 const initialState: ProfilePageType = {
   posts: [
@@ -9,7 +9,10 @@ const initialState: ProfilePageType = {
   userProfile: null,
 };
 
-type ProfileReducerActionTypes = addPostACType | updatePostACType;
+type ProfileReducerActionTypes =
+  | addPostACType
+  | updatePostACType
+  | setUserProfileACType;
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
   action: ProfileReducerActionTypes
@@ -37,6 +40,9 @@ export const ProfileReducer = (
       stateCopy.newPostText = action.payload.newText;
       return stateCopy;
     }
+    case 'SET-USER-PROFILE': {
+      return { ...state, userProfile: action.payload.userProfile };
+    }
     default: {
       return state;
     }
@@ -54,4 +60,8 @@ export const updatePostAC = (newPost: string) => {
     type: 'UPDATE-POST',
     payload: { newText: newPost },
   } as const;
+};
+type setUserProfileACType = ReturnType<typeof setUserProfileAC>;
+export const setUserProfileAC = (userProfile: UserProfileType) => {
+  return { type: 'SET-USER-PROFILE', payload: { userProfile } } as const;
 };
