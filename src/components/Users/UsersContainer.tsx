@@ -9,7 +9,7 @@ import {
   setUsersAC,
   unfollowUserAC,
 } from '../../redux/users-reducer';
-import { Users } from './Users';
+import { UsersAPIContainer } from './UsersAPIContainer';
 
 type mapStateToPropsType = {
   users: UserType[];
@@ -54,4 +54,4 @@ export type UsersContainerPropsType = mapStateToPropsType &
 export const UsersContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users);
+)(UsersAPIContainer);

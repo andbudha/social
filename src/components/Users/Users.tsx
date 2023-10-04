@@ -1,50 +1,26 @@
 import React from 'react';
 import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava5.png';
-import axios from 'axios';
-import { UsersContainerPropsType } from './UsersContainer';
+import { UserType } from '../../types/store-types';
 
-export class Users extends React.Component<UsersContainerPropsType> {
-  componentDidMount() {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=${this.props.usersPerPage}`
-      )
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        console.log(response.data);
-      });
-  }
-
-  selectUserPageHandler = (page: number) => {
-    this.props.selectUserPage(page);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPerPage}`
-      )
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-      });
-  };
+type UsersPropsType = {
+  pages: number[];
+  selectedPage: number;
+  users: UserType[];
+  selectUserPageHandler: (page: number) => void;
+  followUser: (userID: number) => void;
+  unfollowUser: (userID: number) => void;
+};
+export class Users extends React.Component<UsersPropsType> {
   render() {
-    const amountOfPages = Math.ceil(
-      this.props.amountOfUsers / this.props.usersPerPage
-    );
-
-    const pages: number[] = [];
-
-    for (let i = 1; i <= amountOfPages; i++) {
-      pages.push(i);
-    }
-
     return (
       <div>
         <div className={styles.page_number_box}>
-          {pages.map((page) => {
+          {this.props.pages.map((page) => {
             return (
               <span
                 key={page}
-                onClick={() => this.selectUserPageHandler(page)}
+                onClick={() => this.props.selectUserPageHandler(page)}
                 className={`${styles.page_number} ${
                   this.props.selectedPage === page && styles.slected_page
                 }`}
