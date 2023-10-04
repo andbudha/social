@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
+import { Loader } from '../Loader/Loader';
 
 type UsersPropsType = {
   pages: number[];
@@ -16,6 +17,7 @@ export class Users extends React.Component<UsersPropsType> {
     return (
       <div>
         <div className={styles.page_number_box}>
+          <Loader />
           {this.props.pages.map((page) => {
             return (
               <span
