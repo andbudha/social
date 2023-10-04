@@ -37,7 +37,7 @@ export class Users extends React.Component<UsersPropsType> {
                 <div className={styles.user_img_box}>
                   <img
                     className={styles.img}
-                    src={profileImage}
+                    src={user.photos.small || profileImage}
                     alt="user img"
                   />
                 </div>

@@ -59,6 +59,7 @@ font - #fff
 
 .img {
   width: 60px;
+  border-radius: 50%;
 }
 .follow_btn {
   width: 66px;
