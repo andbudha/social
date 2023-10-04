@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Users.module.css';
-import profileImage from '../../images/avatars/ava5.png';
+import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
 
 type UsersPropsType = {
