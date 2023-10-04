@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
-import { Loader } from '../Loader/Loader';
+import { Loader } from '../common/Loader/Loader';
 
 type UsersPropsType = {
   pages: number[];
@@ -16,21 +16,6 @@ export class Users extends React.Component<UsersPropsType> {
   render() {
     return (
       <div>
-        <div className={styles.page_number_box}>
-          {this.props.pages.map((page) => {
-            return (
-              <span
-                key={page}
-                onClick={() => this.props.selectUserPageHandler(page)}
-                className={`${styles.page_number} ${
-                  this.props.selectedPage === page && styles.slected_page
-                }`}
-              >
-                {page}
-              </span>
-            );
-          })}
-        </div>
         {this.props.users.map((user) => {
           return (
             <div key={user.id} className={styles.user_card}>
@@ -72,6 +57,21 @@ export class Users extends React.Component<UsersPropsType> {
             </div>
           );
         })}
+        <div className={styles.page_number_box}>
+          {this.props.pages.map((page) => {
+            return (
+              <span
+                key={page}
+                onClick={() => this.props.selectUserPageHandler(page)}
+                className={`${styles.page_number} ${
+                  this.props.selectedPage === page && styles.slected_page
+                }`}
+              >
+                {page}
+              </span>
+            );
+          })}
+        </div>
       </div>
     );
   }

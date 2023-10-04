@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import axios from 'axios';
 import { Users } from './Users';
-import { Loader } from '../Loader/Loader';
+import { Loader } from '../common/Loader/Loader';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
