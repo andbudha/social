@@ -1,12 +1,11 @@
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
-
+import { ProfileContainerPropsType } from './ProfileContainer';
 import { ProfileDetails } from './ProfileDetails/ProfileDetails';
 
-type ProfilePropsTye = {};
-export const Profile: React.FC<ProfilePropsTye> = () => {
+export const Profile: React.FC<ProfileContainerPropsType> = (props) => {
   return (
     <div>
-      <ProfileDetails />
+      <ProfileDetails profileContainerProps={props} />
       <MyPostsContainer />
     </div>
   );

@@ -1,25 +1,26 @@
 //profile page reducer types
 export type ProfileContactsType = {
-  github: string;
-  vk: string;
   facebook: string;
-  instagram: string;
-  twitter: string;
   website: string;
+  vk: string;
+  twitter: string;
+  instagram: string;
   youtube: string;
+  github: string;
   mainLink: string;
 };
 
 export type ProfilePhotoType = {
-  small: string | null;
-  large: string | null;
+  small: string | undefined;
+  large: string | undefined;
 };
 export type UserProfileType = {
-  userId: number;
+  aboutMe: string;
+  contacts: ProfileContactsType;
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  contacts: ProfileContactsType;
+  userId: number;
   photos: ProfilePhotoType;
 };
 

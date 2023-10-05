@@ -13,6 +13,7 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
       .get(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
       .then((response) => {
         this.props.setUserProfile(response.data);
+        console.log(response.data);
       });
   }
   render() {
@@ -23,7 +24,9 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
     );
   }
 }
-type mapStateToPropsType = {};
+type mapStateToPropsType = {
+  userProfile: UserProfileType | null;
+};
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     userProfile: state.profiles.userProfile,
