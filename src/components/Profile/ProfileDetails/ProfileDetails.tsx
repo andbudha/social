@@ -1,5 +1,4 @@
 import styles from './ProfileDetails.module.css';
-import social_media from '../../../images/logos/social_media.png';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 
 type ProfileDetailsPropsType = {
@@ -9,24 +8,29 @@ type ProfileDetailsPropsType = {
 export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
   return (
     <div>
-      {/* <div className={styles.img_bakground}>
-        <img
-          className={styles.content_img}
-          src={social_media}
-          alt="social nework"
-        />
-      </div> */}
-
-      <div className={styles.profile_block}>
-        <div className={styles.avatar_box}>
+      <div className={styles.profile_box}>
+        <div className={styles.profile_img_box}>
           <img
+            className={styles.img}
             src={props.profileContainerProps.userProfile?.photos.small}
             alt="avatar"
           />
         </div>
         <div className={styles.profile_detail_box}>
-          <p>{props.profileContainerProps.userProfile?.fullName}</p>
-          <p>{props.profileContainerProps.userProfile?.aboutMe}</p>
+          <p>
+            <strong>Name:</strong>{' '}
+            {props.profileContainerProps.userProfile?.fullName}
+          </p>
+          <p>
+            <strong>Status:</strong>{' '}
+            {props.profileContainerProps.userProfile?.aboutMe}
+          </p>
+          <p>
+            <strong>Open for job-offers:</strong>{' '}
+            {props.profileContainerProps.userProfile?.lookingForAJob
+              ? 'Yes'
+              : 'No'}
+          </p>
         </div>
       </div>
     </div>
