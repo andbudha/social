@@ -1,5 +1,6 @@
 import styles from './ProfileDetails.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
+import defaultProfile from '../../../images/avatars/ava7.png';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -12,7 +13,10 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
         <div className={styles.profile_img_box}>
           <img
             className={styles.img}
-            src={props.profileContainerProps.userProfile?.photos.small}
+            src={
+              props.profileContainerProps.userProfile?.photos.small ||
+              defaultProfile
+            }
             alt="avatar"
           />
         </div>
