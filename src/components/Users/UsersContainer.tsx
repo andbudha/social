@@ -25,7 +25,6 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
       .then((response) => {
         this.props.fetchData(false);
         this.props.setUsers(response.data.items);
-        console.log(response.data.items);
       });
   }
 

@@ -10,9 +10,7 @@ export const Participant: React.FC<ParticipantPropsType> = (props) => {
   return (
     <div className={styles.participant}>
       <NavLink
-        className={(link) =>
-          link.isActive ? styles.active : styles.participant
-        }
+        className={(active) => (active ? styles.active : styles.participant)}
         to={`/dialogues/${props.id}`}
       >
         {props.name}

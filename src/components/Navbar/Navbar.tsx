@@ -7,47 +7,47 @@ export const Navbar = () => {
       <nav className={styles.nav}>
         <div>
           <NavLink
-            className={(link) => (link.isActive ? styles.active : styles.item)}
-            to={'profile'}
+            className={(active) => (active ? styles.active : styles.item)}
+            to={'/profile'}
           >
             Profile
           </NavLink>
         </div>
         <div>
           <NavLink
-            className={(link) => (link.isActive ? styles.active : styles.item)}
-            to={'dialogues'}
+            className={(active) => (active ? styles.active : styles.item)}
+            to={'/dialogues'}
           >
             Messages
           </NavLink>
         </div>
         <div>
           <NavLink
-            className={(link) => (link.isActive ? styles.active : styles.item)}
-            to={'users'}
+            className={(active) => (active ? styles.active : styles.item)}
+            to={'/users'}
           >
             Users
           </NavLink>
         </div>
         <div>
           <NavLink
-            className={(link) => (link.isActive ? styles.active : styles.item)}
-            to={'news'}
+            className={(active) => (active ? styles.active : styles.item)}
+            to={'/news'}
           >
             News
           </NavLink>
         </div>
         <div>
           <NavLink
-            className={(link) => (link.isActive ? styles.active : styles.item)}
-            to={'music'}
+            className={(active) => (active ? styles.active : styles.item)}
+            to={'/music'}
           >
             Music
           </NavLink>
         </div>
         <div>
           <NavLink
-            className={(link) => (link.isActive ? styles.active : styles.item)}
+            className={(active) => (active ? styles.active : styles.item)}
             to={'settings'}
           >
             Settings

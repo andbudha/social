@@ -6,12 +6,12 @@ import { AppRootStateType } from '../../redux/redux-store';
 import { Dispatch } from 'redux';
 import { UserProfileType } from '../../types/store-types';
 import { setUserProfileAC } from '../../redux/profile-reducer';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { withRouter } from '../../hocs/withRouter';
 
 export class ProfileAPIContainer extends React.Component<ProfileContainerPropsType> {
   componentDidMount() {
-    let profileID = this.props.params;
+    let profileID = 2;
+
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/profile/${profileID}`)
       .then((response) => {
@@ -47,15 +47,12 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 };
 
 export type ProfileContainerPropsType = mapStateToPropsType &
-  mapDispatchToPropsType &
-  WithRouterProps;
-export interface WithRouterProps {
-  location: ReturnType<typeof useLocation>;
-  params: Record<string, string>;
-  navigate: ReturnType<typeof useNavigate>;
-}
+  mapDispatchToPropsType;
+// export type ProfileContainerPropsType = mapStateToPropsType &
+//   mapDispatchToPropsType &
+//   WithRouterProps;
 
 export const ProfileContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(ProfileAPIContainer));
+)(ProfileAPIContainer);

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { Navbar } from './components/Navbar/Navbar';
@@ -16,56 +16,38 @@ const App: React.FC<AppPropsType> = (props) => {
     <div className="app-wrapper">
       <Header />
       <Navbar />
-      <Routes>
-        <Route
-          path="/profile/*"
-          element={
-            <div className="app_content_wrapper">
-              <ProfileContainer />
-            </div>
-          }
-        />
-        <Route
-          path="/dialogues/*"
-          element={
-            <div className="app_content_wrapper">
-              <DialogueContainer />
-            </div>
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <div className="app_content_wrapper">
-              <UsersContainer />
-            </div>
-          }
-        />
-        <Route
-          path="/news"
-          element={
-            <div className="app_content_wrapper">
-              <News />
-            </div>
-          }
-        />
-        <Route
-          path="/music"
-          element={
-            <div className="app_content_wrapper">
-              <Music />
-            </div>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <div className="app_content_wrapper">
-              <Settings />
-            </div>
-          }
-        />
-      </Routes>
+      <Switch>
+        <Route path="/profile">
+          <div className="app_content_wrapper">
+            <ProfileContainer />
+          </div>
+        </Route>
+        <Route path="/dialogues">
+          <div className="app_content_wrapper">
+            <DialogueContainer />
+          </div>
+        </Route>
+        <Route path="/users">
+          <div className="app_content_wrapper">
+            <UsersContainer />
+          </div>
+        </Route>
+        <Route path="/news">
+          <div className="app_content_wrapper">
+            <News />
+          </div>
+        </Route>
+        <Route path="/music">
+          <div className="app_content_wrapper">
+            <Music />
+          </div>
+        </Route>
+        <Route path="/settings">
+          <div className="app_content_wrapper">
+            <Settings />
+          </div>
+        </Route>
+      </Switch>
     </div>
   );
 };
