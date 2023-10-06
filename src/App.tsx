@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { Navbar } from './components/Navbar/Navbar';
@@ -9,45 +9,60 @@ import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
 import { UsersContainer } from './components/Users/UsersContainer';
 import { ProfileContainer } from './components/Profile/ProfileContainer';
 
-type AppPropsType = {};
-
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC = () => {
   return (
     <div className="app-wrapper">
       <Header />
       <Navbar />
-      <Switch>
-        <Route path="/profile">
+
+      <Route
+        path="/profile/:userID?"
+        render={() => (
           <div className="app_content_wrapper">
             <ProfileContainer />
           </div>
-        </Route>
-        <Route path="/dialogues">
+        )}
+      />
+      <Route
+        path="/dialogues"
+        render={() => (
           <div className="app_content_wrapper">
             <DialogueContainer />
           </div>
-        </Route>
-        <Route path="/users">
+        )}
+      />
+      <Route
+        path="/users"
+        render={() => (
           <div className="app_content_wrapper">
             <UsersContainer />
           </div>
-        </Route>
-        <Route path="/news">
+        )}
+      />
+      <Route
+        path="/news"
+        render={() => (
           <div className="app_content_wrapper">
             <News />
           </div>
-        </Route>
-        <Route path="/music">
+        )}
+      />
+      <Route
+        path="/music"
+        render={() => (
           <div className="app_content_wrapper">
             <Music />
           </div>
-        </Route>
-        <Route path="/settings">
+        )}
+      />
+      <Route
+        path="/settings"
+        render={() => (
           <div className="app_content_wrapper">
             <Settings />
           </div>
-        </Route>
-      </Switch>
+        )}
+      />
     </div>
   );
 };
