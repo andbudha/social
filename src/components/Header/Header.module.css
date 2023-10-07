@@ -28,3 +28,6 @@
   width: 80px;
   color: #fff;
 }
+.auth_box {
+  cursor: pointer;
+}

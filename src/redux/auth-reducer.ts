@@ -24,5 +24,7 @@ export const AuthReducer = (
 type AuthReducerActionTypes = setAuthDataType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthReducerInitialState) => {
+  console.log(authData);
+
   return { type: 'SET-AUTH-DATA', payload: { ...authData } } as const;
 };
