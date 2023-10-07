@@ -80,4 +80,5 @@ export type AuthReducerInitialState = {
   id: number;
   email: string;
   login: string;
+  isAuthorised?: boolean;
 };
