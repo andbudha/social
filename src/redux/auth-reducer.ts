@@ -13,7 +13,7 @@ export const AuthReducer = (
 ): AuthReducerInitialState => {
   switch (action.type) {
     case 'SET-AUTH-DATA': {
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload, isAuthorised: true };
     }
     default: {
       return state;

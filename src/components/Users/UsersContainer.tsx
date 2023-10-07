@@ -14,18 +14,17 @@ import React from 'react';
 import axios from 'axios';
 import { Users } from './Users';
 import { Loader } from '../common/Loader/Loader';
+import { getUsers } from '../../rest-api/rest_api';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
     this.props.fetchData(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=${this.props.usersPerPage}`
-      )
-      .then((response) => {
+    getUsers(this.props.selectedPage, this.props.usersPerPage).then(
+      (response) => {
         this.props.fetchData(false);
         this.props.setUsers(response.data.items);
-      });
+      }
+    );
   }
 
   selectUserPageHandler = (page: number) => {
@@ -33,7 +32,8 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
     this.props.fetchData(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPerPage}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPerPage}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.fetchData(false);
