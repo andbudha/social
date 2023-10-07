@@ -35,3 +35,9 @@ export const usersAPI = {
     });
   },
 };
+
+export const authorisationAPI = {
+  getAuthData() {
+    return instance.get(`auth/me`).then((response) => response.data);
+  },
+};

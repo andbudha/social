@@ -6,18 +6,15 @@ import { AppRootStateType } from '../../redux/redux-store';
 import { setAuthDataAC } from '../../redux/auth-reducer';
 import { AuthReducerInitialState } from '../../types/store-types';
 import axios from 'axios';
+import { authorisationAPI } from '../../rest-api/rest_api';
 
 class HeaderAPIContainer extends React.Component<HeaderContainerPropsType> {
-  componentDidMount(): void {
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.data.resultCode === 0) {
-          this.props.setAuthData(response.data.data);
-        }
-      });
+  componentDidMount() {
+    authorisationAPI.getAuthData().then((data) => {
+      if (data.resulCode === 0) {
+        this.props.setAuthData(data.data);
+      }
+    });
   }
   render() {
     return (
