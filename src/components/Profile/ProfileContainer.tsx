@@ -7,17 +7,14 @@ import { Dispatch } from 'redux';
 import { UserProfileType } from '../../types/store-types';
 import { setUserProfileAC } from '../../redux/profile-reducer';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { usersAPI } from '../../rest-api/rest_api';
 
 export class ProfileAPIContainer extends React.Component<ProfileContainerPropsType> {
   componentDidMount() {
-    const profileUserID = this.props.match.params.userID || '27941';
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/profile/${profileUserID}`
-      )
-      .then((response) => {
-        this.props.setUserProfile(response.data);
-      });
+    const userProfileID = this.props.match.params.userID || '27941';
+    usersAPI
+      .settingUserProfile(userProfileID)
+      .then((data) => this.props.setUserProfile(data));
   }
   render() {
     return (
