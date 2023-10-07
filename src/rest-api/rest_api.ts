@@ -9,5 +9,17 @@ const instance = axios.create({
 });
 
 export const getUsers = (selectedPage: number, usersPerPage: number) => {
-  return instance.get(`users?page=${selectedPage}&count=${usersPerPage}`);
+  return instance
+    .get(`users?page=${selectedPage}&count=${usersPerPage}`)
+    .then((response) => {
+      return response.data.items;
+    });
+};
+
+export const accessUserPage = (page: number, usersPerPage: number) => {
+  return instance
+    .get(`users?page=${page}&count=${usersPerPage}`)
+    .then((response) => {
+      return response.data.items;
+    });
 };

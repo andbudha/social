@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-
 import { AppRootStateType } from '../../redux/redux-store';
 import { UserType } from '../../types/store-types';
 import { Dispatch } from 'redux';
@@ -11,34 +10,26 @@ import {
   unfollowUserAC,
 } from '../../redux/users-reducer';
 import React from 'react';
-import axios from 'axios';
 import { Users } from './Users';
 import { Loader } from '../common/Loader/Loader';
-import { getUsers } from '../../rest-api/rest_api';
+import { accessUserPage, getUsers } from '../../rest-api/rest_api';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
     this.props.fetchData(true);
-    getUsers(this.props.selectedPage, this.props.usersPerPage).then(
-      (response) => {
-        this.props.fetchData(false);
-        this.props.setUsers(response.data.items);
-      }
-    );
+    getUsers(this.props.selectedPage, this.props.usersPerPage).then((data) => {
+      this.props.fetchData(false);
+      this.props.setUsers(data);
+    });
   }
 
   selectUserPageHandler = (page: number) => {
     this.props.selectUserPage(page);
     this.props.fetchData(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPerPage}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        this.props.fetchData(false);
-        this.props.setUsers(response.data.items);
-      });
+    accessUserPage(page, this.props.usersPerPage).then((data) => {
+      this.props.fetchData(false);
+      this.props.setUsers(data);
+    });
   };
 
   render() {
