@@ -12,21 +12,23 @@ import {
 import React from 'react';
 import { Users } from './Users';
 import { Loader } from '../common/Loader/Loader';
-import { accessUserPage, getUsers } from '../../rest-api/rest_api';
+import { usersAPI } from '../../rest-api/rest_api';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
     this.props.fetchData(true);
-    getUsers(this.props.selectedPage, this.props.usersPerPage).then((data) => {
-      this.props.fetchData(false);
-      this.props.setUsers(data);
-    });
+    usersAPI
+      .getUsers(this.props.selectedPage, this.props.usersPerPage)
+      .then((data) => {
+        this.props.fetchData(false);
+        this.props.setUsers(data);
+      });
   }
 
   selectUserPageHandler = (page: number) => {
     this.props.selectUserPage(page);
     this.props.fetchData(true);
-    accessUserPage(page, this.props.usersPerPage).then((data) => {
+    usersAPI.accessUserPage(page, this.props.usersPerPage).then((data) => {
       this.props.fetchData(false);
       this.props.setUsers(data);
     });
