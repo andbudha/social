@@ -74,3 +74,10 @@ export type UsersInitialStateType = {
   selectedPage: number;
   isFetchingData: boolean;
 };
+
+//auth reducer types
+export type AuthReducerInitialState = {
+  id: number;
+  email: string;
+  login: string;
+};

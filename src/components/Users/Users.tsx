@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
-import { Loader } from '../common/Loader/Loader';
 import { NavLink } from 'react-router-dom';
 
 type UsersPropsType = {

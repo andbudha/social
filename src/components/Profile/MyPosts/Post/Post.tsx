@@ -1,4 +1,4 @@
-import avatar from '../../../../images/logos/avatar.png';
+import profileImage from '../../../../images/avatars/ava7.png';
 import { PostType } from '../../../../types/store-types';
 import styles from './Post.module.css';
 
@@ -10,7 +10,7 @@ export const Post: React.FC<PostPropsType> = (props) => {
   return (
     <div className={styles.post}>
       <div>
-        <img className={styles.avatar} src={avatar} alt="avatar lion" />
+        <img className={styles.avatar} src={profileImage} alt="avatar lion" />
       </div>
       <div>
         <div>{props.post.message}</div>
