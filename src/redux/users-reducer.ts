@@ -7,7 +7,7 @@ const initialState: UsersInitialStateType = {
   amountOfUsers: 75,
   selectedPage: 1,
   isFetchingData: false,
-  isFollowingToggleStatus: false,
+  followingBTNToggle: [],
 };
 
 type UsersReducerType =
@@ -54,7 +54,11 @@ export const UsersReducer = (
     case 'TOGGLE-FOLLOW-BTN': {
       return {
         ...state,
-        isFollowingToggleStatus: action.payload.btnStatus,
+        followingBTNToggle: action.payload.btnStatus
+          ? [...state.followingBTNToggle, action.payload.userID]
+          : state.followingBTNToggle.filter(
+              (id) => id != action.payload.userID
+            ),
       };
     }
     default: {
@@ -89,7 +93,5 @@ export const fetchDataAC = (isFetchingData: boolean) => {
 
 type isFollowingToggleACType = ReturnType<typeof isFollowingToggleAC>;
 export const isFollowingToggleAC = (userID: number, btnStatus: boolean) => {
-  console.log(btnStatus);
-
   return { type: 'TOGGLE-FOLLOW-BTN', payload: { userID, btnStatus } } as const;
 };

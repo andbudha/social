@@ -59,7 +59,7 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
             followUser={this.props.followUser}
             unfollowUser={this.props.unfollowUser}
             isFollowingToggle={this.props.isFollowingToggle}
-            isFollowingToggleStatus={this.props.isFollowingToggleStatus}
+            followingBTNToggle={this.props.followingBTNToggle}
           />
         )}
       </div>
@@ -73,7 +73,7 @@ type mapStateToPropsType = {
   amountOfUsers: number;
   selectedPage: number;
   isFetchingData: boolean;
-  isFollowingToggleStatus: boolean;
+  followingBTNToggle: number[];
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -82,7 +82,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     amountOfUsers: state.users.amountOfUsers,
     selectedPage: state.users.selectedPage,
     isFetchingData: state.users.isFetchingData,
-    isFollowingToggleStatus: state.users.isFollowingToggleStatus,
+    followingBTNToggle: state.users.followingBTNToggle,
   };
 };
 

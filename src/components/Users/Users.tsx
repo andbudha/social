@@ -9,7 +9,7 @@ type UsersPropsType = {
   pages: number[];
   selectedPage: number;
   users: UserType[];
-  isFollowingToggleStatus: boolean;
+  followingBTNToggle: number[];
   selectUserPageHandler: (page: number) => void;
   followUser: (userID: number) => void;
   unfollowUser: (userID: number) => void;
@@ -55,7 +55,9 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                   <button
                     onClick={() => unfollowUserHandler(user.id)}
                     className={styles.follow_btn}
-                    disabled={props.isFollowingToggleStatus}
+                    disabled={props.followingBTNToggle.some(
+                      (id) => id === user.id
+                    )}
                   >
                     unfollow
                   </button>
@@ -63,7 +65,9 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                   <button
                     onClick={() => followUserHandler(user.id)}
                     className={styles.follow_btn}
-                    disabled={props.isFollowingToggleStatus}
+                    disabled={props.followingBTNToggle.some(
+                      (id) => id === user.id
+                    )}
                   >
                     follow
                   </button>
