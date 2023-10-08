@@ -1,4 +1,6 @@
+import { usersAPI } from '../rest-api/rest_api';
 import { ProfilePageType, UserProfileType } from '../types/store-types';
+import { AppDispatchType } from './redux-store';
 
 const initialState: ProfilePageType = {
   posts: [
@@ -9,7 +11,7 @@ const initialState: ProfilePageType = {
   userProfile: null,
 };
 
-type ProfileReducerActionTypes =
+export type ProfileReducerActionTypes =
   | addPostACType
   | updatePostACType
   | setUserProfileACType;
@@ -64,4 +66,14 @@ export const updatePostAC = (newPost: string) => {
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>;
 export const setUserProfileAC = (userProfile: UserProfileType) => {
   return { type: 'SET-USER-PROFILE', payload: { userProfile } } as const;
+};
+
+//thunks
+
+export const setUserProfileTC = (userProfileID: string) => {
+  return (dispatch: AppDispatchType) => {
+    usersAPI
+      .settingUserProfile(userProfileID)
+      .then((data) => dispatch(setUserProfileAC(data)));
+  };
 };

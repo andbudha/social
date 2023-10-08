@@ -19,7 +19,9 @@ const initialState: MessagePageType = {
   newMessageText: '',
 };
 
-type DialogueReducerActionTypes = addMessageACType | updateMessageTextACType;
+export type DialogueReducerActionTypes =
+  | addMessageACType
+  | updateMessageTextACType;
 export const DialogueReducer = (
   state: MessagePageType = initialState,
   action: DialogueReducerActionTypes

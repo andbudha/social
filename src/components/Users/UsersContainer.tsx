@@ -13,7 +13,6 @@ import {
 import React from 'react';
 import { Users } from './Users';
 import { Loader } from '../common/Loader/Loader';
-import { Dispatch } from 'redux';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
