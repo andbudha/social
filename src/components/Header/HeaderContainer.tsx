@@ -1,20 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Header } from './Header';
-import { Dispatch } from 'redux';
-import { AppRootStateType } from '../../redux/redux-store';
-import { setAuthDataAC } from '../../redux/auth-reducer';
-import { AuthReducerInitialState } from '../../types/store-types';
-import axios from 'axios';
-import { authorisationAPI } from '../../rest-api/rest_api';
+import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
+import { setAuthDataTC } from '../../redux/auth-reducer';
 
 class HeaderAPIContainer extends React.Component<HeaderContainerPropsType> {
   componentDidMount() {
-    authorisationAPI.getAuthData().then((data) => {
-      if (data.resulCode === 0) {
-        this.props.setAuthData(data.data);
-      }
-    });
+    this.props.setAuthDataThunk();
   }
   render() {
     return (
@@ -41,12 +33,12 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 };
 
 type mapDispatchToProps = {
-  setAuthData: (authData: AuthReducerInitialState) => void;
+  setAuthDataThunk: () => void;
 };
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToProps => {
+const mapDispatchToProps = (dispatch: AppDispatchType): mapDispatchToProps => {
   return {
-    setAuthData: (authData: AuthReducerInitialState) => {
-      dispatch(setAuthDataAC(authData));
+    setAuthDataThunk: () => {
+      dispatch(setAuthDataTC());
     },
   };
 };

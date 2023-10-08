@@ -1,4 +1,6 @@
+import { authorisationAPI } from '../rest-api/rest_api';
 import { AuthReducerInitialState } from '../types/store-types';
+import { AppDispatchType } from './redux-store';
 
 const initialState: AuthReducerInitialState = {
   id: 0,
@@ -24,7 +26,19 @@ export const AuthReducer = (
 export type AuthReducerActionTypes = setAuthDataType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthReducerInitialState) => {
-  console.log(authData);
-
   return { type: 'SET-AUTH-DATA', payload: { ...authData } } as const;
+};
+
+//thunks
+
+export const setAuthDataTC = () => {
+  return (dispatch: AppDispatchType) => {
+    authorisationAPI.getAuthData().then((data) => {
+      console.log(data);
+
+      if (data.resulCode === 0) {
+        dispatch(setAuthDataAC(data.data));
+      }
+    });
+  };
 };
