@@ -3,31 +3,36 @@ import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import { usersAPI } from '../../rest-api/rest_api';
 
 type UsersPropsType = {
   pages: number[];
   selectedPage: number;
   users: UserType[];
+  isFollowingToggleStatus: boolean;
   selectUserPageHandler: (page: number) => void;
   followUser: (userID: number) => void;
   unfollowUser: (userID: number) => void;
+  isFollowingToggle: (userID: number, btnStatus: boolean) => void;
 };
 export const Users: React.FC<UsersPropsType> = (props) => {
   const followUserHandler = (userID: number) => {
+    props.isFollowingToggle(userID, true);
     usersAPI.followingUser(userID).then((response) => {
       if (response.data.resultCode === 0) {
         props.followUser(userID);
       }
+      props.isFollowingToggle(userID, false);
     });
   };
 
   const unfollowUserHandler = (userID: number) => {
+    props.isFollowingToggle(userID, true);
     usersAPI.unfollowingUser(userID).then((response) => {
       if (response.data.resultCode === 0) {
         props.unfollowUser(userID);
       }
+      props.isFollowingToggle(userID, false);
     });
   };
   return (
@@ -50,6 +55,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                   <button
                     onClick={() => unfollowUserHandler(user.id)}
                     className={styles.follow_btn}
+                    disabled={props.isFollowingToggleStatus}
                   >
                     unfollow
                   </button>
@@ -57,6 +63,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                   <button
                     onClick={() => followUserHandler(user.id)}
                     className={styles.follow_btn}
+                    disabled={props.isFollowingToggleStatus}
                   >
                     follow
                   </button>

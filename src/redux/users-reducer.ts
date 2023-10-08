@@ -3,10 +3,11 @@ import { UserType, UsersInitialStateType } from '../types/store-types';
 
 const initialState: UsersInitialStateType = {
   users: [],
-  usersPerPage: 6,
+  usersPerPage: 5,
   amountOfUsers: 75,
   selectedPage: 1,
   isFetchingData: false,
+  isFollowingToggleStatus: false,
 };
 
 type UsersReducerType =
@@ -14,7 +15,8 @@ type UsersReducerType =
   | unfollowUserACType
   | setUsersACType
   | selectUserPageACType
-  | fetchDataACType;
+  | fetchDataACType
+  | isFollowingToggleACType;
 export const UsersReducer = (
   state: UsersInitialStateType = initialState,
   action: UsersReducerType
@@ -49,6 +51,12 @@ export const UsersReducer = (
     case 'SET-LOADER': {
       return { ...state, isFetchingData: action.payload.isFetchingData };
     }
+    case 'TOGGLE-FOLLOW-BTN': {
+      return {
+        ...state,
+        isFollowingToggleStatus: action.payload.btnStatus,
+      };
+    }
     default: {
       return state;
     }
@@ -77,4 +85,11 @@ export const selectUserPageAC = (page: number) => {
 type fetchDataACType = ReturnType<typeof fetchDataAC>;
 export const fetchDataAC = (isFetchingData: boolean) => {
   return { type: 'SET-LOADER', payload: { isFetchingData } } as const;
+};
+
+type isFollowingToggleACType = ReturnType<typeof isFollowingToggleAC>;
+export const isFollowingToggleAC = (userID: number, btnStatus: boolean) => {
+  console.log(btnStatus);
+
+  return { type: 'TOGGLE-FOLLOW-BTN', payload: { userID, btnStatus } } as const;
 };

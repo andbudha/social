@@ -73,6 +73,7 @@ export type UsersInitialStateType = {
   amountOfUsers: number;
   selectedPage: number;
   isFetchingData: boolean;
+  isFollowingToggleStatus: boolean;
 };
 
 //auth reducer types

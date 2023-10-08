@@ -5,6 +5,7 @@ import { Dispatch } from 'redux';
 import {
   fetchDataAC,
   followUserAC,
+  isFollowingToggleAC,
   selectUserPageAC,
   setUsersAC,
   unfollowUserAC,
@@ -57,6 +58,8 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
             selectUserPageHandler={this.selectUserPageHandler}
             followUser={this.props.followUser}
             unfollowUser={this.props.unfollowUser}
+            isFollowingToggle={this.props.isFollowingToggle}
+            isFollowingToggleStatus={this.props.isFollowingToggleStatus}
           />
         )}
       </div>
@@ -70,6 +73,7 @@ type mapStateToPropsType = {
   amountOfUsers: number;
   selectedPage: number;
   isFetchingData: boolean;
+  isFollowingToggleStatus: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -78,6 +82,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     amountOfUsers: state.users.amountOfUsers,
     selectedPage: state.users.selectedPage,
     isFetchingData: state.users.isFetchingData,
+    isFollowingToggleStatus: state.users.isFollowingToggleStatus,
   };
 };
 
@@ -87,6 +92,7 @@ type mapDispatchToPropsType = {
   unfollowUser: (userID: number) => void;
   selectUserPage: (page: number) => void;
   fetchData: (isFetchingData: boolean) => void;
+  isFollowingToggle: (userID: number, btnStatus: boolean) => void;
 };
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
@@ -104,6 +110,9 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     },
     fetchData: (isFetchingData: boolean) => {
       dispatch(fetchDataAC(isFetchingData));
+    },
+    isFollowingToggle: (userID: number, btnStatus: boolean) => {
+      dispatch(isFollowingToggleAC(userID, btnStatus));
     },
   };
 };

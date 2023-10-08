@@ -76,6 +76,9 @@ font - #fff
   color: #fff;
 }
 
+.follow_btn:disabled {
+  opacity: 0.5;
+}
 .user_presentation_box {
   width: 300px;
   height: 70px;
