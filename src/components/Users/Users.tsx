@@ -12,7 +12,7 @@ type UsersPropsType = {
   followingBTNToggle: number[];
   selectUserPageHandler: (page: number) => void;
   followUserThunk: (userID: number) => void;
-  unfollowUser: (userID: number) => void;
+  unfollowUserThunk: (userID: number) => void;
   isFollowingToggle: (userID: number, btnStatus: boolean) => void;
 };
 export const Users: React.FC<UsersPropsType> = (props) => {
@@ -21,13 +21,14 @@ export const Users: React.FC<UsersPropsType> = (props) => {
   };
 
   const unfollowUserHandler = (userID: number) => {
-    props.isFollowingToggle(userID, true);
-    usersAPI.unfollowingUser(userID).then((response) => {
-      if (response.data.resultCode === 0) {
-        props.unfollowUser(userID);
-      }
-      props.isFollowingToggle(userID, false);
-    });
+    // props.isFollowingToggle(userID, true);
+    // usersAPI.unfollowingUser(userID).then((response) => {
+    //   if (response.data.resultCode === 0) {
+    //     props.unfollowUser(userID);
+    //   }
+    //   props.isFollowingToggle(userID, false);
+    // });
+    props.unfollowUserThunk(userID);
   };
   return (
     <div>

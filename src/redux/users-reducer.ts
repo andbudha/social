@@ -131,3 +131,15 @@ export const followUserTC = (userID: number) => {
     });
   };
 };
+
+export const unfollowUserTC = (userID: number) => {
+  return (dispatch: AppDispatchType) => {
+    dispatch(isFollowingToggleAC(userID, true));
+    usersAPI.unfollowingUser(userID).then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(unfollowUserAC(userID));
+      }
+      dispatch(isFollowingToggleAC(userID, false));
+    });
+  };
+};

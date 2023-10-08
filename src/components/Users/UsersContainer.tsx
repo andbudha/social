@@ -10,6 +10,7 @@ import {
   selectUserPageTC,
   setUsersTC,
   unfollowUserAC,
+  unfollowUserTC,
 } from '../../redux/users-reducer';
 import React from 'react';
 import { Users } from './Users';
@@ -46,7 +47,7 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
             users={this.props.users}
             selectUserPageHandler={this.selectUserPageHandler}
             followUserThunk={this.props.followUserThunk}
-            unfollowUser={this.props.unfollowUser}
+            unfollowUserThunk={this.props.unfollowUserThunk}
             isFollowingToggle={this.props.isFollowingToggle}
             followingBTNToggle={this.props.followingBTNToggle}
           />
@@ -79,7 +80,7 @@ type mapDispatchToPropsType = {
   setUsersThunk: (selectedPage: number, usersPerPage: number) => void;
   selectUserPageThunk: (page: number, usersPerPage: number) => void;
   followUserThunk: (userID: number) => void;
-  unfollowUser: (userID: number) => void;
+  unfollowUserThunk: (userID: number) => void;
   selectUserPage: (page: number) => void;
   isFollowingToggle: (userID: number, btnStatus: boolean) => void;
 };
@@ -96,8 +97,8 @@ const mapDispatchToProps = (
     followUserThunk: (userID: number) => {
       dispatch(followUserTC(userID));
     },
-    unfollowUser: (userID: number) => {
-      dispatch(unfollowUserAC(userID));
+    unfollowUserThunk: (userID: number) => {
+      dispatch(unfollowUserTC(userID));
     },
     selectUserPage: (page: number) => {
       dispatch(selectUserPageAC(page));
