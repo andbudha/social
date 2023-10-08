@@ -1,5 +1,6 @@
-import { type } from 'os';
 import { UserType, UsersInitialStateType } from '../types/store-types';
+import { usersAPI } from '../rest-api/rest_api';
+import { AppDispatchType } from './redux-store';
 
 const initialState: UsersInitialStateType = {
   users: [],
@@ -10,7 +11,7 @@ const initialState: UsersInitialStateType = {
   followingBTNToggle: [],
 };
 
-type UsersReducerType =
+export type UsersReducerType =
   | followUserACType
   | unfollowUserACType
   | setUsersACType
@@ -94,4 +95,27 @@ export const fetchDataAC = (isFetchingData: boolean) => {
 type isFollowingToggleACType = ReturnType<typeof isFollowingToggleAC>;
 export const isFollowingToggleAC = (userID: number, btnStatus: boolean) => {
   return { type: 'TOGGLE-FOLLOW-BTN', payload: { userID, btnStatus } } as const;
+};
+
+//thunks
+
+export const setUsersTC = (selectedPage: number, usersPerPage: number) => {
+  return (dispatch: AppDispatchType) => {
+    dispatch(fetchDataAC(true));
+    usersAPI.getUsers(selectedPage, usersPerPage).then((data) => {
+      dispatch(fetchDataAC(false));
+      dispatch(setUsersAC(data));
+    });
+  };
+};
+
+export const selectUserPageTC = (page: number, usersPerPage: number) => {
+  return (dispatch: AppDispatchType) => {
+    dispatch(selectUserPageAC(page));
+    dispatch(fetchDataAC(true));
+    usersAPI.accessUserPage(page, usersPerPage).then((data) => {
+      dispatch(fetchDataAC(false));
+      dispatch(setUsersAC(data));
+    });
+  };
 };
