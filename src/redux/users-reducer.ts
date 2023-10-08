@@ -119,3 +119,15 @@ export const selectUserPageTC = (page: number, usersPerPage: number) => {
     });
   };
 };
+
+export const followUserTC = (userID: number) => {
+  return (dispatch: AppDispatchType) => {
+    dispatch(isFollowingToggleAC(userID, true));
+    usersAPI.followingUser(userID).then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(followUserAC(userID));
+      }
+      dispatch(isFollowingToggleAC(userID, false));
+    });
+  };
+};

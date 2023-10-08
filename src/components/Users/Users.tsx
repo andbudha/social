@@ -11,19 +11,13 @@ type UsersPropsType = {
   users: UserType[];
   followingBTNToggle: number[];
   selectUserPageHandler: (page: number) => void;
-  followUser: (userID: number) => void;
+  followUserThunk: (userID: number) => void;
   unfollowUser: (userID: number) => void;
   isFollowingToggle: (userID: number, btnStatus: boolean) => void;
 };
 export const Users: React.FC<UsersPropsType> = (props) => {
   const followUserHandler = (userID: number) => {
-    props.isFollowingToggle(userID, true);
-    usersAPI.followingUser(userID).then((response) => {
-      if (response.data.resultCode === 0) {
-        props.followUser(userID);
-      }
-      props.isFollowingToggle(userID, false);
-    });
+    props.followUserThunk(userID);
   };
 
   const unfollowUserHandler = (userID: number) => {

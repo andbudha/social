@@ -4,6 +4,7 @@ import { UserType } from '../../types/store-types';
 
 import {
   followUserAC,
+  followUserTC,
   isFollowingToggleAC,
   selectUserPageAC,
   selectUserPageTC,
@@ -44,7 +45,7 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
             selectedPage={this.props.selectedPage}
             users={this.props.users}
             selectUserPageHandler={this.selectUserPageHandler}
-            followUser={this.props.followUser}
+            followUserThunk={this.props.followUserThunk}
             unfollowUser={this.props.unfollowUser}
             isFollowingToggle={this.props.isFollowingToggle}
             followingBTNToggle={this.props.followingBTNToggle}
@@ -77,7 +78,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 type mapDispatchToPropsType = {
   setUsersThunk: (selectedPage: number, usersPerPage: number) => void;
   selectUserPageThunk: (page: number, usersPerPage: number) => void;
-  followUser: (userID: number) => void;
+  followUserThunk: (userID: number) => void;
   unfollowUser: (userID: number) => void;
   selectUserPage: (page: number) => void;
   isFollowingToggle: (userID: number, btnStatus: boolean) => void;
@@ -92,8 +93,8 @@ const mapDispatchToProps = (
     selectUserPageThunk: (page: number, usersPerPage: number) => {
       dispatch(selectUserPageTC(page, usersPerPage));
     },
-    followUser: (userID: number) => {
-      dispatch(followUserAC(userID));
+    followUserThunk: (userID: number) => {
+      dispatch(followUserTC(userID));
     },
     unfollowUser: (userID: number) => {
       dispatch(unfollowUserAC(userID));
