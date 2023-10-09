@@ -3,13 +3,11 @@ import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { UserType } from '../../types/store-types';
 
 import {
-  followUserAC,
   followUserTC,
   isFollowingToggleAC,
   selectUserPageAC,
   selectUserPageTC,
   setUsersTC,
-  unfollowUserAC,
   unfollowUserTC,
 } from '../../redux/users-reducer';
 import React from 'react';
@@ -48,7 +46,6 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
             selectUserPageHandler={this.selectUserPageHandler}
             followUserThunk={this.props.followUserThunk}
             unfollowUserThunk={this.props.unfollowUserThunk}
-            isFollowingToggle={this.props.isFollowingToggle}
             followingBTNToggle={this.props.followingBTNToggle}
           />
         )}

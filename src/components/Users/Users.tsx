@@ -3,7 +3,6 @@ import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../rest-api/rest_api';
 
 type UsersPropsType = {
   pages: number[];
@@ -13,7 +12,6 @@ type UsersPropsType = {
   selectUserPageHandler: (page: number) => void;
   followUserThunk: (userID: number) => void;
   unfollowUserThunk: (userID: number) => void;
-  isFollowingToggle: (userID: number, btnStatus: boolean) => void;
 };
 export const Users: React.FC<UsersPropsType> = (props) => {
   const followUserHandler = (userID: number) => {
@@ -21,13 +19,6 @@ export const Users: React.FC<UsersPropsType> = (props) => {
   };
 
   const unfollowUserHandler = (userID: number) => {
-    // props.isFollowingToggle(userID, true);
-    // usersAPI.unfollowingUser(userID).then((response) => {
-    //   if (response.data.resultCode === 0) {
-    //     props.unfollowUser(userID);
-    //   }
-    //   props.isFollowingToggle(userID, false);
-    // });
     props.unfollowUserThunk(userID);
   };
   return (

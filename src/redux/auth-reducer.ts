@@ -26,16 +26,13 @@ export const AuthReducer = (
 export type AuthReducerActionTypes = setAuthDataType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthReducerInitialState) => {
-  return { type: 'SET-AUTH-DATA', payload: { ...authData } } as const;
+  return { type: 'SET-AUTH-DATA', payload: { authData } } as const;
 };
 
 //thunks
-
 export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.getAuthData().then((data) => {
-      console.log(data);
-
       if (data.resulCode === 0) {
         dispatch(setAuthDataAC(data.data));
       }
