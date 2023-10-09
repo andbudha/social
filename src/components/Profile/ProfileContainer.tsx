@@ -5,6 +5,7 @@ import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { UserProfileType } from '../../types/store-types';
 import { setUserProfileTC } from '../../redux/profile-reducer';
 import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
+import { withAuthRedirect } from '../../hocs/withAuthRedirect';
 
 export class ProfileAPIContainer extends React.Component<ProfileContainerPropsType> {
   componentDidMount() {
@@ -12,9 +13,9 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
     this.props.setUserProfileThunk(userProfileID);
   }
   render() {
-    if (!this.props.isAuthorised) {
-      return <Redirect to={'/login'} />;
-    }
+    // if (!this.props.isAuthorised) {
+    //   return <Redirect to={'/login'} />;
+    // }
     return (
       <div>
         <Profile {...this.props} />
@@ -54,7 +55,7 @@ type PathParamsType = {
   userID: string;
 };
 const WithUrlPropsProfileAPIContainer = withRouter(ProfileAPIContainer);
-export const ProfileContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WithUrlPropsProfileAPIContainer);
+
+export const ProfileContainer = withAuthRedirect(
+  connect(mapStateToProps, mapDispatchToProps)(WithUrlPropsProfileAPIContainer)
+);
