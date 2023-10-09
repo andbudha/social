@@ -15,7 +15,10 @@ export const AuthReducer = (
 ): AuthReducerInitialState => {
   switch (action.type) {
     case 'SET-AUTH-DATA': {
-      return { ...state, ...action.payload, isAuthorised: true };
+      return { ...state, ...action.payload };
+    }
+    case 'ALTER-AUTH-STATUS': {
+      return { ...state, isAuthorised: action.payload.authStatus };
     }
     default: {
       return state;
@@ -23,16 +26,26 @@ export const AuthReducer = (
   }
 };
 
-export type AuthReducerActionTypes = setAuthDataType;
+export type AuthReducerActionTypes =
+  | setAuthDataType
+  | alterAuthorisationStatusACType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthReducerInitialState) => {
   return { type: 'SET-AUTH-DATA', payload: { authData } } as const;
+};
+
+type alterAuthorisationStatusACType = ReturnType<
+  typeof alterAuthorisationStatusAC
+>;
+export const alterAuthorisationStatusAC = (authStatus: boolean) => {
+  return { type: 'ALTER-AUTH-STATUS', payload: { authStatus } } as const;
 };
 
 //thunks
 export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.getAuthData().then((data) => {
+      dispatch(alterAuthorisationStatusAC(true));
       if (data.resulCode === 0) {
         dispatch(setAuthDataAC(data.data));
       }
