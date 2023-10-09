@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { AuthResponseType } from '../types/store-types';
+import {
+  AuthResponseType,
+  CommonUserProfileType,
+  UsersResponseType,
+} from '../types/store-types';
 
 const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -12,23 +16,27 @@ const instance = axios.create({
 export const usersAPI = {
   getUsers(selectedPage: number, usersPerPage: number) {
     return instance
-      .get(`users?page=${selectedPage}&count=${usersPerPage}`)
+      .get<UsersResponseType>(
+        `users?page=${selectedPage}&count=${usersPerPage}`
+      )
       .then((response) => {
         return response.data.items;
       });
   },
   accessUserPage(page: number, usersPerPage: number) {
     return instance
-      .get(`users?page=${page}&count=${usersPerPage}`)
+      .get<UsersResponseType>(`users?page=${page}&count=${usersPerPage}`)
       .then((response) => {
+        console.log(response);
+
         return response.data.items;
       });
   },
   followingUser(userID: number) {
-    return instance.post(`follow/${userID}`);
+    return instance.post<CommonUserProfileType>(`follow/${userID}`);
   },
   unfollowingUser(userID: number) {
-    return instance.delete(`follow/${userID}`);
+    return instance.delete<CommonUserProfileType>(`follow/${userID}`);
   },
   settingUserProfile(userProfileID: string) {
     return instance.get(`profile/${userProfileID}`).then((response) => {
@@ -44,5 +52,3 @@ export const authorisationAPI = {
       .then((response) => response.data);
   },
 };
-
-//types

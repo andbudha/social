@@ -13,6 +13,7 @@ import {
 import React from 'react';
 import { Users } from './Users';
 import { Loader } from '../common/Loader/Loader';
+import { Redirect } from 'react-router-dom';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
@@ -33,7 +34,9 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
     for (let i = 1; i <= amountOfPages; i++) {
       pages.push(i);
     }
-
+    if (!this.props.isAuthorised) {
+      return <Redirect to={'/login'} />;
+    }
     return (
       <div>
         {this.props.isFetchingData ? (
@@ -61,6 +64,7 @@ type mapStateToPropsType = {
   selectedPage: number;
   isFetchingData: boolean;
   followingBTNToggle: number[];
+  isAuthorised: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -70,6 +74,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     selectedPage: state.users.selectedPage,
     isFetchingData: state.users.isFetchingData,
     followingBTNToggle: state.users.followingBTNToggle,
+    isAuthorised: state.authorisation.isAuthorised,
   };
 };
 

@@ -55,16 +55,20 @@ export type MessagePageType = {
 
 //users reducer types
 export type UserPhotoType = {
-  small: string;
-  large: string;
+  small: null | string;
+  large: null | string;
 };
-
 export type UserType = {
-  id: number;
   name: string;
+  id: number;
   status: string;
-  photos: UserPhotoType;
   followed: boolean;
+  photos: UserPhotoType;
+};
+export type UsersResponseType = {
+  items: UserType[];
+  totalCount: number;
+  error: null | string;
 };
 
 export type UsersInitialStateType = {
@@ -93,4 +97,12 @@ export type AuthResponseType = {
 export type AuthReducerInitialState = {
   auhData: AuthResponseDataType;
   isAuthorised: boolean;
+};
+
+//UserFollowingType
+export type CommonUserProfileDataType = {};
+export type CommonUserProfileType = {
+  resultCode: number;
+  messages: string[];
+  data: CommonUserProfileDataType;
 };
