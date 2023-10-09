@@ -13,9 +13,6 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
     this.props.setUserProfileThunk(userProfileID);
   }
   render() {
-    // if (!this.props.isAuthorised) {
-    //   return <Redirect to={'/login'} />;
-    // }
     return (
       <div>
         <Profile {...this.props} />
