@@ -1,11 +1,16 @@
 import { authorisationAPI } from '../rest-api/rest_api';
-import { AuthReducerInitialState } from '../types/store-types';
+import {
+  AuthReducerInitialState,
+  AuthResponseDataType,
+} from '../types/store-types';
 import { AppDispatchType } from './redux-store';
 
 const initialState: AuthReducerInitialState = {
-  id: 0,
-  email: '',
-  login: '',
+  auhData: {
+    id: 0,
+    email: '',
+    login: '',
+  },
   isAuthorised: false,
 };
 
@@ -15,7 +20,10 @@ export const AuthReducer = (
 ): AuthReducerInitialState => {
   switch (action.type) {
     case 'SET-AUTH-DATA': {
-      return { ...state, ...action.payload };
+      return {
+        ...state,
+        auhData: { ...state.auhData, ...action.payload },
+      };
     }
     case 'ALTER-AUTH-STATUS': {
       return { ...state, isAuthorised: action.payload.authStatus };
@@ -30,7 +38,7 @@ export type AuthReducerActionTypes =
   | setAuthDataType
   | alterAuthorisationStatusACType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
-export const setAuthDataAC = (authData: AuthReducerInitialState) => {
+export const setAuthDataAC = (authData: AuthResponseDataType) => {
   return { type: 'SET-AUTH-DATA', payload: { authData } } as const;
 };
 
@@ -45,9 +53,11 @@ export const alterAuthorisationStatusAC = (authStatus: boolean) => {
 export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.getAuthData().then((data) => {
-      dispatch(alterAuthorisationStatusAC(true));
-      if (data.resulCode === 0) {
+      console.log(data);
+
+      if (data.resultCode === 0) {
         dispatch(setAuthDataAC(data.data));
+        dispatch(alterAuthorisationStatusAC(true));
       }
     });
   };

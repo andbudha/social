@@ -3,8 +3,12 @@ import { Conversation } from './Conversation/Conversation';
 import styles from './Dialogues.module.css';
 import { Participant } from './Participant/Participant';
 import { DialoguesConainerPropsType } from './DialoguesContainer';
+import { Redirect } from 'react-router-dom';
 
 export const Dialogues: React.FC<DialoguesConainerPropsType> = (props) => {
+  if (!props.isAuthorised) {
+    return <Redirect to={'/login'} />;
+  }
   const participantList = props.participants.map((body) => (
     <Participant key={body.id} name={body.name} id={body.id} />
   ));

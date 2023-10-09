@@ -76,10 +76,21 @@ export type UsersInitialStateType = {
   followingBTNToggle: number[];
 };
 
-//auth reducer types
-export type AuthReducerInitialState = {
+//auth data types
+
+export type AuthResponseDataType = {
   id: number;
   email: string;
   login: string;
-  isAuthorised?: boolean;
+};
+
+export type AuthResponseType = {
+  data: AuthResponseDataType;
+  resultCode: number;
+  message: string[];
+};
+
+export type AuthReducerInitialState = {
+  auhData: AuthResponseDataType;
+  isAuthorised: boolean;
 };

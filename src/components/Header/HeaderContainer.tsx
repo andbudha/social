@@ -21,13 +21,13 @@ type mapStateToPropsType = {
   id: number;
   email: string;
   login: string;
-  isAuthorised?: boolean;
+  isAuthorised: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
-    id: state.authorisation.id,
-    email: state.authorisation.email,
-    login: state.authorisation.login,
+    id: state.authorisation.auhData.id,
+    email: state.authorisation.auhData.email,
+    login: state.authorisation.auhData.login,
     isAuthorised: state.authorisation.isAuthorised,
   };
 };

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { AuthResponseType } from '../types/store-types';
 
 const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -38,6 +39,10 @@ export const usersAPI = {
 
 export const authorisationAPI = {
   getAuthData() {
-    return instance.get(`auth/me`).then((response) => response.data);
+    return instance
+      .get<AuthResponseType>(`auth/me`)
+      .then((response) => response.data);
   },
 };
+
+//types

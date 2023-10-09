@@ -15,19 +15,20 @@ const App: React.FC = () => {
     <div className="app-wrapper">
       <HeaderContainer />
       <Navbar />
-      <Route
-        path="/login"
-        render={() => (
-          <div className="app_content_wrapper">
-            <Login />
-          </div>
-        )}
-      />
+
       <Route
         path="/profile/:userID?"
         render={() => (
           <div className="app_content_wrapper">
             <ProfileContainer />
+          </div>
+        )}
+      />
+      <Route
+        path="/login"
+        render={() => (
+          <div className="app_content_wrapper">
+            <Login />
           </div>
         )}
       />

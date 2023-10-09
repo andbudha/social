@@ -12,12 +12,14 @@ type mapStateToPropsType = {
   participants: ParticipantType[];
   messages: MessageType[];
   newMessageText: string;
+  isAuthorised?: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     participants: state.dialogues.participants,
     messages: state.dialogues.messages,
     newMessageText: state.dialogues.newMessageText,
+    isAuthorised: state.authorisation.isAuthorised,
   };
 };
 
