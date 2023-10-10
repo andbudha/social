@@ -112,6 +112,11 @@ const mapDispatchToProps = (
 export type UsersContainerPropsType = mapStateToPropsType &
   mapDispatchToPropsType;
 
+// export const UsersContainer = compose<React.ComponentType>(
+//   connect(mapStateToProps, mapDispatchToProps),
+//   withAuthRedirect
+// )(UsersAPIContainer);
+
 export const UsersContainer = withAuthRedirect(
   connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer)
 );

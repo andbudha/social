@@ -1,6 +1,7 @@
 import styles from './ProfileDetails.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import defaultProfile from '../../../images/avatars/ava7.png';
+import { ProfileStatus } from './ProfileStatus';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -22,15 +23,18 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
         </div>
         <div className={styles.profile_detail_box}>
           <p>
-            <strong>Name:</strong>{' '}
+            <span className={styles.strong}>Name: </span>
             {props.profileContainerProps.userProfile?.fullName}
           </p>
           <p>
-            <strong>Status:</strong>{' '}
-            {props.profileContainerProps.userProfile?.aboutMe}
+            <span className={styles.strong}>Status: </span>
+            <ProfileStatus
+              status={props.profileContainerProps.userProfile?.aboutMe}
+            />
+            {/* {props.profileContainerProps.userProfile?.aboutMe} */}
           </p>
           <p>
-            <strong>Open for job-offers:</strong>{' '}
+            <span className={styles.strong}>Open for job-offers: </span>
             {props.profileContainerProps.userProfile?.lookingForAJob
               ? 'Yes'
               : 'No'}

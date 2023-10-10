@@ -42,6 +42,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   };
 };
 
+// export const DialogueContainer = compose<React.ComponentType>(
+//   connect(mapStateToProps, mapDispatchToProps),
+//   withAuthRedirect
+// )(Dialogues);
+
 export const DialogueContainer = withAuthRedirect(
   connect(mapStateToProps, mapDispatchToProps)(Dialogues)
 );

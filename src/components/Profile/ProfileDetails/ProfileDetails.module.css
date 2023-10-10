@@ -8,7 +8,7 @@
   border-radius: 20px;
   border: 1px solid #2e4374;
   background-color: #7c81ad;
-  width: 400px;
+  width: 500px;
   height: 110px;
   padding: 4px;
   display: flex;
@@ -33,4 +33,8 @@
   line-height: 1.3;
   letter-spacing: 1px;
   color: #fff;
+}
+
+.strong {
+  font-weight: bold;
 }
