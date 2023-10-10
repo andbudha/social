@@ -22,23 +22,27 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           />
         </div>
         <div className={styles.profile_detail_box}>
-          <p>
+          <div>
             <span className={styles.strong}>Name: </span>
-            {props.profileContainerProps.userProfile?.fullName}
-          </p>
-          <p>
+            <div> {props.profileContainerProps.userProfile?.fullName}</div>
+          </div>
+          <div>
             <span className={styles.strong}>Status: </span>
-            <ProfileStatus
-              status={props.profileContainerProps.userProfile?.aboutMe}
-            />
+            <div>
+              <ProfileStatus
+                status={props.profileContainerProps.userProfile?.aboutMe}
+              />
+            </div>
             {/* {props.profileContainerProps.userProfile?.aboutMe} */}
-          </p>
-          <p>
+          </div>
+          <div>
             <span className={styles.strong}>Open for job-offers: </span>
-            {props.profileContainerProps.userProfile?.lookingForAJob
-              ? 'Yes'
-              : 'No'}
-          </p>
+            <div>
+              {props.profileContainerProps.userProfile?.lookingForAJob
+                ? 'Yes'
+                : 'No'}
+            </div>
+          </div>
         </div>
       </div>
     </div>

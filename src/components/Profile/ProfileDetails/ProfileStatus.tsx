@@ -9,27 +9,28 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     editMode: false,
   };
 
-  setOnEditModeHandler() {
+  setOnEditModeHandler = () => {
     this.setState({
       editMode: true,
     });
-  }
+  };
 
-  setOffEditModeHandler() {
+  setOffEditModeHandler = () => {
     this.setState({
       editMode: false,
     });
-  }
+  };
+
   render() {
     return (
       <div>
         {!this.state.editMode && (
-          <div onDoubleClick={this.setOnEditModeHandler.bind(this)}>
+          <div onDoubleClick={this.setOnEditModeHandler}>
             Big Things Have Small Beginnings!
           </div>
         )}
         {this.state.editMode && (
-          <div onBlur={this.setOffEditModeHandler.bind(this)}>
+          <div onBlur={this.setOffEditModeHandler}>
             <input
               autoFocus
               value={this.props.status}
