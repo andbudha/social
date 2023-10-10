@@ -44,11 +44,3 @@ export const usersAPI = {
     });
   },
 };
-
-export const authorisationAPI = {
-  getAuthData() {
-    return instance
-      .get<AuthResponseType>(`auth/me`)
-      .then((response) => response.data);
-  },
-};
