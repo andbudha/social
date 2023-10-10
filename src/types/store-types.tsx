@@ -34,6 +34,7 @@ export type ProfilePageType = {
   posts: PostType[];
   newPostText: string;
   userProfile: UserProfileType | null;
+  profileStatus: string;
 };
 
 //dialogue reducer types

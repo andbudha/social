@@ -9,12 +9,14 @@ const initialState: ProfilePageType = {
   ],
   newPostText: '',
   userProfile: null,
+  profileStatus: '',
 };
 
 export type ProfileReducerActionTypes =
   | addPostACType
   | updatePostACType
-  | setUserProfileACType;
+  | setUserProfileACType
+  | getProfileStatusACType;
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
   action: ProfileReducerActionTypes
@@ -45,6 +47,9 @@ export const ProfileReducer = (
     case 'SET-USER-PROFILE': {
       return { ...state, userProfile: action.payload.userProfile };
     }
+    case 'GET-PROFILE-STATUS': {
+      return { ...state, profileStatus: action.payload.status };
+    }
     default: {
       return state;
     }
@@ -66,6 +71,11 @@ export const updatePostAC = (newPost: string) => {
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>;
 export const setUserProfileAC = (userProfile: UserProfileType) => {
   return { type: 'SET-USER-PROFILE', payload: { userProfile } } as const;
+};
+
+type getProfileStatusACType = ReturnType<typeof getProfileStatusAC>;
+export const getProfileStatusAC = (status: string) => {
+  return { type: 'GET-PROFILE-STATUS', payload: { status } } as const;
 };
 
 //thunks
