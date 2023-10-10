@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import { Users } from './Users';
 import { Loader } from '../common/Loader/Loader';
-import { Redirect } from 'react-router-dom';
+import { withAuthRedirect } from '../../hocs/withAuthRedirect';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
@@ -34,9 +34,7 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
     for (let i = 1; i <= amountOfPages; i++) {
       pages.push(i);
     }
-    if (!this.props.isAuthorised) {
-      return <Redirect to={'/login'} />;
-    }
+
     return (
       <div>
         {this.props.isFetchingData ? (
@@ -113,7 +111,7 @@ const mapDispatchToProps = (
 
 export type UsersContainerPropsType = mapStateToPropsType &
   mapDispatchToPropsType;
-export const UsersContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UsersAPIContainer);
+
+export const UsersContainer = withAuthRedirect(
+  connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer)
+);
