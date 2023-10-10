@@ -38,9 +38,4 @@ export const usersAPI = {
   unfollowingUser(userID: number) {
     return instance.delete<CommonUserProfileType>(`follow/${userID}`);
   },
-  settingUserProfile(userProfileID: string) {
-    return instance.get(`profile/${userProfileID}`).then((response) => {
-      return response.data;
-    });
-  },
 };
