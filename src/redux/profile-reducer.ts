@@ -1,4 +1,4 @@
-import { usersAPI } from '../rest-api/rest_api';
+import { usersAPI } from '../rest-api/users_api';
 import { ProfilePageType, UserProfileType } from '../types/store-types';
 import { AppDispatchType } from './redux-store';
 

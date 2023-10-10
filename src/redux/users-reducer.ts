@@ -1,5 +1,5 @@
 import { UserType, UsersInitialStateType } from '../types/store-types';
-import { usersAPI } from '../rest-api/rest_api';
+import { usersAPI } from '../rest-api/users_api';
 import { AppDispatchType } from './redux-store';
 
 const initialState: UsersInitialStateType = {

@@ -1,4 +1,4 @@
-import { authorisationAPI } from '../rest-api/rest_api';
+import { authorisationAPI } from '../rest-api/users_api';
 import {
   AuthReducerInitialState,
   AuthResponseDataType,
