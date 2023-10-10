@@ -1,4 +1,4 @@
-import { usersAPI } from '../rest-api/users_api';
+import { profileAPI } from '../rest-api/profile_api';
 import { ProfilePageType, UserProfileType } from '../types/store-types';
 import { AppDispatchType } from './redux-store';
 
@@ -72,7 +72,7 @@ export const setUserProfileAC = (userProfile: UserProfileType) => {
 
 export const setUserProfileTC = (userProfileID: string) => {
   return (dispatch: AppDispatchType) => {
-    usersAPI
+    profileAPI
       .settingUserProfile(userProfileID)
       .then((data) => dispatch(setUserProfileAC(data)));
   };
