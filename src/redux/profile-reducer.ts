@@ -100,7 +100,6 @@ export const setUserProfileTC = (userProfileID: string) => {
 export const getProfileStatusTC = (userID: string) => {
   return (dispatch: AppDispatchType) => {
     profileAPI.getProfileStatus(userID).then((status) => {
-      console.log(status);
       dispatch(getProfileStatusAC(status));
     });
   };

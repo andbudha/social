@@ -5,6 +5,7 @@ import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { UserProfileType } from '../../types/store-types';
 import {
   getProfileStatusTC,
+  setProfileStatusTC,
   setUserProfileTC,
 } from '../../redux/profile-reducer';
 import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
@@ -28,17 +29,20 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
 type mapStateToPropsType = {
   userProfile: UserProfileType | null;
   isAuthorised: boolean;
+  profileStatus: string;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     userProfile: state.profiles.userProfile,
     isAuthorised: state.authorisation.isAuthorised,
+    profileStatus: state.profiles.profileStatus,
   };
 };
 
 type mapDispatchToPropsType = {
   setUserProfileThunk: (userProfileID: string) => void;
   getProfileStatusThunk: (userID: string) => void;
+  setProfileStatusThunk: (status: string) => void;
 };
 const mapDispatchToProps = (
   dispatch: AppDispatchType
@@ -49,6 +53,9 @@ const mapDispatchToProps = (
     },
     getProfileStatusThunk: (userID: string) => {
       dispatch(getProfileStatusTC(userID));
+    },
+    setProfileStatusThunk: (status: string) => {
+      dispatch(setProfileStatusTC(status));
     },
   };
 };

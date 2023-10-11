@@ -30,7 +30,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
             <span className={styles.strong}>Status: </span>
             <div>
               <ProfileStatus
-                status={props.profileContainerProps.userProfile?.aboutMe}
+                profileContainerProps={props.profileContainerProps}
               />
             </div>
             {/* {props.profileContainerProps.userProfile?.aboutMe} */}
