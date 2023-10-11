@@ -84,6 +84,8 @@ export const getProfileStatusAC = (status: string) => {
 
 type setProfileStatusACType = ReturnType<typeof setProfileStatusAC>;
 export const setProfileStatusAC = (status: string) => {
+  console.log(status);
+
   return { type: 'SET-STATUS', payload: { status: status } } as const;
 };
 

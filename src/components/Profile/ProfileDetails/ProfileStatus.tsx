@@ -8,7 +8,6 @@ type ProfileStatusPropsType = {
 export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [profileStatus, setProfileStatus] = useState('');
-  console.log(profileStatus);
 
   const setOnEditModeHandler = () => {
     setEditMode(true);
@@ -16,6 +15,8 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
 
   const setOffEditModeHandler = () => {
     setEditMode(false);
+    props.profileContainerProps.setProfileStatusThunk(profileStatus);
+    setProfileStatus('');
   };
 
   const inputValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {

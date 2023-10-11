@@ -8,7 +8,7 @@ import {
   setProfileStatusTC,
   setUserProfileTC,
 } from '../../redux/profile-reducer';
-import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../hocs/withAuthRedirect';
 import { compose } from 'redux';
 

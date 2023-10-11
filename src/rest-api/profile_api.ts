@@ -25,7 +25,7 @@ export const profileAPI = {
 
   setProfileStatus(status: string) {
     return instance
-      .put<CommonUserProfileType>(`profile/${status}`, {
+      .put<CommonUserProfileType>(`profile/status`, {
         status: status,
       })
       .then((response) => response.data);
