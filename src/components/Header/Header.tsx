@@ -3,8 +3,6 @@ import logo_img from '../../images/logos/social_media.png';
 import { HeaderContainerPropsType } from './HeaderContainer';
 
 export const Header: React.FC<HeaderContainerPropsType> = (props) => {
-  console.log(props.isAuthorised);
-
   return (
     <header className={styles.header}>
       <div className={styles.header_box}>

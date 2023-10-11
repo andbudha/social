@@ -16,7 +16,8 @@ export type ProfileReducerActionTypes =
   | addPostACType
   | updatePostACType
   | setUserProfileACType
-  | getProfileStatusACType;
+  | getProfileStatusACType
+  | setProfileStatusACType;
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
   action: ProfileReducerActionTypes
@@ -50,6 +51,9 @@ export const ProfileReducer = (
     case 'GET-PROFILE-STATUS': {
       return { ...state, profileStatus: action.payload.status };
     }
+    case 'SET-STATUS': {
+      return { ...state, profileStatus: action.payload.status };
+    }
     default: {
       return state;
     }
@@ -78,6 +82,11 @@ export const getProfileStatusAC = (status: string) => {
   return { type: 'GET-PROFILE-STATUS', payload: { status } } as const;
 };
 
+type setProfileStatusACType = ReturnType<typeof setProfileStatusAC>;
+export const setProfileStatusAC = (status: string) => {
+  return { type: 'SET-STATUS', payload: { status: status } } as const;
+};
+
 //thunks
 
 export const setUserProfileTC = (userProfileID: string) => {
@@ -85,5 +94,24 @@ export const setUserProfileTC = (userProfileID: string) => {
     profileAPI
       .settingUserProfile(userProfileID)
       .then((data) => dispatch(setUserProfileAC(data)));
+  };
+};
+
+export const getProfileStatusTC = (userID: string) => {
+  return (dispatch: AppDispatchType) => {
+    profileAPI.getProfileStatus(userID).then((status) => {
+      console.log(status);
+      dispatch(getProfileStatusAC(status));
+    });
+  };
+};
+
+export const setProfileStatusTC = (status: string) => {
+  return (dispatch: AppDispatchType) => {
+    profileAPI.setProfileStatus(status).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setProfileStatusAC(status));
+      }
+    });
   };
 };

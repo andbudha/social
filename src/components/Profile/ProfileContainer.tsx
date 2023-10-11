@@ -3,7 +3,10 @@ import { Profile } from './Profile';
 import { connect } from 'react-redux';
 import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { UserProfileType } from '../../types/store-types';
-import { setUserProfileTC } from '../../redux/profile-reducer';
+import {
+  getProfileStatusTC,
+  setUserProfileTC,
+} from '../../redux/profile-reducer';
 import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../hocs/withAuthRedirect';
 import { compose } from 'redux';
@@ -12,6 +15,7 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
   componentDidMount() {
     const userProfileID = this.props.match.params.userID || '27941';
     this.props.setUserProfileThunk(userProfileID);
+    this.props.getProfileStatusThunk(userProfileID);
   }
   render() {
     return (
@@ -34,6 +38,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 
 type mapDispatchToPropsType = {
   setUserProfileThunk: (userProfileID: string) => void;
+  getProfileStatusThunk: (userID: string) => void;
 };
 const mapDispatchToProps = (
   dispatch: AppDispatchType
@@ -41,6 +46,9 @@ const mapDispatchToProps = (
   return {
     setUserProfileThunk: (userProfileID: string) => {
       dispatch(setUserProfileTC(userProfileID));
+    },
+    getProfileStatusThunk: (userID: string) => {
+      dispatch(getProfileStatusTC(userID));
     },
   };
 };

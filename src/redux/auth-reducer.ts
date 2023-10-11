@@ -53,8 +53,6 @@ export const alterAuthorisationStatusAC = (authStatus: boolean) => {
 export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.getAuthData().then((data) => {
-      console.log(data);
-
       if (data.resultCode === 0) {
         dispatch(setAuthDataAC(data.data));
         dispatch(alterAuthorisationStatusAC(true));
