@@ -30,12 +30,14 @@ type mapStateToPropsType = {
   userProfile: UserProfileType | null;
   isAuthorised: boolean;
   profileStatus: string;
+  isUpdatingStatus: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     userProfile: state.profiles.userProfile,
     isAuthorised: state.authorisation.isAuthorised,
     profileStatus: state.profiles.profileStatus,
+    isUpdatingStatus: state.profiles.isUpdatingStatus,
   };
 };
 

@@ -35,6 +35,7 @@ export type ProfilePageType = {
   newPostText: string;
   userProfile: UserProfileType | null;
   profileStatus: string;
+  isUpdatingStatus: boolean;
 };
 
 //dialogue reducer types

@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import styles from './ProfileStatus.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
+import { UpdatingLoader } from '../../common/UpdatingLoader/UpdatingLoader';
 
 type ProfileStatusPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -16,7 +17,6 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
   const setOffEditModeHandler = () => {
     setEditMode(false);
     props.profileContainerProps.setProfileStatusThunk(profileStatus);
-    setProfileStatus('');
   };
 
   const inputValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -24,11 +24,15 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
   };
   return (
     <div>
-      {!editMode && (
-        <div onDoubleClick={setOnEditModeHandler}>
-          {props.profileContainerProps.profileStatus || 'No status'}
-        </div>
-      )}
+      {!editMode &&
+        (props.profileContainerProps.isUpdatingStatus ? (
+          <UpdatingLoader />
+        ) : (
+          <div onDoubleClick={setOnEditModeHandler}>
+            {props.profileContainerProps.profileStatus ||
+              'Double-click to add a new status!'}
+          </div>
+        ))}
       {editMode && (
         <div onBlur={setOffEditModeHandler}>
           <input

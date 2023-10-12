@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { profileAPI } from '../rest-api/profile_api';
 import { ProfilePageType, UserProfileType } from '../types/store-types';
 import { AppDispatchType } from './redux-store';
@@ -10,6 +11,7 @@ const initialState: ProfilePageType = {
   newPostText: '',
   userProfile: null,
   profileStatus: '',
+  isUpdatingStatus: false,
 };
 
 export type ProfileReducerActionTypes =
@@ -17,7 +19,9 @@ export type ProfileReducerActionTypes =
   | updatePostACType
   | setUserProfileACType
   | getProfileStatusACType
-  | setProfileStatusACType;
+  | setProfileStatusACType
+  | isUpdatingStatusACType;
+
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
   action: ProfileReducerActionTypes
@@ -54,6 +58,9 @@ export const ProfileReducer = (
     case 'SET-STATUS': {
       return { ...state, profileStatus: action.payload.status };
     }
+    case 'SET-STATUS-UPDATE-LOADER': {
+      return { ...state, isUpdatingStatus: action.payload.updating };
+    }
     default: {
       return state;
     }
@@ -84,13 +91,15 @@ export const getProfileStatusAC = (status: string) => {
 
 type setProfileStatusACType = ReturnType<typeof setProfileStatusAC>;
 export const setProfileStatusAC = (status: string) => {
-  console.log(status);
-
   return { type: 'SET-STATUS', payload: { status: status } } as const;
 };
 
-//thunks
+type isUpdatingStatusACType = ReturnType<typeof isUpdatingStatusAC>;
+export const isUpdatingStatusAC = (updating: boolean) => {
+  return { type: 'SET-STATUS-UPDATE-LOADER', payload: { updating } } as const;
+};
 
+//thunks
 export const setUserProfileTC = (userProfileID: string) => {
   return (dispatch: AppDispatchType) => {
     profileAPI
@@ -109,8 +118,10 @@ export const getProfileStatusTC = (userID: string) => {
 
 export const setProfileStatusTC = (status: string) => {
   return (dispatch: AppDispatchType) => {
+    dispatch(isUpdatingStatusAC(true));
     profileAPI.setProfileStatus(status).then((data) => {
       if (data.resultCode === 0) {
+        dispatch(isUpdatingStatusAC(false));
         dispatch(setProfileStatusAC(status));
       }
     });
