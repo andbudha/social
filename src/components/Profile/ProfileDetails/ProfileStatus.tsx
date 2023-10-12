@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './ProfileStatus.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import { UpdatingLoader } from '../../common/UpdatingLoader/UpdatingLoader';
@@ -10,17 +10,24 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [profileStatus, setProfileStatus] = useState('');
 
+  console.log('rendered');
+  useEffect(() => {
+    setProfileStatus(props.profileContainerProps.profileStatus);
+  }, []);
+
   const setOnEditModeHandler = () => {
     setEditMode(true);
   };
 
   const setOffEditModeHandler = () => {
     setEditMode(false);
-    props.profileContainerProps.setProfileStatusThunk(profileStatus);
+    if (profileStatus.length) {
+      props.profileContainerProps.setProfileStatusThunk(profileStatus);
+    }
   };
 
   const inputValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setProfileStatus(event.currentTarget.value);
+    setProfileStatus(event.currentTarget.value.trim());
   };
   return (
     <div>
@@ -30,7 +37,7 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
         ) : (
           <div onDoubleClick={setOnEditModeHandler}>
             {props.profileContainerProps.profileStatus ||
-              'Double-click to add a new status!'}
+              'Double-click to add your new status'}
           </div>
         ))}
       {editMode && (
