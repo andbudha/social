@@ -16,12 +16,9 @@ const initialState: MessagePageType = {
       message: 'Never mind, I am still interested in this position.',
     },
   ],
-  newMessageText: '',
 };
 
-export type DialogueReducerActionTypes =
-  | addMessageACType
-  | updateMessageTextACType;
+export type DialogueReducerActionTypes = addMessageACType;
 export const DialogueReducer = (
   state: MessagePageType = initialState,
   action: DialogueReducerActionTypes
@@ -34,37 +31,20 @@ export const DialogueReducer = (
           ...state.participants.map((participant) => ({ ...participant })),
         ],
         messages: [...state.messages.map((msg) => ({ ...msg }))],
-        newMessageText: state.newMessageText,
       };
       stateCopy.messages.push({
         id: 111,
-        message: state.newMessageText,
+        message: action.payload.newMessage,
       });
       return stateCopy;
     }
-    case 'UPDATE-MESSAGE-TEXT': {
-      const stateCopy = {
-        ...state,
-        participants: [
-          ...state.participants.map((participant) => ({ ...participant })),
-        ],
-        messages: [...state.messages.map((msg) => ({ ...msg }))],
-        newMessageText: '',
-      };
-      stateCopy.newMessageText = action.payload.newText;
-      return stateCopy;
-    }
+
     default:
       return state;
   }
 };
 
 type addMessageACType = ReturnType<typeof addMessageAC>;
-export const addMessageAC = () => {
-  return { type: 'ADD-MESSAGE' } as const;
-};
-
-type updateMessageTextACType = ReturnType<typeof updateMessageTextAC>;
-export const updateMessageTextAC = (newMessage: string) => {
-  return { type: 'UPDATE-MESSAGE-TEXT', payload: { newText: newMessage } };
+export const addMessageAC = (newMessage: string) => {
+  return { type: 'ADD-MESSAGE', payload: { newMessage } } as const;
 };

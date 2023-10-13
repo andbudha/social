@@ -52,7 +52,6 @@ export type MessageType = {
 export type MessagePageType = {
   participants: ParticipantType[];
   messages: MessageType[];
-  newMessageText: string;
 };
 
 //users reducer types

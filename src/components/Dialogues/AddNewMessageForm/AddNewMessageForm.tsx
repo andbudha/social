@@ -2,15 +2,14 @@ import styles from './AddNewMessageForm.module.css';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 type addNewMessageFormPropsType = {
-  addMessage: () => void;
+  addMessage: (newMessage: string) => void;
 };
 
 export const AddNewMessageForm: React.FC<addNewMessageFormPropsType> = (
   props
 ) => {
   const onSubmit = (messageData: FormDataType) => {
-    console.log(messageData.message);
-    alert(messageData.message);
+    props.addMessage(messageData.message);
   };
   return (
     <div>

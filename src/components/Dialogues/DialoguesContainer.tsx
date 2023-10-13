@@ -1,51 +1,37 @@
 import { MessageType, ParticipantType } from '../../types/store-types';
 import { Dialogues } from './Dialogues';
-import {
-  addMessageAC,
-  updateMessageTextAC,
-} from '../../redux/dialogue-reducer';
+import { addMessageAC } from '../../redux/dialogue-reducer';
 import { connect } from 'react-redux';
 import { AppRootStateType } from '../../redux/redux-store';
-import { Dispatch, compose } from 'redux';
+import { Dispatch } from 'redux';
 import { withAuthRedirect } from '../../hocs/withAuthRedirect';
 
 type mapStateToPropsType = {
   participants: ParticipantType[];
   messages: MessageType[];
-  newMessageText: string;
   isAuthorised?: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     participants: state.dialogues.participants,
     messages: state.dialogues.messages,
-    newMessageText: state.dialogues.newMessageText,
     isAuthorised: state.authorisation.isAuthorised,
   };
 };
 
 type MapDispatchPropsType = {
-  updateMessageValue: (newMessageValue: string) => void;
-  addMessage: () => void;
+  addMessage: (newMessage: string) => void;
 };
 
 export type DialoguesConainerPropsType = MapDispatchPropsType &
   mapStateToPropsType;
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   return {
-    updateMessageValue: (newMessageValue: string) => {
-      dispatch(updateMessageTextAC(newMessageValue));
-    },
-    addMessage: () => {
-      dispatch(addMessageAC());
+    addMessage: (newMessage: string) => {
+      dispatch(addMessageAC(newMessage));
     },
   };
 };
-
-// export const DialogueContainer = compose<React.ComponentType>(
-//   connect(mapStateToProps, mapDispatchToProps),
-//   withAuthRedirect
-// )(Dialogues);
 
 export const DialogueContainer = withAuthRedirect(
   connect(mapStateToProps, mapDispatchToProps)(Dialogues)
