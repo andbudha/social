@@ -1,5 +1,4 @@
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import styles from './Login.module.css';
 
 type FormDataType = {
   login: string;
