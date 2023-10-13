@@ -8,7 +8,6 @@ const initialState: ProfilePageType = {
     { id: 1, message: 'Hi, how are you?', likeCount: 15 },
     { id: 2, message: 'It is my first post!', likeCount: 25 },
   ],
-  newPostText: '',
   userProfile: null,
   profileStatus: '',
   isUpdatingStatus: false,
@@ -16,7 +15,6 @@ const initialState: ProfilePageType = {
 
 export type ProfileReducerActionTypes =
   | addPostACType
-  | updatePostACType
   | setUserProfileACType
   | getProfileStatusACType
   | setProfileStatusACType
@@ -28,27 +26,17 @@ export const ProfileReducer = (
 ): ProfilePageType => {
   switch (action.type) {
     case 'ADD-NEW-POST': {
-      const stateCopy = {
-        ...state,
-        posts: [...state.posts.map((post) => ({ ...post }))],
-        newPostText: state.newPostText,
-      };
-      stateCopy.posts.push({
+      const newPost = {
         id: 999,
-        message: state.newPostText,
+        message: action.payload.newPost,
         likeCount: 6,
-      });
-      return stateCopy;
-    }
-    case 'UPDATE-POST': {
-      const stateCopy = {
-        ...state,
-        posts: [...state.posts.map((post) => ({ ...post }))],
-        newPostText: state.newPostText,
       };
-      stateCopy.newPostText = action.payload.newText;
-      return stateCopy;
+      return {
+        ...state,
+        posts: [...state.posts.map((post) => ({ ...post })), newPost],
+      };
     }
+
     case 'SET-USER-PROFILE': {
       return { ...state, userProfile: action.payload.userProfile };
     }
@@ -68,17 +56,10 @@ export const ProfileReducer = (
 };
 
 type addPostACType = ReturnType<typeof addPostAC>;
-export const addPostAC = () => {
-  return { type: 'ADD-NEW-POST' } as const;
+export const addPostAC = (newPost: string) => {
+  return { type: 'ADD-NEW-POST', payload: { newPost } } as const;
 };
 
-type updatePostACType = ReturnType<typeof updatePostAC>;
-export const updatePostAC = (newPost: string) => {
-  return {
-    type: 'UPDATE-POST',
-    payload: { newText: newPost },
-  } as const;
-};
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>;
 export const setUserProfileAC = (userProfile: UserProfileType) => {
   return { type: 'SET-USER-PROFILE', payload: { userProfile } } as const;
