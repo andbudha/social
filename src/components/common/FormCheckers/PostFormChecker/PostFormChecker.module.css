@@ -1,0 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.touched_textarea {
+  border: 3px solid crimson;
+}
+
+.post_textarea {
+  outline: none;
+}

@@ -7,6 +7,7 @@ import {
   postLength100,
   requiredMessageValue,
 } from '../../../utils/form_validators/post_validators';
+import { PostFormChecker } from '../../common/FormCheckers/PostFormChecker/PostFormChecker';
 
 export const MyPosts: React.FC<MyPostsContainerPropsType> = (props) => {
   const postList = props.posts.map((post) => (
@@ -37,7 +38,7 @@ export const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormDataType>> = (
         <div>
           <Field
             placeholder={'your post'}
-            component={'textarea'}
+            component={PostFormChecker}
             name={'post'}
             validate={[requiredMessageValue, postLength100]}
           />
