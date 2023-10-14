@@ -3,6 +3,10 @@ import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
 import { MyPostsContainerPropsType } from './MyPostsContainer';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import {
+  postLength100,
+  requiredMessageValue,
+} from '../../../utils/form_validators/post_validators';
 
 export const MyPosts: React.FC<MyPostsContainerPropsType> = (props) => {
   const postList = props.posts.map((post) => (
@@ -35,10 +39,11 @@ export const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormDataType>> = (
             placeholder={'your post'}
             component={'textarea'}
             name={'post'}
+            validate={[requiredMessageValue, postLength100]}
           />
         </div>
         <div>
-          <button>add post</button>
+          <button>add new post</button>
         </div>
       </form>
     </div>

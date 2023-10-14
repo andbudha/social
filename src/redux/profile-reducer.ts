@@ -5,8 +5,8 @@ import { AppDispatchType } from './redux-store';
 
 const initialState: ProfilePageType = {
   posts: [
-    { id: 1, message: 'Hi, how are you?', likeCount: 15 },
-    { id: 2, message: 'It is my first post!', likeCount: 25 },
+    { id: 1, message: 'Per aspera ad astra!', likeCount: 15 },
+    { id: 2, message: 'Dum spiro spero!', likeCount: 25 },
   ],
   userProfile: null,
   profileStatus: '',
