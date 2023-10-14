@@ -1,21 +1,28 @@
 import styles from './PostFormChecker.module.css';
 
-export const PostFormChecker = (props: any) => {
+export const PostFormChecker = ({
+  input,
+  placeholder,
+  meta,
+  ...props
+}: any) => {
   console.log(props);
 
   return (
     <div>
       <textarea
-        {...props.input}
+        {...input}
         name=""
         id=""
-        cols={30}
+        cols={34}
         rows={4}
-        placeholder={props.placeholder}
-        className={`${styles.post_textarea}`}
+        placeholder={placeholder}
+        className={`${styles.post_textarea} ${
+          input.value.length > 100 && styles.post_textarea_error
+        }`}
       />
-      {props.input.value.length > 100 && (
-        <div className={`${styles.eror_msg}`}>{props.meta.warning}</div>
+      {input.value.length > 100 && (
+        <div className={`${styles.error_message}`}>{meta.warning}</div>
       )}
     </div>
   );
