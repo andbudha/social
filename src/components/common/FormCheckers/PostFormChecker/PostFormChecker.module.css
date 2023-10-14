@@ -4,10 +4,9 @@
   box-sizing: border-box;
 }
 
-.touched_textarea {
-  border: 3px solid crimson;
-}
-
 .post_textarea {
   outline: none;
+}
+.eror_msg {
+  color: crimson;
 }

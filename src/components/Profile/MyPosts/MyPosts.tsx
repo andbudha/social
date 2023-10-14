@@ -41,6 +41,7 @@ export const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormDataType>> = (
             component={PostFormChecker}
             name={'post'}
             validate={[requiredMessageValue, postLength100]}
+            warn={postLength100}
           />
         </div>
         <div>
