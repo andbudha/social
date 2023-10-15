@@ -8,7 +8,7 @@ export const requiredFieldValue = (value: string) => {
 export const maxLoginNameLength = (maxLength: number) => (value: string) => {
   return value && value.length < maxLength
     ? undefined
-    : 'Messages must be 150 characters or less!';
+    : 'Login-name must be 15 characters or less!';
 };
 
-export const loginLength150 = maxLoginNameLength(150);
+export const loginLength15 = maxLoginNameLength(15);
