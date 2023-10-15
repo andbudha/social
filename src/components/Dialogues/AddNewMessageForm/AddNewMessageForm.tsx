@@ -23,14 +23,18 @@ type FormDataType = {
 const Form: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
     <div>
-      <form onSubmit={props.handleSubmit}>
-        <Field
-          placeholder={'your message'}
-          component={'textarea'}
-          name={'message'}
-        />
-        <button className={styles.msg_button}>add message</button>
-      </form>
+      <div>
+        <form onSubmit={props.handleSubmit}>
+          <Field
+            placeholder={'your message'}
+            component={'textarea'}
+            name={'message'}
+          />
+          <div>
+            <button className={styles.msg_button}>add message</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

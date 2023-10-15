@@ -8,7 +8,7 @@
 export const maxMessageLength = (maxLength: number) => (value: string) => {
   return value && value.length < maxLength
     ? undefined
-    : 'Posts must be 100 characters or less!';
+    : 'Messages must be 150 characters or less!';
 };
 
-export const postLength100 = maxMessageLength(100);
+export const messageLength150 = maxMessageLength(150);
