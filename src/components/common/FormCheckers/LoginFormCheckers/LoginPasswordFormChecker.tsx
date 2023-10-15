@@ -1,6 +1,6 @@
-import styles from './MessageFormChecker.module.css';
+import styles from './LoginPasswordFormChecker.module.css';
 
-export const MessageFormChecker = ({
+export const LoginPasswordFormChecker = ({
   input,
   placeholder,
   meta,
