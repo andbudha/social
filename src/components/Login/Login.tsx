@@ -1,5 +1,5 @@
 import styles from './Login.module.css';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm, reset } from 'redux-form';
 import { LoginNameFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginNameFormChecker';
 import {
   loginNameLength15,
@@ -50,8 +50,13 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             ]}
           />
         </div>
-        <div>
-          <Field type={'checkbox'} name={'rememberMe'} component={'input'} />
+        <div className={styles.login_checkbox_container}>
+          <Field
+            className={styles.checkbox}
+            type={'checkbox'}
+            name={'rememberMe'}
+            component={'input'}
+          />
           Remeber me
         </div>
         <div className={styles.login_btn_box}>

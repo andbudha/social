@@ -11,12 +11,15 @@
   padding: 4px;
   height: 32px;
   width: 220px;
+  color: #4b527e;
+  font-size: medium;
+  letter-spacing: 0.5px;
 }
 .login_name_input_error {
-  color: crimson;
+  color: #e0144c;
   font-size: small;
 }
 
 .login_name_input_touched {
-  border: 3px solid crimson;
+  border: 3px solid #e0144c;
 }
