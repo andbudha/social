@@ -8,20 +8,33 @@ export const LoginPasswordFormChecker = ({
 }: any) => {
   return (
     <div>
-      <textarea
-        {...input}
-        name=""
-        id=""
-        cols={40}
-        rows={4}
-        placeholder={placeholder}
-        className={`${styles.message_textarea} ${
-          input.value.length > 150 && styles.message_textarea_error
-        }`}
-      />
-      {input.value.length > 150 && (
-        <div className={`${styles.error_message}`}>{meta.warning}</div>
-      )}
+      <div
+        className={`
+      ${meta.error && styles.login_password_input_error}`}
+      >
+        {(!meta.active && meta.touched && meta.error) ||
+          (input.value.length < 0 && input.value.length < 3 && meta.error) ||
+          (input.value.length > 8 && meta.error)}
+      </div>
+      <div>
+        <input
+          {...input}
+          placeholder={placeholder}
+          className={`
+        ${styles.login_password_input}
+        ${
+          (!input.value.length &&
+            !meta.active &&
+            meta.touched &&
+            styles.login_password_input_touched) ||
+          (input.value.length > 8 && styles.login_password_input_touched) ||
+          (input.value.length > 0 &&
+            input.value.length < 3 &&
+            styles.login_password_input_touched)
+        } 
+        `}
+        />
+      </div>
     </div>
   );
 };

@@ -2,9 +2,12 @@ import styles from './Login.module.css';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { LoginNameFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginNameFormChecker';
 import {
-  loginLength15,
+  loginNameLength15,
+  maxPasswordLength8,
+  minPasswordLength3,
   requiredFieldValue,
 } from '../../utils/form_validators/login_validators';
+import { LoginPasswordFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginPasswordFormChecker';
 
 type FormDataType = {
   login: string;
@@ -32,15 +35,19 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             placeholder={'login-name'}
             name={'login'}
             component={LoginNameFormChecker}
-            validate={[requiredFieldValue, loginLength15]}
+            validate={[requiredFieldValue, loginNameLength15]}
           />
         </div>
         <div>
           <Field
             placeholder={'password'}
             name={'password'}
-            component={'input'}
-            validate={[requiredFieldValue]}
+            component={LoginPasswordFormChecker}
+            validate={[
+              requiredFieldValue,
+              minPasswordLength3,
+              maxPasswordLength8,
+            ]}
           />
         </div>
         <div>
