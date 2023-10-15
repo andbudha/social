@@ -14,7 +14,7 @@ export const PostFormChecker = ({
         {...input}
         name=""
         id=""
-        cols={34}
+        cols={36}
         rows={4}
         placeholder={placeholder}
         className={`${styles.post_textarea} ${

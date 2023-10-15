@@ -14,14 +14,14 @@ export const MessageFormChecker = ({
         {...input}
         name=""
         id=""
-        cols={34}
+        cols={40}
         rows={4}
         placeholder={placeholder}
         className={`${styles.message_textarea} ${
-          input.value.length > 100 && styles.message_textarea_error
+          input.value.length > 150 && styles.message_textarea_error
         }`}
       />
-      {input.value.length > 100 && (
+      {input.value.length > 150 && (
         <div className={`${styles.error_message}`}>{meta.warning}</div>
       )}
     </div>
