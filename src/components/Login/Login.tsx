@@ -1,8 +1,8 @@
+import styles from './Login.module.css';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { LoginNameFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginNameFormChecker';
 import {
   loginLength15,
-  maxLoginNameLength,
   requiredFieldValue,
 } from '../../utils/form_validators/login_validators';
 
@@ -17,8 +17,7 @@ export const Login = () => {
     console.log(formData);
   };
   return (
-    <div>
-      <h1>Login</h1>
+    <div className={styles.login_page}>
       <LoginReduxForm onSubmit={onSubmit} />
     </div>
   );
@@ -26,7 +25,7 @@ export const Login = () => {
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
-    <div>
+    <div className={styles.login_box}>
       <form onSubmit={props.handleSubmit}>
         <div>
           <Field
@@ -48,8 +47,8 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
           <Field type={'checkbox'} name={'rememberMe'} component={'input'} />
           Remeber me
         </div>
-        <div>
-          <button>Login</button>
+        <div className={styles.login_btn_box}>
+          <button className={styles.login_btn}>Login</button>
         </div>
       </form>
     </div>

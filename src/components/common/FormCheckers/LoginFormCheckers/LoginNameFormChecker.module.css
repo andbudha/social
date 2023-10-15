@@ -6,7 +6,7 @@
 
 .login_name_input {
   outline: none;
-  margin: 5px auto;
+  margin: 5px 0 10px;
   border-radius: 4px;
   padding: 4px;
   height: 32px;
