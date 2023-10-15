@@ -14,7 +14,8 @@ export const LoginNameFormChecker = ({
         className={`
       ${meta.error && styles.login_name_input_error}`}
       >
-        {!meta.active && meta.touched && meta.error}
+        {(!meta.active && meta.touched && meta.error) ||
+          (input.value.length > 15 && meta.error)}
       </div>
       <div>
         <input
@@ -23,10 +24,11 @@ export const LoginNameFormChecker = ({
           className={`
         ${styles.login_name_input}
         ${
-          !input.value.length &&
-          !meta.active &&
-          meta.touched &&
-          styles.login_name_input_touched
+          (!input.value.length &&
+            !meta.active &&
+            meta.touched &&
+            styles.login_name_input_touched) ||
+          (input.value.length > 15 && styles.login_name_input_touched)
         } 
         `}
         />

@@ -33,7 +33,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             placeholder={'login-name'}
             name={'login'}
             component={LoginNameFormChecker}
-            validate={[requiredFieldValue, maxLoginNameLength]}
+            validate={[requiredFieldValue, loginLength15]}
           />
         </div>
         <div>
