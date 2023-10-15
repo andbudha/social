@@ -3,10 +3,7 @@ import styles from './MyPosts.module.css';
 import { Post } from './Post/Post';
 import { MyPostsContainerPropsType } from './MyPostsContainer';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import {
-  postLength100,
-  requiredMessageValue,
-} from '../../../utils/form_validators/post_validators';
+import { postLength100 } from '../../../utils/form_validators/post_validators';
 import { PostFormChecker } from '../../common/FormCheckers/PostFormChecker/PostFormChecker';
 
 export const MyPosts: React.FC<MyPostsContainerPropsType> = (props) => {
@@ -40,7 +37,7 @@ export const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormDataType>> = (
             placeholder={'your post'}
             component={PostFormChecker}
             name={'post'}
-            validate={[requiredMessageValue, postLength100]}
+            validate={[postLength100]}
             warn={postLength100}
           />
         </div>
