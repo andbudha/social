@@ -10,7 +10,7 @@ export const LoginPasswordFormChecker = ({
     <div>
       <div
         className={`
-      ${meta.error && styles.login_password_input_error}`}
+      ${meta.error && styles.login_password_input_error} `}
       >
         {!meta.active && meta.touched && meta.error}
       </div>

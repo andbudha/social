@@ -9,7 +9,8 @@ import { LoginEmailFormChecker } from '../common/FormCheckers/LoginFormCheckers/
 import { connect } from 'react-redux';
 import { loginTC } from '../../redux/auth-reducer';
 import { LoginDataType } from '../../types/store-types';
-import { AppDispatchType } from '../../redux/redux-store';
+import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
+import { Redirect } from 'react-router-dom';
 
 type FormDataType = {
   email: string;
@@ -22,6 +23,10 @@ export const Login: React.FC<LoginContainerPropsType> = (props) => {
     console.log(formData);
     props.loginThunk(formData);
   };
+
+  if (props.isAuthorised) {
+    return <Redirect to={'/profile'} />;
+  }
   return (
     <div className={styles.login_page}>
       <LoginReduxForm onSubmit={onSubmit} />
@@ -37,6 +42,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
           <Field
             placeholder={'email'}
             name={'email'}
+            type={'email'}
             component={LoginEmailFormChecker}
             validate={[requiredFieldValue, isEmailValid]}
           />
@@ -68,8 +74,15 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 };
 const LoginReduxForm = reduxForm<FormDataType>({ form: 'login' })(LoginForm);
 
-type LoginContainerPropsType = MapDispatchToPropsType;
-
+type LoginContainerPropsType = MapDispatchToPropsType & mapStateToPropsType;
+type mapStateToPropsType = {
+  isAuthorised: boolean;
+};
+const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
+  return {
+    isAuthorised: state.authorisation.isAuthorised,
+  };
+};
 type MapDispatchToPropsType = {
   loginThunk: (loginData: LoginDataType) => void;
 };
@@ -83,4 +96,7 @@ const mapDispatchToProps = (
   };
 };
 
-export const LoginContainer = connect(null, mapDispatchToProps)(Login);
+export const LoginContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
