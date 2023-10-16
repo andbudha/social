@@ -99,6 +99,11 @@ export type AuthReducerInitialState = {
   isAuthorised: boolean;
 };
 
+export type LoginDataType = {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+};
 //UserFollowingType
 export type CommonUserProfileDataType = {};
 export type CommonUserProfileType = {
