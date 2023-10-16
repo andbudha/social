@@ -2,6 +2,8 @@ import { authorisationAPI } from '../rest-api/auth_api';
 import {
   AuthReducerInitialState,
   AuthResponseDataType,
+  LoginDataType,
+  ResetAuthResponseDataType,
 } from '../types/store-types';
 import { AppDispatchType } from './redux-store';
 
@@ -36,6 +38,7 @@ export const AuthReducer = (
 
 export type AuthReducerActionTypes =
   | setAuthDataType
+  | resetAuthDataType
   | alterAuthorisationStatusACType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthResponseDataType) => {
@@ -49,6 +52,10 @@ export const alterAuthorisationStatusAC = (authStatus: boolean) => {
   return { type: 'ALTER-AUTH-STATUS', payload: { authStatus } } as const;
 };
 
+type resetAuthDataType = ReturnType<typeof resetAuthDataAC>;
+export const resetAuthDataAC = (resetAuthData: ResetAuthResponseDataType) => {
+  return { type: 'RESET-AUTH-DATA', payload: { resetAuthData } } as const;
+};
 //thunks
 export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
@@ -57,6 +64,24 @@ export const setAuthDataTC = () => {
         dispatch(setAuthDataAC(data.data));
         dispatch(alterAuthorisationStatusAC(true));
       }
+    });
+  };
+};
+
+export const loginTC = (loginData: LoginDataType) => {
+  return (dispatch: AppDispatchType) => {
+    authorisationAPI.login(loginData).then((data) => {
+      dispatch(setAuthDataAC(data.data));
+      dispatch(alterAuthorisationStatusAC(true));
+    });
+  };
+};
+
+export const logoutTC = (resetAuthData: ResetAuthResponseDataType) => {
+  return (dispatch: AppDispatchType) => {
+    authorisationAPI.logout().then((data) => {
+      dispatch(resetAuthDataAC(resetAuthData));
+      dispatch(alterAuthorisationStatusAC(false));
     });
   };
 };

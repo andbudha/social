@@ -25,6 +25,8 @@ export const authorisationAPI = {
       .then((response) => response.data);
   },
   logout() {
-    return instance.delete<AuthResponseType>('auth/login');
+    return instance
+      .delete<AuthResponseType>('auth/login')
+      .then((response) => response.data);
   },
 };

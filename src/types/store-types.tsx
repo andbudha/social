@@ -88,6 +88,12 @@ export type AuthResponseDataType = {
   login: string;
 };
 
+export type ResetAuthResponseDataType = {
+  id: null;
+  email: null;
+  login: null;
+};
+
 export type AuthResponseType = {
   data: AuthResponseDataType;
   resultCode: number;
