@@ -79,11 +79,13 @@ export const loginTC = (loginData: LoginDataType) => {
   };
 };
 
-export const logoutTC = (resetAuthData: ResetAuthResponseDataType) => {
+export const logoutTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.logout().then((data) => {
-      dispatch(resetAuthDataAC(resetAuthData));
-      dispatch(alterAuthorisationStatusAC(false));
+      if (data.resultCode === 0) {
+        dispatch(resetAuthDataAC({ id: null, email: null, login: null }));
+        dispatch(alterAuthorisationStatusAC(false));
+      }
     });
   };
 };
