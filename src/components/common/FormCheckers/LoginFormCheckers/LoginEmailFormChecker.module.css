@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.login_name_input {
+.login_email_input {
   outline: none;
   margin: 5px 0 10px;
   border-radius: 4px;
@@ -15,11 +15,11 @@
   font-size: medium;
   letter-spacing: 0.5px;
 }
-.login_name_input_error {
+.login_email_input_error {
   color: #e0144c;
   font-size: small;
 }
 
-.login_name_input_touched {
+.login_email_input_touched {
   border: 3px solid #e0144c;
 }

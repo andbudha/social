@@ -1,13 +1,11 @@
 import styles from './Login.module.css';
-import { Field, InjectedFormProps, reduxForm, reset } from 'redux-form';
-import { LoginNameFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginNameFormChecker';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import {
-  loginNameLength15,
-  maxPasswordLength8,
-  minPasswordLength3,
+  isEmailValid,
   requiredFieldValue,
 } from '../../utils/form_validators/login_validators';
 import { LoginPasswordFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginPasswordFormChecker';
+import { LoginEmailFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginEmailFormChecker';
 
 type FormDataType = {
   login: string;
@@ -32,10 +30,10 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
       <form onSubmit={props.handleSubmit}>
         <div>
           <Field
-            placeholder={'login-name'}
+            placeholder={'email'}
             name={'login'}
-            component={LoginNameFormChecker}
-            validate={[requiredFieldValue, loginNameLength15]}
+            component={LoginEmailFormChecker}
+            validate={[requiredFieldValue, isEmailValid]}
           />
         </div>
         <div>
@@ -43,11 +41,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             placeholder={'password'}
             name={'password'}
             component={LoginPasswordFormChecker}
-            validate={[
-              requiredFieldValue,
-              minPasswordLength3,
-              maxPasswordLength8,
-            ]}
+            validate={[requiredFieldValue]}
           />
         </div>
         <div className={styles.login_checkbox_container}>
