@@ -6,6 +6,7 @@ import {
 } from '../../utils/form_validators/login_validators';
 import { LoginPasswordFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginPasswordFormChecker';
 import { LoginEmailFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginEmailFormChecker';
+import { connect } from 'react-redux';
 
 type FormDataType = {
   login: string;
@@ -62,3 +63,5 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 };
 
 const LoginReduxForm = reduxForm<FormDataType>({ form: 'login' })(LoginForm);
+
+export const LoginContainer = connect()(Login);
