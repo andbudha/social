@@ -9,9 +9,7 @@ export const Header: React.FC<HeaderContainerPropsType> = (props) => {
         <div className={styles.logo_box}>
           <img className={styles.logo} src={logo_img} alt="lion" />
         </div>
-        <div className={styles.auth_box}>
-          {props.isAuthorised ? 'Logout' : 'Login'}
-        </div>
+        <div className={styles.auth_box}>{props.isAuthorised && 'Logout'}</div>
       </div>
     </header>
   );

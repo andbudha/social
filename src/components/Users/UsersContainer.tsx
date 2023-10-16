@@ -12,8 +12,8 @@ import {
 } from '../../redux/users-reducer';
 import React from 'react';
 import { Users } from './Users';
-import { Loader } from '../common/Loader/Loader';
 import { withAuthRedirect } from '../../hocs/withAuthRedirect';
+import { Loader } from '../common/Loaders/Loader/Loader';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {

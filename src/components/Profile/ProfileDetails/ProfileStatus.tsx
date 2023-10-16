@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './ProfileStatus.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
-import { UpdatingLoader } from '../../common/UpdatingLoader/UpdatingLoader';
+import { UpdatingLoader } from '../../common/Loaders/UpdatingLoader/UpdatingLoader';
 
 type ProfileStatusPropsType = {
   profileContainerProps: ProfileContainerPropsType;
