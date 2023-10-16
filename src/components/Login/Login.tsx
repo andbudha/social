@@ -7,16 +7,20 @@ import {
 import { LoginPasswordFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginPasswordFormChecker';
 import { LoginEmailFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginEmailFormChecker';
 import { connect } from 'react-redux';
+import { loginTC } from '../../redux/auth-reducer';
+import { LoginDataType } from '../../types/store-types';
+import { AppDispatchType } from '../../redux/redux-store';
 
 type FormDataType = {
-  login: string;
+  email: string;
   password: string;
   rememberMe: boolean;
 };
 
-export const Login = () => {
+export const Login: React.FC<LoginContainerPropsType> = (props) => {
   const onSubmit = (formData: FormDataType) => {
     console.log(formData);
+    props.loginThunk(formData);
   };
   return (
     <div className={styles.login_page}>
@@ -32,7 +36,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
         <div>
           <Field
             placeholder={'email'}
-            name={'login'}
+            name={'email'}
             component={LoginEmailFormChecker}
             validate={[requiredFieldValue, isEmailValid]}
           />
@@ -41,6 +45,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
           <Field
             placeholder={'password'}
             name={'password'}
+            type={'password'}
             component={LoginPasswordFormChecker}
             validate={[requiredFieldValue]}
           />
@@ -61,7 +66,21 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     </div>
   );
 };
-
 const LoginReduxForm = reduxForm<FormDataType>({ form: 'login' })(LoginForm);
 
-export const LoginContainer = connect()(Login);
+type LoginContainerPropsType = MapDispatchToPropsType;
+
+type MapDispatchToPropsType = {
+  loginThunk: (loginData: LoginDataType) => void;
+};
+const mapDispatchToProps = (
+  dispatch: AppDispatchType
+): MapDispatchToPropsType => {
+  return {
+    loginThunk: (loginData: LoginDataType) => {
+      dispatch(loginTC(loginData));
+    },
+  };
+};
+
+export const LoginContainer = connect(null, mapDispatchToProps)(Login);

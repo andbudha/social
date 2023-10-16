@@ -71,8 +71,10 @@ export const setAuthDataTC = () => {
 export const loginTC = (loginData: LoginDataType) => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.login(loginData).then((data) => {
-      dispatch(setAuthDataAC(data.data));
-      dispatch(alterAuthorisationStatusAC(true));
+      if (data.resultCode === 0) {
+        dispatch(setAuthDataAC(data.data));
+        dispatch(alterAuthorisationStatusAC(true));
+      }
     });
   };
 };

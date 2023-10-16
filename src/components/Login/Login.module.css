@@ -54,3 +54,11 @@
   font-size: medium;
   cursor: pointer;
 }
+
+.login_btn:hover {
+  background-color: #4b527e;
+}
+
+.login_btn:active {
+  background-color: #7c81ad;
+}
