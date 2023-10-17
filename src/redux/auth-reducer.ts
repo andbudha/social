@@ -10,9 +10,9 @@ import { AppDispatchType } from './redux-store';
 
 const initialState: AuthReducerInitialState = {
   auhData: {
-    id: null,
-    email: null,
-    login: null,
+    id: 0,
+    email: '',
+    login: '',
   },
   isAuthorised: false,
 };
@@ -25,14 +25,17 @@ export const AuthReducer = (
     case 'SET-AUTH-DATA': {
       return {
         ...state,
-        auhData: { ...state.auhData, ...action.payload },
+        auhData: { ...state.auhData, ...action.payload.authData },
       };
     }
     case 'ALTER-AUTH-STATUS': {
       return { ...state, isAuthorised: action.payload.authStatus };
     }
     case 'RESET-AUTH-DATA': {
-      return { ...state, auhData: { ...state.auhData, ...action.payload } };
+      return {
+        ...state,
+        auhData: { ...state.auhData, ...action.payload.resetAuthData },
+      };
     }
     default: {
       return state;
@@ -65,6 +68,8 @@ export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.getAuthData().then((data) => {
       if (data.resultCode === 0) {
+        console.log(data.data);
+
         dispatch(setAuthDataAC(data.data));
         dispatch(alterAuthorisationStatusAC(true));
       }
@@ -92,7 +97,7 @@ export const logoutTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.logout().then((data) => {
       if (data.resultCode === 0) {
-        dispatch(resetAuthDataAC({ id: null, email: null, login: null }));
+        dispatch(resetAuthDataAC({ id: 0, email: '', login: '' }));
         dispatch(alterAuthorisationStatusAC(false));
       }
     });

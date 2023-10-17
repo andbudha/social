@@ -6,8 +6,6 @@ export const LoginEmailFormChecker = ({
   meta,
   ...props
 }: any) => {
-  console.log(meta);
-
   return (
     <div>
       <div

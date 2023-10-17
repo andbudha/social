@@ -6,8 +6,6 @@ export const PostFormChecker = ({
   meta,
   ...props
 }: any) => {
-  console.log(props);
-
   return (
     <div>
       <textarea

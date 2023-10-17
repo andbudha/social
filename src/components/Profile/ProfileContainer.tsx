@@ -14,9 +14,14 @@ import { compose } from 'redux';
 
 export class ProfileAPIContainer extends React.Component<ProfileContainerPropsType> {
   componentDidMount() {
-    const userProfileID = this.props.match.params.userID || '27941';
+    let userProfileID = this.props.match.params.userID;
+    if (!userProfileID) {
+      userProfileID = this.props.loggedinUserID.toString();
+    }
+    //my id = '27941'
     this.props.setUserProfileThunk(userProfileID);
     this.props.getProfileStatusThunk(userProfileID);
+    console.log(this.props.loggedinUserID);
   }
   render() {
     return (
@@ -31,6 +36,7 @@ type mapStateToPropsType = {
   isAuthorised: boolean;
   profileStatus: string;
   isUpdatingStatus: boolean;
+  loggedinUserID: number;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -38,6 +44,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     isAuthorised: state.authorisation.isAuthorised,
     profileStatus: state.profiles.profileStatus,
     isUpdatingStatus: state.profiles.isUpdatingStatus,
+    loggedinUserID: state.authorisation.auhData.id,
   };
 };
 
@@ -74,12 +81,3 @@ export const ProfileContainer = compose<React.ComponentType>(
   withRouter,
   withAuthRedirect
 )(ProfileAPIContainer);
-
-// export const Profile_Container = withAuthRedirect(
-//   withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileAPIContainer))
-// );
-
-// //const WithUrlPropsProfileAPIContainer = withRouter(ProfileAPIContainer);
-// // export const ProfileContainer = withAuthRedirect(
-// //   connect(mapStateToProps, mapDispatchToProps)(WithUrlPropsProfileAPIContainer)
-// // );

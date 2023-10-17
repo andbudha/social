@@ -83,15 +83,15 @@ export type UsersInitialStateType = {
 //auth data types
 
 export type AuthResponseDataType = {
-  id: number | null;
-  email: string | null;
-  login: string | null;
+  id: number;
+  email: string;
+  login: string;
 };
 
 export type ResetAuthResponseDataType = {
-  id: null;
-  email: null;
-  login: null;
+  id: number;
+  email: string;
+  login: string;
 };
 
 export type AuthResponseType = {
