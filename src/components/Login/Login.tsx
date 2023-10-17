@@ -65,6 +65,9 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
           />
           Remeber me
         </div>
+        {props.error && (
+          <div className={styles.login_server_error}>{props.error}</div>
+        )}
         <div className={styles.login_btn_box}>
           <button className={styles.login_btn}>Login</button>
         </div>
@@ -72,7 +75,9 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     </div>
   );
 };
-const LoginReduxForm = reduxForm<FormDataType>({ form: 'login' })(LoginForm);
+const LoginReduxForm = reduxForm<FormDataType>({
+  form: 'login',
+})(LoginForm);
 
 type LoginContainerPropsType = MapDispatchToPropsType & mapStateToPropsType;
 type mapStateToPropsType = {

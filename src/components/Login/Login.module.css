@@ -35,6 +35,19 @@
   width: 15px;
   accent-color: #7c81ad;
 }
+
+.login_server_error {
+  height: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  font-weight: 500;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  color: #e0144c;
+}
 .login_btn_box {
   width: 100%;
 }

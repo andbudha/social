@@ -15,7 +15,6 @@ const initialState: AuthReducerInitialState = {
     login: '',
   },
   isAuthorised: false,
-  loginServerError: '',
 };
 
 export const AuthReducer = (
@@ -35,9 +34,6 @@ export const AuthReducer = (
     case 'RESET-AUTH-DATA': {
       return { ...state, auhData: { ...state.auhData, ...action.payload } };
     }
-    case 'SET-LOGIN-SERVER-ERROR': {
-      return { ...state, loginServerError: action.payload.loginError };
-    }
     default: {
       return state;
     }
@@ -47,8 +43,7 @@ export const AuthReducer = (
 export type AuthReducerActionTypes =
   | setAuthDataType
   | resetAuthDataType
-  | alterAuthorisationStatusACType
-  | setLoginServerErrorACType;
+  | alterAuthorisationStatusACType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthResponseDataType) => {
   return { type: 'SET-AUTH-DATA', payload: { authData } } as const;
@@ -65,12 +60,6 @@ type resetAuthDataType = ReturnType<typeof resetAuthDataAC>;
 export const resetAuthDataAC = (resetAuthData: ResetAuthResponseDataType) => {
   return { type: 'RESET-AUTH-DATA', payload: { resetAuthData } } as const;
 };
-
-type setLoginServerErrorACType = ReturnType<typeof setLoginServerErrorAC>;
-export const setLoginServerErrorAC = (loginError: string) => {
-  return { type: 'SET-LOGIN-SERVER-ERROR', payload: { loginError } } as const;
-};
-
 //thunks
 export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
@@ -92,8 +81,8 @@ export const loginTC = (loginData: LoginDataType) => {
       } else {
         const loginError =
           data.messages.length > 0 ? data.messages[0] : 'Some error ocurred!';
-        console.log(loginError);
-        dispatch(setLoginServerErrorAC(loginError));
+        const action: any = stopSubmit('login', { _error: loginError });
+        dispatch(action);
       }
     });
   };

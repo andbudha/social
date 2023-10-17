@@ -103,7 +103,6 @@ export type AuthResponseType = {
 export type AuthReducerInitialState = {
   auhData: AuthResponseDataType;
   isAuthorised: boolean;
-  loginServerError: string;
 };
 export type LoginDataType = {
   email: string;
