@@ -97,18 +97,22 @@ export type ResetAuthResponseDataType = {
 export type AuthResponseType = {
   data: AuthResponseDataType;
   resultCode: number;
-  message: string[];
+  messages: string[];
 };
 
 export type AuthReducerInitialState = {
   auhData: AuthResponseDataType;
   isAuthorised: boolean;
+  loginServerError: string;
 };
-
 export type LoginDataType = {
   email: string;
   password: string;
   rememberMe: boolean;
+};
+
+export type LoginErrorType = {
+  login_error: string;
 };
 //UserFollowingType
 export type CommonUserProfileDataType = {};
