@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Header } from './Header';
 import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { logoutTC, setAuthDataTC } from '../../redux/auth-reducer';
-import { ResetAuthResponseDataType } from '../../types/store-types';
 
 class HeaderAPIContainer extends React.Component<HeaderContainerPropsType> {
   componentDidMount() {
@@ -19,9 +18,9 @@ class HeaderAPIContainer extends React.Component<HeaderContainerPropsType> {
 }
 
 type mapStateToPropsType = {
-  id: number;
-  email: string;
-  login: string;
+  id: number | null;
+  email: string | null;
+  login: string | null;
   isAuthorised: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {

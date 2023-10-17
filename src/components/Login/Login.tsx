@@ -1,5 +1,11 @@
 import styles from './Login.module.css';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import {
+  Field,
+  FormAction,
+  InjectedFormProps,
+  reduxForm,
+  reset,
+} from 'redux-form';
 import {
   isEmailValid,
   requiredFieldValue,
@@ -22,6 +28,7 @@ export const Login: React.FC<LoginContainerPropsType> = (props) => {
   const onSubmit = (formData: FormDataType) => {
     console.log(formData);
     props.loginThunk(formData);
+    props.resetForm('login');
   };
 
   if (props.isAuthorised) {
@@ -90,6 +97,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 };
 type MapDispatchToPropsType = {
   loginThunk: (loginData: LoginDataType) => void;
+  resetForm: (formName: string) => void;
 };
 const mapDispatchToProps = (
   dispatch: AppDispatchType
@@ -97,6 +105,10 @@ const mapDispatchToProps = (
   return {
     loginThunk: (loginData: LoginDataType) => {
       dispatch(loginTC(loginData));
+    },
+    resetForm: (formName: string) => {
+      const action: any = reset(formName);
+      dispatch(action);
     },
   };
 };

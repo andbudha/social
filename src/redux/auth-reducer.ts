@@ -10,9 +10,9 @@ import { AppDispatchType } from './redux-store';
 
 const initialState: AuthReducerInitialState = {
   auhData: {
-    id: 0,
-    email: '',
-    login: '',
+    id: null,
+    email: null,
+    login: null,
   },
   isAuthorised: false,
 };
