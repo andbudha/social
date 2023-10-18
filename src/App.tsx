@@ -9,8 +9,25 @@ import { UsersContainer } from './components/Users/UsersContainer';
 import { ProfileContainer } from './components/Profile/ProfileContainer';
 import { HeaderContainer } from './components/Header/HeaderContainer';
 import { LoginContainer } from './components/Login/Login';
+import { AppRootStateType, useAppDispatch } from './redux/redux-store';
+import { useEffect } from 'react';
+import { setAuthDataTC } from './redux/auth-reducer';
+import { useSelector } from 'react-redux';
+import { Loader } from './components/common/Loaders/Loader/Loader';
 
 const App: React.FC = () => {
+  const isInitialised = useSelector<AppRootStateType>(
+    (state) => state.authorisation.isInitialised
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setAuthDataTC());
+  }, []);
+
+  if (!isInitialised) {
+    return <Loader />;
+  }
   return (
     <div className="app-wrapper">
       <HeaderContainer />

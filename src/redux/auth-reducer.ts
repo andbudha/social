@@ -15,6 +15,7 @@ const initialState: AuthReducerInitialState = {
     login: '',
   },
   isAuthorised: false,
+  isInitialised: false,
 };
 
 export const AuthReducer = (
@@ -37,6 +38,9 @@ export const AuthReducer = (
         auhData: { ...state.auhData, ...action.payload.resetAuthData },
       };
     }
+    case 'SET-INIIALISATION-STATUS': {
+      return { ...state, isInitialised: action.payload.isInitialised };
+    }
     default: {
       return state;
     }
@@ -46,7 +50,8 @@ export const AuthReducer = (
 export type AuthReducerActionTypes =
   | setAuthDataType
   | resetAuthDataType
-  | alterAuthorisationStatusACType;
+  | alterAuthorisationStatusACType
+  | setIntialisationStatusACType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthResponseDataType) => {
   return { type: 'SET-AUTH-DATA', payload: { authData } } as const;
@@ -63,16 +68,23 @@ type resetAuthDataType = ReturnType<typeof resetAuthDataAC>;
 export const resetAuthDataAC = (resetAuthData: ResetAuthResponseDataType) => {
   return { type: 'RESET-AUTH-DATA', payload: { resetAuthData } } as const;
 };
+
+type setIntialisationStatusACType = ReturnType<typeof setIntialisationStatusAC>;
+export const setIntialisationStatusAC = (isInitialised: boolean) => {
+  return {
+    type: 'SET-INIIALISATION-STATUS',
+    payload: { isInitialised },
+  } as const;
+};
 //thunks
 export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.getAuthData().then((data) => {
       if (data.resultCode === 0) {
-        console.log(data.data);
-
-        dispatch(setAuthDataAC(data.data));
         dispatch(alterAuthorisationStatusAC(true));
+        dispatch(setAuthDataAC(data.data));
       }
+      dispatch(setIntialisationStatusAC(true));
     });
   };
 };
@@ -81,8 +93,8 @@ export const loginTC = (loginData: LoginDataType) => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.login(loginData).then((data) => {
       if (data.resultCode === 0) {
-        dispatch(setAuthDataAC(data.data));
         dispatch(alterAuthorisationStatusAC(true));
+        dispatch(setAuthDataAC(data.data));
       } else {
         const loginError =
           data.messages.length > 0 ? data.messages[0] : 'Some error ocurred!';

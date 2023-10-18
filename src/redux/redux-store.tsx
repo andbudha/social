@@ -8,6 +8,7 @@ import { UsersReducer, UsersReducerType } from './users-reducer';
 import { AuthReducer, AuthReducerActionTypes } from './auth-reducer';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
+import { useDispatch } from 'react-redux';
 
 const rootReducer = combineReducers({
   profiles: ProfileReducer,
@@ -31,7 +32,7 @@ export type AppDispatchType = ThunkDispatch<
   any,
   RootReducerActionTypes
 >;
-//export const useAppDispatch = () => useDispatch<AppDispatchType>();
+export const useAppDispatch = () => useDispatch<AppDispatchType>();
 export type AppRootStateType = ReturnType<typeof rootReducer>;
 //@ts-ignore
 window.store = store;
