@@ -12,6 +12,7 @@ export const MyPosts: React.FC<MyPostsContainerPropsType> = (props) => {
   ));
   const handleSubmit = (postData: MyPostsFormDataType) => {
     props.addPost(postData.post);
+    props.resetForm('post');
   };
 
   return (

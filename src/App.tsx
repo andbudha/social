@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
 import { News } from './components/News/News';
@@ -19,12 +19,18 @@ const App: React.FC = () => {
   const isInitialised = useSelector<AppRootStateType>(
     (state) => state.authorisation.isInitialised
   );
+  const isAuthorised = useSelector<AppRootStateType, boolean>(
+    (state) => state.authorisation.isAuthorised
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(setAuthDataTC());
   }, []);
 
+  // if (!isAuthorised) {
+  //   return <Redirect to={'/login'} />;
+  // }
   if (!isInitialised) {
     return <Loader />;
   }

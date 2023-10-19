@@ -43,6 +43,9 @@ export const Login: React.FC<LoginContainerPropsType> = (props) => {
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
     <div className={styles.login_box}>
+      <div className={styles.login_title}>
+        <h3>Login</h3>
+      </div>
       <form onSubmit={props.handleSubmit}>
         <div>
           <Field
