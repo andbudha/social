@@ -14,11 +14,15 @@ import { compose } from 'redux';
 
 export class ProfileAPIContainer extends React.Component<ProfileContainerPropsType> {
   componentDidMount() {
+    console.log(this.props.match.params.userID);
+
     let userProfileID = this.props.match.params.userID;
     if (!userProfileID) {
       userProfileID = this.props.loggedinUserID.toString();
+      if (!userProfileID) {
+        this.props.history.push('/login');
+      }
     }
-    //my id = '27941'
     this.props.setUserProfileThunk(userProfileID);
     this.props.getProfileStatusThunk(userProfileID);
     console.log(this.props.loggedinUserID);

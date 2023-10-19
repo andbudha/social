@@ -26,7 +26,6 @@ type FormDataType = {
 
 export const Login: React.FC<LoginContainerPropsType> = (props) => {
   const onSubmit = (formData: FormDataType) => {
-    console.log(formData);
     props.loginThunk(formData);
     props.resetForm('login');
   };

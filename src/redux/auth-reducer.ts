@@ -81,8 +81,8 @@ export const setAuthDataTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.getAuthData().then((data) => {
       if (data.resultCode === 0) {
-        dispatch(alterAuthorisationStatusAC(true));
         dispatch(setAuthDataAC(data.data));
+        dispatch(alterAuthorisationStatusAC(true));
       }
       dispatch(setIntialisationStatusAC(true));
     });
@@ -93,8 +93,8 @@ export const loginTC = (loginData: LoginDataType) => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.login(loginData).then((data) => {
       if (data.resultCode === 0) {
+        //dispatch(setAuthDataAC(data.data));
         dispatch(alterAuthorisationStatusAC(true));
-        dispatch(setAuthDataAC(data.data));
       } else {
         const loginError =
           data.messages.length > 0 ? data.messages[0] : 'Some error ocurred!';
@@ -109,7 +109,7 @@ export const logoutTC = () => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.logout().then((data) => {
       if (data.resultCode === 0) {
-        dispatch(resetAuthDataAC({ id: 0, email: '', login: '' }));
+        //dispatch(resetAuthDataAC({ id: 0, email: '', login: '' }));
         dispatch(alterAuthorisationStatusAC(false));
       }
     });
