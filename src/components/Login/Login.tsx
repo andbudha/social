@@ -17,6 +17,7 @@ import { loginTC } from '../../redux/auth-reducer';
 import { LoginDataType } from '../../types/store-types';
 import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
 
 type FormDataType = {
   email: string;
@@ -41,6 +42,10 @@ export const Login: React.FC<LoginContainerPropsType> = (props) => {
 };
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+  const [checkedStatus, setCheckedStatus] = useState(false);
+  const checkBoxHandler = () => {
+    setCheckedStatus(!checkedStatus);
+  };
   return (
     <div className={styles.login_box}>
       <div className={styles.login_title}>
@@ -65,14 +70,18 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             validate={[requiredFieldValue]}
           />
         </div>
-        <div className={styles.login_checkbox_container}>
+        <div
+          className={styles.login_checkbox_container}
+          onClick={checkBoxHandler}
+        >
           <Field
             className={styles.checkbox}
             type={'checkbox'}
             name={'rememberMe'}
             component={'input'}
+            checked={checkedStatus}
           />
-          Remeber me
+          Remember me
         </div>
         {props.error && (
           <div className={styles.login_server_error}>{props.error}</div>
