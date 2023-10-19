@@ -9,7 +9,7 @@ import {
 import { AppDispatchType } from './redux-store';
 
 const initialState: AuthReducerInitialState = {
-  auhData: {
+  authData: {
     id: 0,
     email: '',
     login: '',
@@ -26,7 +26,7 @@ export const AuthReducer = (
     case 'SET-AUTH-DATA': {
       return {
         ...state,
-        auhData: { ...state.auhData, ...action.payload.authData },
+        authData: { ...state.authData, ...action.payload.authData },
       };
     }
     case 'ALTER-AUTH-STATUS': {
@@ -35,7 +35,7 @@ export const AuthReducer = (
     case 'RESET-AUTH-DATA': {
       return {
         ...state,
-        auhData: { ...state.auhData, ...action.payload.resetAuthData },
+        authData: { ...state.authData, ...action.payload.resetAuthData },
       };
     }
     case 'SET-INIIALISATION-STATUS': {
@@ -92,8 +92,9 @@ export const setAuthDataTC = () => {
 export const loginTC = (loginData: LoginDataType) => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.login(loginData).then((data) => {
+      console.log(data);
       if (data.resultCode === 0) {
-        //dispatch(setAuthDataAC(data.data));
+        //dispatch(setAuthDataAC());
         dispatch(alterAuthorisationStatusAC(true));
       } else {
         const loginError =

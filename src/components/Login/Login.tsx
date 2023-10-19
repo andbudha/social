@@ -13,20 +13,14 @@ import {
 import { LoginPasswordFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginPasswordFormChecker';
 import { LoginEmailFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginEmailFormChecker';
 import { connect } from 'react-redux';
-import { loginTC } from '../../redux/auth-reducer';
+import { loginTC, setAuthDataTC } from '../../redux/auth-reducer';
 import { LoginDataType } from '../../types/store-types';
 import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 
-type FormDataType = {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-};
-
 export const Login: React.FC<LoginContainerPropsType> = (props) => {
-  const onSubmit = (formData: FormDataType) => {
+  const onSubmit = (formData: LoginDataType) => {
     props.loginThunk(formData);
     props.resetForm('login');
   };
@@ -41,7 +35,9 @@ export const Login: React.FC<LoginContainerPropsType> = (props) => {
   );
 };
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+export const LoginForm: React.FC<InjectedFormProps<LoginDataType>> = (
+  props
+) => {
   const [checkedStatus, setCheckedStatus] = useState(false);
   const checkBoxHandler = () => {
     setCheckedStatus(!checkedStatus);
@@ -93,7 +89,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     </div>
   );
 };
-const LoginReduxForm = reduxForm<FormDataType>({
+const LoginReduxForm = reduxForm<LoginDataType>({
   form: 'login',
 })(LoginForm);
 

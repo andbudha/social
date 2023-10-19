@@ -48,7 +48,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     isAuthorised: state.authorisation.isAuthorised,
     profileStatus: state.profiles.profileStatus,
     isUpdatingStatus: state.profiles.isUpdatingStatus,
-    loggedinUserID: state.authorisation.auhData.id,
+    loggedinUserID: state.authorisation.authData.id,
   };
 };
 

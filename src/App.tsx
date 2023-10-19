@@ -28,16 +28,18 @@ const App: React.FC = () => {
     dispatch(setAuthDataTC());
   }, []);
 
-  // if (!isAuthorised) {
-  //   return <Redirect to={'/login'} />;
-  // }
   if (!isInitialised) {
     return <Loader />;
+  }
+
+  if (!isAuthorised) {
+    return <LoginContainer />;
   }
   return (
     <div className="app-wrapper">
       <HeaderContainer />
       <Navbar />
+      <LoginContainer />
 
       <Route
         path="/profile/:userID?"
@@ -47,14 +49,14 @@ const App: React.FC = () => {
           </div>
         )}
       />
-      <Route
+      {/* <Route
         path="/login"
         render={() => (
           <div className="app_content_wrapper">
             <LoginContainer />
           </div>
         )}
-      />
+      /> */}
       <Route
         path="/dialogues"
         render={() => (

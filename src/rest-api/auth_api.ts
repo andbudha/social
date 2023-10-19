@@ -17,7 +17,7 @@ export const authorisationAPI = {
   },
   login(loginData: LoginDataType) {
     return instance
-      .post<AuthResponseType>('auth/login', {
+      .post('auth/login', {
         email: loginData.email,
         password: loginData.password,
         rememberMe: loginData.rememberMe,

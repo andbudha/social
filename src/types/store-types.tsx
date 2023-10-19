@@ -101,7 +101,7 @@ export type AuthResponseType = {
 };
 
 export type AuthReducerInitialState = {
-  auhData: AuthResponseDataType;
+  authData: AuthResponseDataType;
   isAuthorised: boolean;
   isInitialised: boolean;
 };
