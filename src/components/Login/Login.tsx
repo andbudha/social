@@ -21,6 +21,8 @@ import { useState } from 'react';
 
 export const Login: React.FC<LoginContainerPropsType> = (props) => {
   const onSubmit = (formData: LoginDataType) => {
+    console.log(formData);
+
     props.loginThunk(formData);
     props.resetForm('login');
   };

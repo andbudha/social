@@ -92,7 +92,6 @@ export const setAuthDataTC = () => {
 export const loginTC = (loginData: LoginDataType) => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.login(loginData).then((data) => {
-      console.log(data);
       if (data.resultCode === 0) {
         //dispatch(setAuthDataAC());
         dispatch(alterAuthorisationStatusAC(true));

@@ -14,6 +14,15 @@ import React from 'react';
 import { Users } from './Users';
 import { withAuthRedirect } from '../../hocs/withAuthRedirect';
 import { Loader } from '../common/Loaders/Loader/Loader';
+import {
+  getAmountOfUsers,
+  getFollowingBTNToggle,
+  getIsAuthorised,
+  getIsFetchingData,
+  getSelectedPage,
+  getUsersPerPageSelector,
+  getUsersSelector,
+} from '../../redux/users-selectors';
 
 export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
@@ -64,17 +73,29 @@ type mapStateToPropsType = {
   followingBTNToggle: number[];
   isAuthorised: boolean;
 };
+
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
-    users: state.users.users,
-    usersPerPage: state.users.usersPerPage,
-    amountOfUsers: state.users.amountOfUsers,
-    selectedPage: state.users.selectedPage,
-    isFetchingData: state.users.isFetchingData,
-    followingBTNToggle: state.users.followingBTNToggle,
-    isAuthorised: state.authorisation.isAuthorised,
+    users: getUsersSelector(state),
+    usersPerPage: getUsersPerPageSelector(state),
+    amountOfUsers: getAmountOfUsers(state),
+    selectedPage: getSelectedPage(state),
+    isFetchingData: getIsFetchingData(state),
+    followingBTNToggle: getFollowingBTNToggle(state),
+    isAuthorised: getIsAuthorised(state),
   };
 };
+// const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
+//   return {
+//     users: state.users.users,
+//     usersPerPage: state.users.usersPerPage,
+//     amountOfUsers: state.users.amountOfUsers,
+//     selectedPage: state.users.selectedPage,
+//     isFetchingData: state.users.isFetchingData,
+//     followingBTNToggle: state.users.followingBTNToggle,
+//     isAuthorised: state.authorisation.isAuthorised,
+//   };
+// };
 
 type mapDispatchToPropsType = {
   setUsersThunk: (selectedPage: number, usersPerPage: number) => void;

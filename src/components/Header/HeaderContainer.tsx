@@ -61,9 +61,9 @@ export const HeaderContainer = connect(
 // };
 // const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 //   return {
-//     id: state.authorisation.auhData.id,
-//     email: state.authorisation.auhData.email,
-//     login: state.authorisation.auhData.login,
+//     id: state.authorisation.authData.id,
+//     email: state.authorisation.authData.email,
+//     login: state.authorisation.authData.login,
 //     isAuthorised: state.authorisation.isAuthorised,
 //   };
 // };
