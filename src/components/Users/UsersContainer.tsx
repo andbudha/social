@@ -85,17 +85,6 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     isAuthorised: getIsAuthorised(state),
   };
 };
-// const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
-//   return {
-//     users: state.users.users,
-//     usersPerPage: state.users.usersPerPage,
-//     amountOfUsers: state.users.amountOfUsers,
-//     selectedPage: state.users.selectedPage,
-//     isFetchingData: state.users.isFetchingData,
-//     followingBTNToggle: state.users.followingBTNToggle,
-//     isAuthorised: state.authorisation.isAuthorised,
-//   };
-// };
 
 type mapDispatchToPropsType = {
   setUsersThunk: (selectedPage: number, usersPerPage: number) => void;

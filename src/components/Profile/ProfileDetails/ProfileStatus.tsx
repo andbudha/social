@@ -12,7 +12,7 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
 
   useEffect(() => {
     setProfileStatus(props.profileContainerProps.profileStatus);
-  }, []);
+  }, [props.profileContainerProps.profileStatus]);
 
   const setOnEditModeHandler = () => {
     setEditMode(true);

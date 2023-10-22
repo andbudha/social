@@ -78,9 +78,11 @@ export const setIntialisationStatusAC = (isInitialised: boolean) => {
 };
 //thunks
 export const setAuthDataTC = () => {
-  return (dispatch: AppDispatchType) => {
-    authorisationAPI.getAuthData().then((data) => {
+  return async (dispatch: AppDispatchType) => {
+    await authorisationAPI.getAuthData().then((data) => {
+      console.log(data);
       if (data.resultCode === 0) {
+        console.log(data);
         dispatch(setAuthDataAC(data.data));
         dispatch(alterAuthorisationStatusAC(true));
       }
@@ -93,8 +95,7 @@ export const loginTC = (loginData: LoginDataType) => {
   return (dispatch: AppDispatchType) => {
     authorisationAPI.login(loginData).then((data) => {
       if (data.resultCode === 0) {
-        //dispatch(setAuthDataAC());
-        dispatch(alterAuthorisationStatusAC(true));
+        dispatch(setAuthDataTC());
       } else {
         const loginError =
           data.messages.length > 0 ? data.messages[0] : 'Some error ocurred!';

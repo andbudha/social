@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(setAuthDataTC());
-  }, []);
+  }, [isAuthorised]);
 
   if (!isInitialised) {
     return <Loader />;
