@@ -1,5 +1,9 @@
 import { MessagePageType } from '../types/store-types';
-import { DialogueReducer, addMessageAC } from './dialogue-reducer';
+import {
+  DialogueReducer,
+  addMessageAC,
+  addNewParticipantAC,
+} from './dialogue-reducer';
 
 let startingState: MessagePageType;
 
@@ -33,4 +37,17 @@ test('A new dialogue message should be added.', () => {
 
   expect(resultedState.messages.length).toBe(5);
   expect(resultedState.messages[4].message).toBe(newMessage);
+});
+
+test('A new dialogue participant should be added.', () => {
+  const newID = 333;
+  const newParticipant = { id: newID, name: 'Mihai' };
+
+  const resultedState = DialogueReducer(
+    startingState,
+    addNewParticipantAC(newParticipant)
+  );
+
+  expect(resultedState.participants.length).toBe(5);
+  expect(resultedState.participants[4].name).toBe(newParticipant.name);
 });

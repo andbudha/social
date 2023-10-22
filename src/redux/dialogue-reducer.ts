@@ -1,4 +1,4 @@
-import { MessagePageType } from '../types/store-types';
+import { MessagePageType, ParticipantType } from '../types/store-types';
 
 const initialState: MessagePageType = {
   participants: [
@@ -18,7 +18,9 @@ const initialState: MessagePageType = {
   ],
 };
 
-export type DialogueReducerActionTypes = addMessageACType;
+export type DialogueReducerActionTypes =
+  | addMessageACType
+  | addNewParticipantACType;
 export const DialogueReducer = (
   state: MessagePageType = initialState,
   action: DialogueReducerActionTypes
@@ -38,6 +40,12 @@ export const DialogueReducer = (
       });
       return stateCopy;
     }
+    case 'ADD-NEW-PARTICIPANT': {
+      return {
+        ...state,
+        participants: [...state.participants, action.payload.newParticipant],
+      };
+    }
 
     default:
       return state;
@@ -47,4 +55,9 @@ export const DialogueReducer = (
 type addMessageACType = ReturnType<typeof addMessageAC>;
 export const addMessageAC = (newMessage: string) => {
   return { type: 'ADD-MESSAGE', payload: { newMessage } } as const;
+};
+
+type addNewParticipantACType = ReturnType<typeof addNewParticipantAC>;
+export const addNewParticipantAC = (newParticipant: ParticipantType) => {
+  return { type: 'ADD-NEW-PARTICIPANT', payload: { newParticipant } } as const;
 };
