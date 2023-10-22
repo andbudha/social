@@ -1,5 +1,9 @@
 import { ProfilePageType } from '../types/store-types';
-import { ProfileReducer, addPostAC } from './profile-reducer';
+import {
+  ProfileReducer,
+  addPostAC,
+  setProfileStatusAC,
+} from './profile-reducer';
 
 let startingState: ProfilePageType;
 
@@ -22,4 +26,15 @@ test('The number of posts must be increased', () => {
 
   expect(resultedState.posts.length).toBe(3);
   expect(resultedState.posts[2].message).toBe('Tarde venientibus ossa!');
+});
+
+test('A new profile status must be set', () => {
+  const newStatus = 'Veni, vidi, vici!';
+
+  const resultedState = ProfileReducer(
+    startingState,
+    setProfileStatusAC(newStatus)
+  );
+
+  expect(resultedState.profileStatus).toBe('Veni, vidi, vici!');
 });
