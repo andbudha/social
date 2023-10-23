@@ -1,0 +1,60 @@
+.user_card {
+  border-radius: 20px;
+  border: 1px solid #7c81ad;
+  background-color: #fff;
+  width: 400px;
+  height: 110px;
+  padding: 4px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}
+.user_img_and_btn_box {
+  width: 90px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.user_img_box {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.img {
+  width: 60px;
+  border-radius: 50%;
+}
+.follow_btn {
+  width: 70px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 12px;
+  border: none;
+  background-color: #4b527e;
+  color: #fff;
+}
+
+.follow_btn:disabled {
+  opacity: 0.5;
+}
+.user_presentation_box {
+  width: 300px;
+  height: 70px;
+  color: #4b527e;
+}
+
+.user_presentation_box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
