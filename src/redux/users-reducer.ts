@@ -23,10 +23,10 @@ export const UsersReducer = (
   action: UsersReducerType
 ): UsersInitialStateType => {
   switch (action.type) {
-    case 'SET-USERS': {
+    case 'users-reducer/SET-USERS': {
       return { ...state, users: action.payload.users };
     }
-    case 'FOLLOW-USER': {
+    case 'users-reducer/FOLLOW-USER': {
       return {
         ...state,
         users: state.users.map((user) =>
@@ -36,7 +36,7 @@ export const UsersReducer = (
         ),
       };
     }
-    case 'UNFOLLOW-USER': {
+    case 'users-reducer/UNFOLLOW-USER': {
       return {
         ...state,
         users: state.users.map((user) =>
@@ -46,13 +46,13 @@ export const UsersReducer = (
         ),
       };
     }
-    case 'SELECT-USER-PAGE': {
+    case 'users-reducer/SELECT-USER-PAGE': {
       return { ...state, selectedPage: action.payload.page };
     }
-    case 'SET-LOADER': {
+    case 'users-reducer/SET-LOADER': {
       return { ...state, isFetchingData: action.payload.isFetchingData };
     }
-    case 'TOGGLE-FOLLOW-BTN': {
+    case 'users-reducer/TOGGLE-FOLLOW-BTN': {
       return {
         ...state,
         followingBTNToggle: action.payload.btnStatus
@@ -70,31 +70,37 @@ export const UsersReducer = (
 //action creators and types
 type setUsersACType = ReturnType<typeof setUsersAC>;
 export const setUsersAC = (users: UserType[]) => {
-  return { type: 'SET-USERS', payload: { users } } as const;
+  return { type: 'users-reducer/SET-USERS', payload: { users } } as const;
 };
 type followUserACType = ReturnType<typeof followUserAC>;
 export const followUserAC = (userID: number) => {
-  return { type: 'FOLLOW-USER', payload: { userID } } as const;
+  return { type: 'users-reducer/FOLLOW-USER', payload: { userID } } as const;
 };
 type unfollowUserACType = ReturnType<typeof unfollowUserAC>;
 export const unfollowUserAC = (userID: number) => {
   return {
-    type: 'UNFOLLOW-USER',
+    type: 'users-reducer/UNFOLLOW-USER',
     payload: { userID },
   } as const;
 };
 type selectUserPageACType = ReturnType<typeof selectUserPageAC>;
 export const selectUserPageAC = (page: number) => {
-  return { type: 'SELECT-USER-PAGE', payload: { page } } as const;
+  return { type: 'users-reducer/SELECT-USER-PAGE', payload: { page } } as const;
 };
 type fetchDataACType = ReturnType<typeof fetchDataAC>;
 export const fetchDataAC = (isFetchingData: boolean) => {
-  return { type: 'SET-LOADER', payload: { isFetchingData } } as const;
+  return {
+    type: 'users-reducer/SET-LOADER',
+    payload: { isFetchingData },
+  } as const;
 };
 
 type isFollowingToggleACType = ReturnType<typeof isFollowingToggleAC>;
 export const isFollowingToggleAC = (userID: number, btnStatus: boolean) => {
-  return { type: 'TOGGLE-FOLLOW-BTN', payload: { userID, btnStatus } } as const;
+  return {
+    type: 'users-reducer/TOGGLE-FOLLOW-BTN',
+    payload: { userID, btnStatus },
+  } as const;
 };
 
 //thunks
