@@ -11,23 +11,17 @@ const instance = axios.create({
 
 export const profileAPI = {
   settingUserProfile(userProfileID: string) {
-    return instance
-      .get<UserProfileType>(`profile/${userProfileID}`)
-      .then((response) => {
-        return response.data;
-      });
+    return instance.get<UserProfileType>(`profile/${userProfileID}`);
   },
   getProfileStatus(userID: string) {
-    return instance
-      .get<string, AxiosResponse<string>>(`profile/status/${userID}`)
-      .then((response) => response.data);
+    return instance.get<string, AxiosResponse<string>>(
+      `profile/status/${userID}`
+    );
   },
 
   setProfileStatus(status: string) {
-    return instance
-      .put<CommonUserProfileType>(`profile/status`, {
-        status: status,
-      })
-      .then((response) => response.data);
+    return instance.put<CommonUserProfileType>(`profile/status`, {
+      status: status,
+    });
   },
 };

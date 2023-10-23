@@ -96,29 +96,26 @@ export const isUpdatingStatusAC = (updating: boolean) => {
 
 //thunks
 export const setUserProfileTC = (userProfileID: string) => {
-  return (dispatch: AppDispatchType) => {
-    profileAPI
-      .settingUserProfile(userProfileID)
-      .then((data) => dispatch(setUserProfileAC(data)));
+  return async (dispatch: AppDispatchType) => {
+    const response = await profileAPI.settingUserProfile(userProfileID);
+    dispatch(setUserProfileAC(response.data));
   };
 };
 
 export const getProfileStatusTC = (userID: string) => {
-  return (dispatch: AppDispatchType) => {
-    profileAPI.getProfileStatus(userID).then((status) => {
-      dispatch(getProfileStatusAC(status));
-    });
+  return async (dispatch: AppDispatchType) => {
+    const status = await profileAPI.getProfileStatus(userID);
+    dispatch(getProfileStatusAC(status.data));
   };
 };
 
 export const setProfileStatusTC = (status: string) => {
-  return (dispatch: AppDispatchType) => {
+  return async (dispatch: AppDispatchType) => {
     dispatch(isUpdatingStatusAC(true));
-    profileAPI.setProfileStatus(status).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(isUpdatingStatusAC(false));
-        dispatch(setProfileStatusAC(status));
-      }
-    });
+    const data = await profileAPI.setProfileStatus(status);
+    if (data.data.resultCode === 0) {
+      dispatch(isUpdatingStatusAC(false));
+      dispatch(setProfileStatusAC(status));
+    }
   };
 };
