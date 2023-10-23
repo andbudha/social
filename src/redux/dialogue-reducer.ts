@@ -26,7 +26,7 @@ export const DialogueReducer = (
   action: DialogueReducerActionTypes
 ): MessagePageType => {
   switch (action.type) {
-    case 'ADD-MESSAGE': {
+    case 'dialogue-reducer/ADD-MESSAGE': {
       const stateCopy = {
         ...state,
         participants: [
@@ -40,7 +40,7 @@ export const DialogueReducer = (
       });
       return stateCopy;
     }
-    case 'ADD-NEW-PARTICIPANT': {
+    case 'dialogue-reducer/ADD-NEW-PARTICIPANT': {
       return {
         ...state,
         participants: [...state.participants, action.payload.newParticipant],
@@ -54,10 +54,16 @@ export const DialogueReducer = (
 
 type addMessageACType = ReturnType<typeof addMessageAC>;
 export const addMessageAC = (newMessage: string) => {
-  return { type: 'ADD-MESSAGE', payload: { newMessage } } as const;
+  return {
+    type: 'dialogue-reducer/ADD-MESSAGE',
+    payload: { newMessage },
+  } as const;
 };
 
 type addNewParticipantACType = ReturnType<typeof addNewParticipantAC>;
 export const addNewParticipantAC = (newParticipant: ParticipantType) => {
-  return { type: 'ADD-NEW-PARTICIPANT', payload: { newParticipant } } as const;
+  return {
+    type: 'dialogue-reducer/ADD-NEW-PARTICIPANT',
+    payload: { newParticipant },
+  } as const;
 };
