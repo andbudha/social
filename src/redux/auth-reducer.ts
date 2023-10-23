@@ -85,40 +85,36 @@ export const setIntialisationStatusAC = (isInitialised: boolean) => {
 //thunks
 export const setAuthDataTC = () => {
   return async (dispatch: AppDispatchType) => {
-    await authorisationAPI.getAuthData().then((data) => {
-      console.log(data);
-      if (data.resultCode === 0) {
-        console.log(data);
-        dispatch(setAuthDataAC(data.data));
-        dispatch(alterAuthorisationStatusAC(true));
-      }
-      dispatch(setIntialisationStatusAC(true));
-    });
+    const data = await authorisationAPI.getAuthData();
+    if (data.data.resultCode === 0) {
+      dispatch(setAuthDataAC(data.data.data));
+      dispatch(alterAuthorisationStatusAC(true));
+    }
+    dispatch(setIntialisationStatusAC(true));
   };
 };
 
 export const loginTC = (loginData: LoginDataType) => {
-  return (dispatch: AppDispatchType) => {
-    authorisationAPI.login(loginData).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setAuthDataTC());
-      } else {
-        const loginError =
-          data.messages.length > 0 ? data.messages[0] : 'Some error ocurred!';
-        const action: any = stopSubmit('login', { _error: loginError });
-        dispatch(action);
-      }
-    });
+  return async (dispatch: AppDispatchType) => {
+    const response = await authorisationAPI.login(loginData);
+    if (response.data.resultCode === 0) {
+      dispatch(setAuthDataTC());
+    } else {
+      const loginError =
+        response.data.messages.length > 0
+          ? response.data.messages[0]
+          : 'Some error ocurred!';
+      const action: any = stopSubmit('login', { _error: loginError });
+      dispatch(action);
+    }
   };
 };
 
 export const logoutTC = () => {
-  return (dispatch: AppDispatchType) => {
-    authorisationAPI.logout().then((data) => {
-      if (data.resultCode === 0) {
-        //dispatch(resetAuthDataAC({ id: 0, email: '', login: '' }));
-        dispatch(alterAuthorisationStatusAC(false));
-      }
-    });
+  return async (dispatch: AppDispatchType) => {
+    const response = await authorisationAPI.logout();
+    if (response.data.resultCode === 0) {
+      dispatch(alterAuthorisationStatusAC(false));
+    }
   };
 };
