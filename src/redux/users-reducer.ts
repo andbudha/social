@@ -106,46 +106,42 @@ export const isFollowingToggleAC = (userID: number, btnStatus: boolean) => {
 //thunks
 
 export const setUsersTC = (selectedPage: number, usersPerPage: number) => {
-  return (dispatch: AppDispatchType) => {
+  return async (dispatch: AppDispatchType) => {
     dispatch(fetchDataAC(true));
-    usersAPI.getUsers(selectedPage, usersPerPage).then((data) => {
-      dispatch(fetchDataAC(false));
-      dispatch(setUsersAC(data));
-    });
+    const data = await usersAPI.getUsers(selectedPage, usersPerPage);
+    dispatch(fetchDataAC(false));
+    dispatch(setUsersAC(data.data.items));
   };
 };
 
 export const selectUserPageTC = (page: number, usersPerPage: number) => {
-  return (dispatch: AppDispatchType) => {
+  return async (dispatch: AppDispatchType) => {
     dispatch(selectUserPageAC(page));
     dispatch(fetchDataAC(true));
-    usersAPI.accessUserPage(page, usersPerPage).then((data) => {
-      dispatch(fetchDataAC(false));
-      dispatch(setUsersAC(data));
-    });
+    const response = usersAPI.accessUserPage(page, usersPerPage);
+    dispatch(fetchDataAC(false));
+    dispatch(setUsersAC((await response).data.items));
   };
 };
 
 export const followUserTC = (userID: number) => {
-  return (dispatch: AppDispatchType) => {
+  return async (dispatch: AppDispatchType) => {
     dispatch(isFollowingToggleAC(userID, true));
-    usersAPI.followingUser(userID).then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(followUserAC(userID));
-      }
-      dispatch(isFollowingToggleAC(userID, false));
-    });
+    const response = await usersAPI.followingUser(userID);
+    if (response.data.resultCode === 0) {
+      dispatch(followUserAC(userID));
+    }
+    dispatch(isFollowingToggleAC(userID, false));
   };
 };
 
 export const unfollowUserTC = (userID: number) => {
-  return (dispatch: AppDispatchType) => {
+  return async (dispatch: AppDispatchType) => {
     dispatch(isFollowingToggleAC(userID, true));
-    usersAPI.unfollowingUser(userID).then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(unfollowUserAC(userID));
-      }
-      dispatch(isFollowingToggleAC(userID, false));
-    });
+    const response = await usersAPI.unfollowingUser(userID);
+    if (response.data.resultCode === 0) {
+      dispatch(unfollowUserAC(userID));
+    }
+    dispatch(isFollowingToggleAC(userID, false));
   };
 };

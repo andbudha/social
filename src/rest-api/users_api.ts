@@ -11,22 +11,14 @@ const instance = axios.create({
 
 export const usersAPI = {
   getUsers(selectedPage: number, usersPerPage: number) {
-    return instance
-      .get<UsersResponseType>(
-        `users?page=${selectedPage}&count=${usersPerPage}`
-      )
-      .then((response) => {
-        return response.data.items;
-      });
+    return instance.get<UsersResponseType>(
+      `users?page=${selectedPage}&count=${usersPerPage}`
+    );
   },
   accessUserPage(page: number, usersPerPage: number) {
-    return instance
-      .get<UsersResponseType>(`users?page=${page}&count=${usersPerPage}`)
-      .then((response) => {
-        console.log(response);
-
-        return response.data.items;
-      });
+    return instance.get<UsersResponseType>(
+      `users?page=${page}&count=${usersPerPage}`
+    );
   },
   followingUser(userID: number) {
     return instance.post<CommonUserProfileType>(`follow/${userID}`);
