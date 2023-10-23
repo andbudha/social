@@ -19,15 +19,19 @@ import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 
-export const Login: React.FC<LoginContainerPropsType> = (props) => {
+export const Login: React.FC<LoginContainerPropsType> = ({
+  loginThunk,
+  resetForm,
+  isAuthorised,
+}) => {
   const onSubmit = (formData: LoginDataType) => {
     console.log(formData);
 
-    props.loginThunk(formData);
-    props.resetForm('login');
+    loginThunk(formData);
+    resetForm('login');
   };
 
-  if (props.isAuthorised) {
+  if (isAuthorised) {
     return <Redirect to={'/profile'} />;
   }
   return (
