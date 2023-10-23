@@ -23,22 +23,22 @@ export const AuthReducer = (
   action: AuthReducerActionTypes
 ): AuthReducerInitialState => {
   switch (action.type) {
-    case 'SET-AUTH-DATA': {
+    case 'auth-reducer/SET-AUTH-DATA': {
       return {
         ...state,
         authData: { ...state.authData, ...action.payload.authData },
       };
     }
-    case 'ALTER-AUTH-STATUS': {
+    case 'auth-reducer/ALTER-AUTH-STATUS': {
       return { ...state, isAuthorised: action.payload.authStatus };
     }
-    case 'RESET-AUTH-DATA': {
+    case 'auth-reducer/RESET-AUTH-DATA': {
       return {
         ...state,
         authData: { ...state.authData, ...action.payload.resetAuthData },
       };
     }
-    case 'SET-INIIALISATION-STATUS': {
+    case 'auth-reducer/SET-INIIALISATION-STATUS': {
       return { ...state, isInitialised: action.payload.isInitialised };
     }
     default: {
@@ -54,25 +54,31 @@ export type AuthReducerActionTypes =
   | setIntialisationStatusACType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthResponseDataType) => {
-  return { type: 'SET-AUTH-DATA', payload: { authData } } as const;
+  return { type: 'auth-reducer/SET-AUTH-DATA', payload: { authData } } as const;
 };
 
 type alterAuthorisationStatusACType = ReturnType<
   typeof alterAuthorisationStatusAC
 >;
 export const alterAuthorisationStatusAC = (authStatus: boolean) => {
-  return { type: 'ALTER-AUTH-STATUS', payload: { authStatus } } as const;
+  return {
+    type: 'auth-reducer/ALTER-AUTH-STATUS',
+    payload: { authStatus },
+  } as const;
 };
 
 type resetAuthDataType = ReturnType<typeof resetAuthDataAC>;
 export const resetAuthDataAC = (resetAuthData: ResetAuthResponseDataType) => {
-  return { type: 'RESET-AUTH-DATA', payload: { resetAuthData } } as const;
+  return {
+    type: 'auth-reducer/RESET-AUTH-DATA',
+    payload: { resetAuthData },
+  } as const;
 };
 
 type setIntialisationStatusACType = ReturnType<typeof setIntialisationStatusAC>;
 export const setIntialisationStatusAC = (isInitialised: boolean) => {
   return {
-    type: 'SET-INIIALISATION-STATUS',
+    type: 'auth-reducer/SET-INIIALISATION-STATUS',
     payload: { isInitialised },
   } as const;
 };
