@@ -1,0 +1,10 @@
+.page_number {
+  margin: 7px;
+  color: #4b527e;
+  cursor: pointer;
+}
+
+.slected_page {
+  font-weight: 1000;
+  text-decoration: underline 2px;
+}

@@ -3,6 +3,7 @@ import styles from './Users.module.css';
 import profileImage from '../../images/avatars/ava7.png';
 import { UserType } from '../../types/store-types';
 import { NavLink } from 'react-router-dom';
+import { Paginator } from '../common/Paginator/Paginator';
 
 type UsersPropsType = {
   pages: number[];
@@ -73,19 +74,11 @@ export const Users: React.FC<UsersPropsType> = (props) => {
         );
       })}
       <div className={styles.page_number_box}>
-        {props.pages.map((page) => {
-          return (
-            <span
-              key={page}
-              onClick={() => props.selectUserPageHandler(page)}
-              className={`${styles.page_number} ${
-                props.selectedPage === page && styles.slected_page
-              }`}
-            >
-              {page}
-            </span>
-          );
-        })}
+        <Paginator
+          pages={props.pages}
+          selectedPage={props.selectedPage}
+          selectUserPageHandler={props.selectUserPageHandler}
+        />
       </div>
     </div>
   );

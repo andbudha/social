@@ -20,17 +20,6 @@ error - #E0144C
   justify-content: center;
   align-items: center;
 }
-.page_number {
-  margin: 7px;
-  color: #4b527e;
-  cursor: pointer;
-}
-
-.slected_page {
-  font-weight: 1000;
-  text-decoration: underline 2px;
-}
-
 .user_card {
   border-radius: 20px;
   border: 1px solid #7c81ad;
