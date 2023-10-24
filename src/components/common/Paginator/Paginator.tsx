@@ -30,6 +30,7 @@ export const Paginator: React.FC<PaginatorPropsType> = (props) => {
             onClick={() => {
               currentPortion !== 1 && setCurrentPortion(currentPortion - 1);
             }}
+            className={styles.paginator_btn}
           >
             Prev
           </button>
@@ -58,6 +59,7 @@ export const Paginator: React.FC<PaginatorPropsType> = (props) => {
               currentPortion !== amountOfPages &&
                 setCurrentPortion(currentPortion + 1);
             }}
+            className={styles.paginator_btn}
           >
             Next
           </button>{' '}

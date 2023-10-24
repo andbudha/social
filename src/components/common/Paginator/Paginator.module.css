@@ -8,3 +8,25 @@
   font-weight: 1000;
   text-decoration: underline 2px;
 }
+
+.paginator_btn {
+  height: 32px;
+  width: 80px;
+  margin: 0px 5px;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: #7c81ad;
+  color: #fff;
+  border: 1px solid #4b527e;
+  letter-spacing: 1px;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.paginator_btn:hover {
+  background-color: #4b527e;
+}
+
+.paginator_btn:active {
+  background-color: #7c81ad;
+}

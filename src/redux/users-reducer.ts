@@ -109,8 +109,6 @@ export const setUsersTC = (selectedPage: number, usersPerPage: number) => {
   return async (dispatch: AppDispatchType) => {
     dispatch(fetchDataAC(true));
     const data = await usersAPI.getUsers(selectedPage, usersPerPage);
-    console.log(data.data.items.length);
-
     dispatch(fetchDataAC(false));
     dispatch(setUsersAC(data.data.items));
   };

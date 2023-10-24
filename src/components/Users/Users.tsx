@@ -15,8 +15,6 @@ type UsersPropsType = {
   unfollowUserThunk: (userID: number) => void;
 };
 export const Users: React.FC<UsersPropsType> = (props) => {
-  console.log(props.users.length);
-
   return (
     <div>
       {props.users.map((user) => {
