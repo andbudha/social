@@ -4,8 +4,8 @@ import { AppDispatchType } from './redux-store';
 
 const initialState: UsersInitialStateType = {
   users: [],
-  usersPerPage: 5,
-  amountOfUsers: 75,
+  usersPerPage: 8,
+  amountOfUsers: 500,
   selectedPage: 1,
   isFetchingData: false,
   followingBTNToggle: [],
@@ -109,6 +109,8 @@ export const setUsersTC = (selectedPage: number, usersPerPage: number) => {
   return async (dispatch: AppDispatchType) => {
     dispatch(fetchDataAC(true));
     const data = await usersAPI.getUsers(selectedPage, usersPerPage);
+    console.log(data.data.items.length);
+
     dispatch(fetchDataAC(false));
     dispatch(setUsersAC(data.data.items));
   };

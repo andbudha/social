@@ -5,15 +5,18 @@ import { Paginator } from '../common/Paginator/Paginator';
 import { User } from './User';
 
 type UsersPropsType = {
-  pages: number[];
   selectedPage: number;
   users: UserType[];
   followingBTNToggle: number[];
+  amountOfUsers: number;
+  usersPerPage: number;
   selectUserPageHandler: (page: number) => void;
   followUserThunk: (userID: number) => void;
   unfollowUserThunk: (userID: number) => void;
 };
 export const Users: React.FC<UsersPropsType> = (props) => {
+  console.log(props.users.length);
+
   return (
     <div>
       {props.users.map((user) => {
@@ -30,9 +33,10 @@ export const Users: React.FC<UsersPropsType> = (props) => {
       })}
       <div className={styles.page_number_box}>
         <Paginator
-          pages={props.pages}
+          totalAmount={props.amountOfUsers}
+          itemsPerPage={props.usersPerPage}
           selectedPage={props.selectedPage}
-          selectUserPageHandler={props.selectUserPageHandler}
+          selectPageHandler={props.selectUserPageHandler}
         />
       </div>
     </div>

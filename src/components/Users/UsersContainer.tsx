@@ -34,15 +34,15 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
   };
 
   render() {
-    const amountOfPages = Math.ceil(
-      this.props.amountOfUsers / this.props.usersPerPage
-    );
+    // const amountOfPages = Math.ceil(
+    //   this.props.amountOfUsers / this.props.usersPerPage
+    // );
 
-    const pages: number[] = [];
+    // const pages: number[] = [];
 
-    for (let i = 1; i <= amountOfPages; i++) {
-      pages.push(i);
-    }
+    // for (let i = 1; i <= amountOfPages; i++) {
+    //   pages.push(i);
+    // }
 
     return (
       <div>
@@ -50,7 +50,8 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
           <Loader />
         ) : (
           <Users
-            pages={pages}
+            amountOfUsers={this.props.amountOfUsers}
+            usersPerPage={this.props.usersPerPage}
             selectedPage={this.props.selectedPage}
             users={this.props.users}
             selectUserPageHandler={this.selectUserPageHandler}
