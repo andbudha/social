@@ -5,7 +5,7 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 //import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
-import { UsersContainer } from './components/Users/UsersContainer';
+//import { UsersContainer } from './components/Users/UsersContainer';
 import { ProfileContainer } from './components/Profile/ProfileContainer';
 import { HeaderContainer } from './components/Header/HeaderContainer';
 import { LoginContainer } from './components/Login/Login';
@@ -20,6 +20,12 @@ const DialogueContainer = React.lazy(() =>
   import('./components/Dialogues/DialoguesContainer').then(
     ({ DialogueContainer }) => ({ default: DialogueContainer })
   )
+);
+
+const UsersContainer = React.lazy(() =>
+  import('./components/Users/UsersContainer').then(({ UsersContainer }) => ({
+    default: UsersContainer,
+  }))
 );
 const App: React.FC = () => {
   const isInitialised = useSelector<AppRootStateType>(
