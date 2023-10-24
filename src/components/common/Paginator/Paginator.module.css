@@ -1,5 +1,5 @@
 .page_number {
-  margin: 7px;
+  margin: 5px;
   color: #4b527e;
   cursor: pointer;
 }
@@ -11,7 +11,7 @@
 
 .paginator_btn {
   height: 32px;
-  width: 80px;
+  width: 70px;
   margin: 0px 5px;
   border-radius: 4px;
   padding: 4px;

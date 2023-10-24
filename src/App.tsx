@@ -1,10 +1,10 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
+//import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
 import { UsersContainer } from './components/Users/UsersContainer';
 import { ProfileContainer } from './components/Profile/ProfileContainer';
 import { HeaderContainer } from './components/Header/HeaderContainer';
@@ -14,7 +14,13 @@ import { useEffect } from 'react';
 import { setAuthDataTC } from './redux/auth-reducer';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/common/Loaders/Loader/Loader';
+import React from 'react';
 
+const DialogueContainer = React.lazy(() =>
+  import('./components/Dialogues/DialoguesContainer').then(
+    ({ DialogueContainer }) => ({ default: DialogueContainer })
+  )
+);
 const App: React.FC = () => {
   const isInitialised = useSelector<AppRootStateType>(
     (state) => state.authorisation.isInitialised
@@ -61,7 +67,9 @@ const App: React.FC = () => {
         path="/dialogues"
         render={() => (
           <div className="app_content_wrapper">
-            <DialogueContainer />
+            <React.Suspense fallback={<Loader />}>
+              <DialogueContainer />
+            </React.Suspense>
           </div>
         )}
       />
@@ -69,7 +77,9 @@ const App: React.FC = () => {
         path="/users"
         render={() => (
           <div className="app_content_wrapper">
-            <UsersContainer />
+            <React.Suspense fallback={<Loader />}>
+              <UsersContainer />
+            </React.Suspense>
           </div>
         )}
       />

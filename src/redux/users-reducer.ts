@@ -5,7 +5,7 @@ import { AppDispatchType } from './redux-store';
 const initialState: UsersInitialStateType = {
   users: [],
   usersPerPage: 8,
-  amountOfUsers: 500,
+  amountOfUsers: 30000,
   selectedPage: 1,
   isFetchingData: false,
   followingBTNToggle: [],

@@ -48,7 +48,6 @@ export const Paginator: React.FC<PaginatorPropsType> = (props) => {
               props.selectedPage === p && styles.slected_page
             }`}
           >
-            {' '}
             {p}
           </span>
         ))}
