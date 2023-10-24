@@ -6,7 +6,7 @@ import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 //import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
 //import { UsersContainer } from './components/Users/UsersContainer';
-import { ProfileContainer } from './components/Profile/ProfileContainer';
+//import { ProfileContainer } from './components/Profile/ProfileContainer';
 import { HeaderContainer } from './components/Header/HeaderContainer';
 import { LoginContainer } from './components/Login/Login';
 import { AppRootStateType, useAppDispatch } from './redux/redux-store';
@@ -15,6 +15,12 @@ import { setAuthDataTC } from './redux/auth-reducer';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/common/Loaders/Loader/Loader';
 import React from 'react';
+
+const ProfileContainer = React.lazy(() =>
+  import('./components/Profile/ProfileContainer').then(
+    ({ ProfileContainer }) => ({ default: ProfileContainer })
+  )
+);
 
 const DialogueContainer = React.lazy(() =>
   import('./components/Dialogues/DialoguesContainer').then(
@@ -57,7 +63,9 @@ const App: React.FC = () => {
         path="/profile/:userID?"
         render={() => (
           <div className="app_content_wrapper">
-            <ProfileContainer />
+            <React.Suspense fallback={<Loader />}>
+              <ProfileContainer />
+            </React.Suspense>
           </div>
         )}
       />
