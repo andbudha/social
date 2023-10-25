@@ -15,6 +15,7 @@ import { setAuthDataTC } from './redux/auth-reducer';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/common/Loaders/Loader/Loader';
 import React from 'react';
+import { withSuspense } from './hocs/withSuspense';
 
 const ProfileContainer = React.lazy(() =>
   import('./components/Profile/ProfileContainer').then(
@@ -33,6 +34,7 @@ const UsersContainer = React.lazy(() =>
     default: UsersContainer,
   }))
 );
+
 const App: React.FC = () => {
   const isInitialised = useSelector<AppRootStateType>(
     (state) => state.authorisation.isInitialised
@@ -40,6 +42,7 @@ const App: React.FC = () => {
   const isAuthorised = useSelector<AppRootStateType, boolean>(
     (state) => state.authorisation.isAuthorised
   );
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
