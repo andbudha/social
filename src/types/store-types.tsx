@@ -11,16 +11,16 @@ export type ProfileContactsType = {
 };
 
 export type ProfilePhotoType = {
-  small: string | undefined;
-  large: string | undefined;
+  small: string;
+  large: string;
 };
 export type UserProfileType = {
-  aboutMe: string;
-  contacts: ProfileContactsType;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  fullName: string;
-  userId: number;
+  aboutMe?: null;
+  contacts?: ProfileContactsType;
+  lookingForAJob?: boolean;
+  lookingForAJobDescription?: string;
+  fullName?: string;
+  userId?: number;
   photos: ProfilePhotoType;
 };
 
@@ -115,9 +115,9 @@ export type LoginErrorType = {
   login_error: string;
 };
 //UserFollowingType
-export type CommonUserProfileDataType = {};
-export type CommonUserProfileType = {
+//export type CommonUserProfileDataType = {};
+export type CommonUserProfileType<D = {}> = {
   resultCode: number;
   messages: string[];
-  data: CommonUserProfileDataType;
+  data: D;
 };

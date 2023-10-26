@@ -1,5 +1,9 @@
 import { profileAPI } from '../rest-api/profile_api';
-import { ProfilePageType, UserProfileType } from '../types/store-types';
+import {
+  ProfilePageType,
+  ProfilePhotoType,
+  UserProfileType,
+} from '../types/store-types';
 import { AppDispatchType } from './redux-store';
 
 const initialState: ProfilePageType = {
@@ -49,6 +53,15 @@ export const ProfileReducer = (
     case 'profile-reducer/SET-STATUS-UPDATE-LOADER': {
       return { ...state, isUpdatingStatus: action.payload.updating };
     }
+    case 'profile-reducer/UPLOAD-PROFILE-IMAGE': {
+      return {
+        ...state,
+        userProfile: {
+          ...state.userProfile,
+          photos: action.payload.profileImgs,
+        },
+      };
+    }
     default: {
       return state;
     }
@@ -96,10 +109,10 @@ export const isUpdatingStatusAC = (updating: boolean) => {
 };
 
 type uploadProfileImgACType = ReturnType<typeof uploadProfileImgAC>;
-export const uploadProfileImgAC = (profileImg: object) => {
+export const uploadProfileImgAC = (profileImgs: ProfilePhotoType) => {
   return {
     type: 'profile-reducer/UPLOAD-PROFILE-IMAGE',
-    payload: { profileImg },
+    payload: { profileImgs },
   } as const;
 };
 //thunks
@@ -128,6 +141,11 @@ export const setProfileStatusTC = (status: string) => {
   };
 };
 
-export const uploadProfileImgTC = (profileImg: object) => {
-  return async (dispatch: AppDispatchType) => {};
+export const uploadProfileImgTC = (profileImg: File) => {
+  return async (dispatch: AppDispatchType) => {
+    const response = await profileAPI.uloadProfileImg(profileImg);
+    if (response.data.resultCode === 0) {
+      dispatch(uploadProfileImgAC(response.data.data.photos));
+    }
+  };
 };
