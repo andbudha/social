@@ -2,6 +2,7 @@ import styles from './ProfileDetails.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import defaultProfile from '../../../images/avatars/ava7.png';
 import { ProfileStatus } from './ProfileStatus';
+import { FormEvent } from 'react';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -9,8 +10,14 @@ type ProfileDetailsPropsType = {
 };
 
 export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
-  console.log(props.isOwner);
-
+  const profileImgUploadHandler = (event: FormEvent<HTMLInputElement>) => {
+    const currentTarget = event.currentTarget as HTMLInputElement & {
+      files: FileList;
+    };
+    const profileImage = currentTarget.files[0];
+    console.log(profileImage);
+    props.profileContainerProps.uploadProfileImg(profileImage);
+  };
   return (
     <div>
       <div className={styles.profile_box}>
@@ -31,6 +38,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                 type={'file'}
                 className={styles.profile_img_input}
                 id={'profile-img-input'}
+                onChange={profileImgUploadHandler}
               />
             )}
           </div>

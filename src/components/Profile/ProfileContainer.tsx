@@ -7,6 +7,7 @@ import {
   getProfileStatusTC,
   setProfileStatusTC,
   setUserProfileTC,
+  uploadProfileImgTC,
 } from '../../redux/profile-reducer';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../hocs/withAuthRedirect';
@@ -70,6 +71,7 @@ type mapDispatchToPropsType = {
   setUserProfileThunk: (userProfileID: string) => void;
   getProfileStatusThunk: (userID: string) => void;
   setProfileStatusThunk: (status: string) => void;
+  uploadProfileImg: (profileImg: object) => void;
 };
 const mapDispatchToProps = (
   dispatch: AppDispatchType
@@ -83,6 +85,9 @@ const mapDispatchToProps = (
     },
     setProfileStatusThunk: (status: string) => {
       dispatch(setProfileStatusTC(status));
+    },
+    uploadProfileImg: (profileImg: object) => {
+      dispatch(uploadProfileImgTC(profileImg));
     },
   };
 };

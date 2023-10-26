@@ -17,7 +17,8 @@ export type ProfileReducerActionTypes =
   | setUserProfileACType
   | getProfileStatusACType
   | setProfileStatusACType
-  | isUpdatingStatusACType;
+  | isUpdatingStatusACType
+  | uploadProfileImgACType;
 
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
@@ -94,6 +95,13 @@ export const isUpdatingStatusAC = (updating: boolean) => {
   } as const;
 };
 
+type uploadProfileImgACType = ReturnType<typeof uploadProfileImgAC>;
+export const uploadProfileImgAC = (profileImg: object) => {
+  return {
+    type: 'profile-reducer/UPLOAD-PROFILE-IMAGE',
+    payload: { profileImg },
+  } as const;
+};
 //thunks
 export const setUserProfileTC = (userProfileID: string) => {
   return async (dispatch: AppDispatchType) => {
@@ -118,4 +126,8 @@ export const setProfileStatusTC = (status: string) => {
       dispatch(setProfileStatusAC(status));
     }
   };
+};
+
+export const uploadProfileImgTC = (profileImg: object) => {
+  return async (dispatch: AppDispatchType) => {};
 };
