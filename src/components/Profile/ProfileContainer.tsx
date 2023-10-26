@@ -13,7 +13,7 @@ import { withAuthRedirect } from '../../hocs/withAuthRedirect';
 import { compose } from 'redux';
 
 export class ProfileAPIContainer extends React.Component<ProfileContainerPropsType> {
-  componentDidMount() {
+  updateProfile() {
     let userProfileID = this.props.match.params.userID;
     if (!userProfileID) {
       userProfileID = this.props.loggedinUserID.toString();
@@ -24,10 +24,27 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
     this.props.setUserProfileThunk(userProfileID);
     this.props.getProfileStatusThunk(userProfileID);
   }
+
+  componentDidMount() {
+    this.updateProfile();
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<ProfileContainerPropsType>,
+    prevState: Readonly<{}>,
+    snapshot?: any
+  ): void {
+    if (this.props.match.params.userID !== prevProps.match.params.userID) {
+      this.updateProfile();
+    }
+  }
   render() {
     return (
       <div>
-        <Profile {...this.props} />
+        <Profile
+          profileContainerProps={this.props}
+          isOwner={!!this.props.match.params.userID}
+        />
       </div>
     );
   }

@@ -5,22 +5,37 @@ import { ProfileStatus } from './ProfileStatus';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
+  isOwner: boolean;
 };
 
 export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
+  console.log(props.isOwner);
+
   return (
     <div>
       <div className={styles.profile_box}>
         <div className={styles.profile_img_box}>
-          <img
-            className={styles.img}
-            src={
-              props.profileContainerProps.userProfile?.photos.small ||
-              defaultProfile
-            }
-            alt="avatar"
-          />
+          <div className={styles.profile_img}>
+            <img
+              className={styles.img}
+              src={
+                props.profileContainerProps.userProfile?.photos.small ||
+                defaultProfile
+              }
+              alt="avatar"
+            />
+          </div>
+          <div className={styles.upload_profile_img_box}>
+            {!props.isOwner && (
+              <input
+                type={'file'}
+                className={styles.profile_img_input}
+                id={'profile-img-input'}
+              />
+            )}
+          </div>
         </div>
+
         <div className={styles.profile_detail_box}>
           <div>
             <span className={styles.strong}>Name: </span>
