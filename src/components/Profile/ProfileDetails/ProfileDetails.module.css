@@ -8,12 +8,12 @@
   border-radius: 20px;
   border: 1px solid #2e4374;
   background-color: #7c81ad;
-  width: 350px;
+  width: 330px;
   height: 550px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 15px;
 }
@@ -72,9 +72,15 @@
 .details {
   color: #fff;
 }
+.edit_profile_btn_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .edit_profile_btn {
   height: 32px;
-  width: 150px;
+  width: 130px;
   margin: 5px auto;
   border-radius: 4px;
   padding: 4px;
