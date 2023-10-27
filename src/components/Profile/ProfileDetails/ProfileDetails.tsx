@@ -3,7 +3,7 @@ import { ProfileContainerPropsType } from '../ProfileContainer';
 import defaultProfile from '../../../images/avatars/ava7.png';
 import { ProfileStatus } from './ProfileStatus';
 import { FormEvent, useState } from 'react';
-import { ProfileForm } from '../ProfileForm/ProfileForm';
+import { ProfileForm, ProfileFormContainer } from '../ProfileForm/ProfileForm';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -11,10 +11,10 @@ type ProfileDetailsPropsType = {
 };
 
 export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
-  const [profileForm, setProfileForm] = useState(false);
+  const [profileFormStatus, setProfileFormStatus] = useState(false);
 
   const profileFormHandler = () => {
-    setProfileForm(!profileForm);
+    setProfileFormStatus(!profileFormStatus);
   };
   const profileImgUploadHandler = (event: FormEvent<HTMLInputElement>) => {
     const currentTarget = event.currentTarget as HTMLInputElement & {
@@ -50,11 +50,10 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           </div>
         </div>
         <div className={styles.profile_detail_box}>
-          {profileForm ? (
+          {profileFormStatus ? (
             <div>
-              <ProfileForm
-                profileContainerProps={props.profileContainerProps}
-                isOwner={props.isOwner}
+              <ProfileFormContainer
+              //setProfileFormStatus={setProfileFormStatus}
               />
             </div>
           ) : (
@@ -95,24 +94,23 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                 </div>
               </div>
               <div className={styles.descriptive_item}>
-                <span className={styles.strong}>Contacts: </span>
+                <span className={styles.strong}>Get in touch: </span>
                 <div className={styles.details}>
                   {props.profileContainerProps.userProfile?.contacts?.website
                     ? props.profileContainerProps.userProfile?.contacts?.website
                     : 'not available'}
                 </div>
               </div>
+              <div className={styles.edit_profile_btn_box}>
+                <button
+                  className={styles.edit_profile_btn}
+                  onClick={profileFormHandler}
+                >
+                  edit profile
+                </button>
+              </div>
             </div>
           )}
-
-          <div className={styles.edit_profile_btn_box}>
-            <button
-              className={styles.edit_profile_btn}
-              onClick={profileFormHandler}
-            >
-              edit profile
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -14,3 +14,30 @@
 .details {
   color: #fff;
 }
+.save_changes_btn_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.save_changes_btn {
+  height: 32px;
+  width: 130px;
+  margin: 5px auto;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: #4b527e;
+  color: #fff;
+  border: 1px solid #fff;
+  letter-spacing: 1px;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.save_changes_btn:hover {
+  background-color: #4b527e;
+}
+
+.save_changes_btn:active {
+  background-color: #7c81ad;
+}
