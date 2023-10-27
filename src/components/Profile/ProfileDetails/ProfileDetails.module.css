@@ -61,11 +61,14 @@
   color: #fff;
 }
 
+.descriptive_item {
+  margin-bottom: 10px;
+}
 .strong {
   font-weight: bold;
   display: inline;
   color: #2e4374;
 }
-.status {
-  display: inline;
+.details {
+  color: #fff;
 }

@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.descriptive_item {
+  margin-bottom: 10px;
+}
+.strong {
+  font-weight: bold;
+  display: inline;
+  color: #2e4374;
+}
+.details {
+  color: #fff;
+}

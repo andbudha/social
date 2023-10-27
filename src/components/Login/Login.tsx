@@ -1,11 +1,5 @@
 import styles from './Login.module.css';
-import {
-  Field,
-  FormAction,
-  InjectedFormProps,
-  reduxForm,
-  reset,
-} from 'redux-form';
+import { Field, InjectedFormProps, reduxForm, reset } from 'redux-form';
 import {
   isEmailValid,
   requiredFieldValue,
@@ -13,7 +7,7 @@ import {
 import { LoginPasswordFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginPasswordFormChecker';
 import { LoginEmailFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginEmailFormChecker';
 import { connect } from 'react-redux';
-import { loginTC, setAuthDataTC } from '../../redux/auth-reducer';
+import { loginTC } from '../../redux/auth-reducer';
 import { LoginDataType } from '../../types/store-types';
 import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';

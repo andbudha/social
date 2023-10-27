@@ -15,7 +15,6 @@ import { setAuthDataTC } from './redux/auth-reducer';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/common/Loaders/Loader/Loader';
 import React from 'react';
-import { withSuspense } from './hocs/withSuspense';
 
 const ProfileContainer = React.lazy(() =>
   import('./components/Profile/ProfileContainer').then(
