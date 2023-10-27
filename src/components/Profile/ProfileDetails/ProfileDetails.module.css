@@ -9,7 +9,7 @@
   border: 1px solid #2e4374;
   background-color: #7c81ad;
   width: 350px;
-  height: 500px;
+  height: 550px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -71,4 +71,25 @@
 }
 .details {
   color: #fff;
+}
+.edit_profile_btn {
+  height: 32px;
+  width: 150px;
+  margin: 5px auto;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: #4b527e;
+  color: #fff;
+  border: 1px solid #fff;
+  letter-spacing: 1px;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.edit_profile_btn:hover {
+  background-color: #4b527e;
+}
+
+.edit_profile_btn:active {
+  background-color: #7c81ad;
 }

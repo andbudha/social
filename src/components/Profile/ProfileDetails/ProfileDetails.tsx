@@ -2,7 +2,7 @@ import styles from './ProfileDetails.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import defaultProfile from '../../../images/avatars/ava7.png';
 import { ProfileStatus } from './ProfileStatus';
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { ProfileForm } from '../ProfileForm/ProfileForm';
 
 type ProfileDetailsPropsType = {
@@ -11,6 +11,11 @@ type ProfileDetailsPropsType = {
 };
 
 export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
+  const [profileForm, setProfileForm] = useState(false);
+
+  const profileFormHandler = () => {
+    setProfileForm(!profileForm);
+  };
   const profileImgUploadHandler = (event: FormEvent<HTMLInputElement>) => {
     const currentTarget = event.currentTarget as HTMLInputElement & {
       files: FileList;
@@ -44,29 +49,69 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
             )}
           </div>
         </div>
-
         <div className={styles.profile_detail_box}>
-          <div className={styles.descriptive_item}>
-            <span className={styles.strong}>Name: </span>
-            <div className={styles.details}>
-              {' '}
-              {props.profileContainerProps.userProfile?.fullName}
-            </div>
-          </div>
-          <div className={styles.descriptive_item}>
-            <span className={styles.strong}>Status: </span>
-            <div className={styles.details}>
-              <ProfileStatus
+          {profileForm ? (
+            <div>
+              <ProfileForm
                 profileContainerProps={props.profileContainerProps}
+                isOwner={props.isOwner}
               />
             </div>
-            {/* {props.profileContainerProps.userProfile?.aboutMe} */}
-          </div>
-          <div>
-            <ProfileForm
-              profileContainerProps={props.profileContainerProps}
-              isOwner={props.isOwner}
-            />
+          ) : (
+            <div>
+              <div className={styles.descriptive_item}>
+                <span className={styles.strong}>Name: </span>
+                <div className={styles.details}>
+                  {' '}
+                  {props.profileContainerProps.userProfile?.fullName}
+                </div>
+              </div>
+              <div className={styles.descriptive_item}>
+                <span className={styles.strong}>Status: </span>
+                <div className={styles.details}>
+                  <ProfileStatus
+                    profileContainerProps={props.profileContainerProps}
+                  />
+                </div>
+              </div>
+              <div className={styles.descriptive_item}>
+                <span className={styles.strong}>Open for job-offers: </span>
+                <div className={styles.details}>
+                  {props.profileContainerProps.userProfile?.lookingForAJob
+                    ? 'Yes'
+                    : 'No'}
+                </div>
+              </div>
+
+              <div className={styles.descriptive_item}>
+                <span className={styles.strong}>Position: </span>
+                <div className={styles.details}>
+                  {' '}
+                  {props.profileContainerProps.userProfile
+                    ?.lookingForAJobDescription
+                    ? props.profileContainerProps.userProfile
+                        .lookingForAJobDescription
+                    : 'not available'}
+                </div>
+              </div>
+              <div className={styles.descriptive_item}>
+                <span className={styles.strong}>Contacts: </span>
+                <div className={styles.details}>
+                  {props.profileContainerProps.userProfile?.contacts?.website
+                    ? props.profileContainerProps.userProfile?.contacts?.website
+                    : 'not available'}
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className={styles.edit_profile_btn_box}>
+            <button
+              className={styles.edit_profile_btn}
+              onClick={profileFormHandler}
+            >
+              edit profile
+            </button>
           </div>
         </div>
       </div>
