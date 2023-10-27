@@ -51,7 +51,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           </div>
           <div>
             <span className={styles.strong}>Status: </span>
-            <div>
+            <div className={styles.status}>
               <ProfileStatus
                 profileContainerProps={props.profileContainerProps}
               />
@@ -64,6 +64,26 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
               {props.profileContainerProps.userProfile?.lookingForAJob
                 ? 'Yes'
                 : 'No'}
+            </div>
+          </div>
+
+          <div>
+            <span className={styles.strong}>Position: </span>
+            <div>
+              {' '}
+              {props.profileContainerProps.userProfile
+                ?.lookingForAJobDescription
+                ? props.profileContainerProps.userProfile
+                    .lookingForAJobDescription
+                : 'not available'}
+            </div>
+          </div>
+          <div>
+            <span className={styles.strong}>Contacts: </span>
+            <div>
+              {props.profileContainerProps.userProfile?.contacts?.website
+                ? props.profileContainerProps.userProfile?.contacts?.website
+                : 'not available'}
             </div>
           </div>
         </div>

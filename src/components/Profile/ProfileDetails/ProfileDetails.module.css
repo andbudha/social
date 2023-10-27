@@ -8,8 +8,8 @@
   border-radius: 20px;
   border: 1px solid #2e4374;
   background-color: #7c81ad;
-  width: 330px;
-  height: 370px;
+  width: 350px;
+  height: 500px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -63,4 +63,9 @@
 
 .strong {
   font-weight: bold;
+  display: inline;
+  color: #2e4374;
+}
+.status {
+  display: inline;
 }
