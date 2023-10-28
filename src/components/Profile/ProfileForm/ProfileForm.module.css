@@ -3,6 +3,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.strong {
+  font-weight: bold;
+  color: #2e4374;
+}
 .job_checkbox_box {
   width: 100%;
   height: 20px;
@@ -14,7 +19,7 @@
 }
 .job_checkbox_answer {
   margin-left: 10px;
-  color: #4b527e;
+  color: #fff;
 }
 
 .job_checkbox {

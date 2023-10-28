@@ -3,6 +3,8 @@ import styles from './ProfileForm.module.css';
 
 import { connect } from 'react-redux';
 import { AppDispatchType, AppRootStateType } from '../../../redux/redux-store';
+import { ProfilePositionChecker } from '../../common/FormCheckers/ProfilePositionChecker/ProfilePositionChecker';
+import { positionLength25 } from '../../../utils/form_validators/profile_position_validator';
 
 type newProfileDataType = {
   lookingForAJob: boolean;
@@ -29,7 +31,7 @@ const Form: React.FC<InjectedFormProps<newProfileDataType>> = (props) => {
     <div>
       <form onSubmit={props.handleSubmit}>
         <div>
-          <h4>Open for a job:</h4>
+          <h4 className={styles.strong}>Open for a job:</h4>
           <div className={styles.job_checkbox_box}>
             <Field
               className={styles.job_checkbox}
@@ -41,16 +43,17 @@ const Form: React.FC<InjectedFormProps<newProfileDataType>> = (props) => {
           </div>
         </div>
         <div>
-          <h4>Position:</h4>
+          <h4 className={styles.strong}>Position:</h4>
           <Field
             name={'position'}
             placeholder={'Enter position'}
             type={'text'}
-            component={'input'}
+            component={ProfilePositionChecker}
+            validate={[positionLength25]}
           />
         </div>
         <div>
-          <h4>Get in touch:</h4>
+          <h4 className={styles.strong}>Get in touch:</h4>
           <Field
             name={'contact-source'}
             placeholder={'Enter contact source'}
