@@ -164,3 +164,12 @@ export const uploadProfileImgTC = (profileImg: File) => {
     }
   };
 };
+
+export const updateProfileTC = (newProfileData: UserProfileType) => {
+  return async (dispatch: AppDispatchType) => {
+    const response = await profileAPI.updateProfile(newProfileData);
+    if (response.data.resultCode === 0) {
+      dispatch(updateProfileAC(response.data.data));
+    }
+  };
+};
