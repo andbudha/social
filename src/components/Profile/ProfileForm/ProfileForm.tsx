@@ -29,11 +29,19 @@ const Form: React.FC<InjectedFormProps<newProfileDataType>> = (props) => {
     <div>
       <form onSubmit={props.handleSubmit}>
         <div>
-          <p>Open for a job:</p>
-          <Field name={'open-for-job'} type={'checkbox'} component={'input'} />
+          <h4>Open for a job:</h4>
+          <div className={styles.job_checkbox_box}>
+            <Field
+              className={styles.job_checkbox}
+              name={'open-for-job'}
+              type={'checkbox'}
+              component={'input'}
+            />
+            <h4 className={styles.job_checkbox_answer}>Yes</h4>
+          </div>
         </div>
         <div>
-          <p>Position:</p>
+          <h4>Position:</h4>
           <Field
             name={'position'}
             placeholder={'Enter position'}
@@ -42,10 +50,10 @@ const Form: React.FC<InjectedFormProps<newProfileDataType>> = (props) => {
           />
         </div>
         <div>
-          <p>Get in touch:</p>
+          <h4>Get in touch:</h4>
           <Field
             name={'contact-source'}
-            placeholder={'enter contact source'}
+            placeholder={'Enter contact source'}
             type={'text'}
             component={'input'}
           />
