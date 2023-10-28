@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { AppDispatchType, AppRootStateType } from '../../../redux/redux-store';
 import { ProfilePositionChecker } from '../../common/FormCheckers/ProfilePositionChecker/ProfilePositionChecker';
 import { positionLength25 } from '../../../utils/form_validators/profile_position_validator';
+import { contactLength25 } from '../../../utils/form_validators/profile_contact_validator';
+import { ProfileContactChecker } from '../../common/FormCheckers/ProfileContactChecker/ProfileContactChecker';
 
 type newProfileDataType = {
   lookingForAJob: boolean;
@@ -58,7 +60,8 @@ const Form: React.FC<InjectedFormProps<newProfileDataType>> = (props) => {
             name={'contact-source'}
             placeholder={'Enter contact source'}
             type={'text'}
-            component={'input'}
+            component={ProfileContactChecker}
+            validate={[contactLength25]}
           />
         </div>
         <div className={styles.save_changes_btn_box}>
