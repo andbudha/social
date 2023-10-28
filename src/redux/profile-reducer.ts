@@ -22,7 +22,8 @@ export type ProfileReducerActionTypes =
   | getProfileStatusACType
   | setProfileStatusACType
   | isUpdatingStatusACType
-  | uploadProfileImgACType;
+  | uploadProfileImgACType
+  | updateProfileACType;
 
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
@@ -60,6 +61,12 @@ export const ProfileReducer = (
           ...state.userProfile,
           photos: action.payload.profileImgs,
         },
+      };
+    }
+    case 'profile-reducer/UPDATE-PROFILE': {
+      return {
+        ...state,
+        userProfile: { ...state.userProfile, ...action.payload.newProfileData },
       };
     }
     default: {
@@ -113,6 +120,14 @@ export const uploadProfileImgAC = (profileImgs: ProfilePhotoType) => {
   return {
     type: 'profile-reducer/UPLOAD-PROFILE-IMAGE',
     payload: { profileImgs },
+  } as const;
+};
+
+type updateProfileACType = ReturnType<typeof updateProfileAC>;
+export const updateProfileAC = (newProfileData: UserProfileType) => {
+  return {
+    type: 'profile-reducer/UPDATE-PROFILE',
+    payload: { newProfileData },
   } as const;
 };
 //thunks

@@ -3,7 +3,7 @@ import { ProfileContainerPropsType } from '../ProfileContainer';
 import defaultProfile from '../../../images/avatars/ava7.png';
 import { ProfileStatus } from './ProfileStatus';
 import { FormEvent, useState } from 'react';
-import { ProfileForm, ProfileFormContainer } from '../ProfileForm/ProfileForm';
+import { ProfileForm } from '../ProfileForm/ProfileForm';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -14,7 +14,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
   const [profileFormStatus, setProfileFormStatus] = useState(false);
 
   const profileFormHandler = () => {
-    setProfileFormStatus(!profileFormStatus);
+    setProfileFormStatus(true);
   };
   const profileImgUploadHandler = (event: FormEvent<HTMLInputElement>) => {
     const currentTarget = event.currentTarget as HTMLInputElement & {
@@ -52,8 +52,9 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
         <div className={styles.profile_detail_box}>
           {profileFormStatus ? (
             <div>
-              <ProfileFormContainer
-              //setProfileFormStatus={setProfileFormStatus}
+              <ProfileForm
+                setProfileFormStatus={setProfileFormStatus}
+                profileContainerProps={props.profileContainerProps}
               />
             </div>
           ) : (

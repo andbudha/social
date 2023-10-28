@@ -1,25 +1,28 @@
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import styles from './ProfileForm.module.css';
 
-import { connect } from 'react-redux';
-import { AppDispatchType, AppRootStateType } from '../../../redux/redux-store';
 import { ProfilePositionChecker } from '../../common/FormCheckers/ProfilePositionChecker/ProfilePositionChecker';
 import { positionLength25 } from '../../../utils/form_validators/profile_position_validator';
 import { contactLength25 } from '../../../utils/form_validators/profile_contact_validator';
 import { ProfileContactChecker } from '../../common/FormCheckers/ProfileContactChecker/ProfileContactChecker';
+import { ProfileContainerPropsType } from '../ProfileContainer';
+import { UserProfileType } from '../../../types/store-types';
 
-type newProfileDataType = {
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  contactSource: string;
-};
+// export type newProfileDataType = {
+//   lookingForAJob: boolean;
+//   lookingForAJobDescription: string;
+//   contactSource: string;
+//   photos: ProfilePhotoType;
+// };
 
 type ProfileFormPropsType = {
-  setProfileFormStatus: () => void;
+  setProfileFormStatus: (profileFormStatus: boolean) => void;
+  profileContainerProps: ProfileContainerPropsType;
 };
-export const ProfileForm: React.FC<ProfileFormContainerPropsType> = () => {
-  const onSubmit = (newProfileData: newProfileDataType) => {
+export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
+  const onSubmit = (newProfileData: UserProfileType) => {
     console.log(newProfileData);
+    props.setProfileFormStatus(false);
   };
   return (
     <div>
@@ -28,7 +31,7 @@ export const ProfileForm: React.FC<ProfileFormContainerPropsType> = () => {
   );
 };
 
-const Form: React.FC<InjectedFormProps<newProfileDataType>> = (props) => {
+const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
   return (
     <div>
       <form onSubmit={props.handleSubmit}>
@@ -72,26 +75,26 @@ const Form: React.FC<InjectedFormProps<newProfileDataType>> = (props) => {
   );
 };
 
-const ProfileReduxForm = reduxForm<newProfileDataType>({
+const ProfileReduxForm = reduxForm<UserProfileType>({
   form: 'profile-form',
 })(Form);
 
-type ProfileFormContainerPropsType = mapStateToPropsType &
-  mapDispatchToPropsType;
+// type ProfileFormContainerPropsType = mapStateToPropsType &
+//   mapDispatchToPropsType;
 
-type mapStateToPropsType = {};
-const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
-  return {};
-};
+// type mapStateToPropsType = {};
+// const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
+//   return {};
+// };
 
-type mapDispatchToPropsType = {};
-const mapDispatchToProps = (
-  dispatch: AppDispatchType
-): mapDispatchToPropsType => {
-  return {};
-};
+// type mapDispatchToPropsType = {};
+// const mapDispatchToProps = (
+//   dispatch: AppDispatchType
+// ): mapDispatchToPropsType => {
+//   return {};
+// };
 
-export const ProfileFormContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileForm);
+// export const ProfileFormContainer = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(ProfileForm);

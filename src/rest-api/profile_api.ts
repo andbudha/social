@@ -37,4 +37,10 @@ export const profileAPI = {
       }
     );
   },
+  updateProfile(newProfileData: UserProfileType) {
+    return instance.put<CommonUserProfileType<UserProfileType>>(
+      'profile',
+      newProfileData
+    );
+  },
 };
