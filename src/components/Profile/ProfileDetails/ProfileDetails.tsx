@@ -60,13 +60,6 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           ) : (
             <div>
               <div className={styles.descriptive_item}>
-                <span className={styles.strong}>Name: </span>
-                <div className={styles.details}>
-                  {' '}
-                  {props.profileContainerProps.userProfile?.fullName}
-                </div>
-              </div>
-              <div className={styles.descriptive_item}>
                 <span className={styles.strong}>Status: </span>
                 <div className={styles.details}>
                   <ProfileStatus
@@ -74,6 +67,14 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                   />
                 </div>
               </div>
+              <div className={styles.descriptive_item}>
+                <span className={styles.strong}>Name: </span>
+                <div className={styles.details}>
+                  {' '}
+                  {props.profileContainerProps.userProfile?.fullName}
+                </div>
+              </div>
+
               <div className={styles.descriptive_item}>
                 <span className={styles.strong}>Open for job-offers: </span>
                 <div className={styles.details}>

@@ -14,6 +14,7 @@ const initialState: ProfilePageType = {
   userProfile: undefined,
   profileStatus: '',
   isUpdatingStatus: false,
+  profileFormEditStatus: false,
 };
 
 export type ProfileReducerActionTypes =
