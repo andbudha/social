@@ -9,12 +9,15 @@ import { ProfileContainerPropsType } from '../ProfileContainer';
 import { UserProfileType } from '../../../types/store-types';
 import { aboutMeLength120 } from '../../../utils/form_validators/profile_aboutme_validator';
 import { ProfileAboutMeChecker } from '../../common/FormCheckers/ProfileAboutMeChecker/ProfileAboutMeChecker';
+import { ProfileWebsiteChecker } from '../../common/FormCheckers/ProfileWebsiteChecker/ProfileWebsiteChecker';
 
 type ProfileFormPropsType = {
   profileContainerProps: ProfileContainerPropsType;
 };
 export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
   const onSubmit = (newProfileData: UserProfileType) => {
+    console.log(newProfileData);
+
     props.profileContainerProps.updateProfile(newProfileData);
   };
   return (
@@ -71,6 +74,15 @@ const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
             type={'text'}
             component={ProfileAboutMeChecker}
             validate={[aboutMeLength120]}
+          />
+        </div>
+        <div>
+          <h4 className={styles.strong}>Get in touch:</h4>
+          <Field
+            name={'contacts.website'}
+            placeholder={'Enter your website'}
+            type={'text'}
+            component={ProfileWebsiteChecker}
           />
         </div>
         <div className={styles.save_changes_btn_box}>

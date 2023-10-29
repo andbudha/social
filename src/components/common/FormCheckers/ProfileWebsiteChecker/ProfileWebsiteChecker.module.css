@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.profile_website_input {
+  outline: none;
+  margin: 5px 0px;
+  border-radius: 4px;
+  padding: 4px;
+  height: 32px;
+  width: 250px;
+  color: #4b527e;
+  font-size: medium;
+  letter-spacing: 1px;
+}
+.profile_website_input_error {
+  color: rose;
+  font-size: small;
+  text-shadow: red 1px 0 5px;
+}
+
+.input_background_color_error {
+  color: red;
+}

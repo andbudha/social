@@ -118,6 +118,17 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                     : 'not available'}
                 </div>
               </div>
+              <div className={styles.descriptive_item}>
+                <span className={styles.strong}>Get in touch: </span>
+                <div className={styles.details}>
+                  {props.profileContainerProps.userProfile?.contacts
+                    ?.website ? (
+                    <div>click for more</div>
+                  ) : (
+                    'not available'
+                  )}
+                </div>
+              </div>
               <div className={styles.edit_profile_btn_box}>
                 <button
                   className={styles.edit_profile_btn}
