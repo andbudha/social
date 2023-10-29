@@ -1,6 +1,6 @@
-import styles from './ProfileNameChecker.module.css';
+import styles from './ProfileAboutMeChecker.module.css';
 
-export const ProfileNameChecker = ({
+export const ProfileAboutMeChecker = ({
   input,
   placeholder,
   meta,
@@ -10,16 +10,18 @@ export const ProfileNameChecker = ({
     <div>
       <div
         className={`
-      ${meta.error && styles.profile_contact_input_error} `}
+      ${meta.error && styles.profile_aboutme_input_error} `}
       >
-        {input.value.length > 25 && meta.error}
+        {input.value.length > 120 && meta.error}
       </div>
       <div>
-        <input
+        <textarea
           {...input}
+          cols={46}
+          rows={4}
           placeholder={placeholder}
-          className={`${styles.profile_contact_input} ${
-            meta.error && styles.input_background_color_errot
+          className={`${styles.profile_aboutme_input} ${
+            meta.error && styles.input_background_color_error
           }`}
         />
       </div>

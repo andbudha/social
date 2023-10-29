@@ -8,6 +8,7 @@ import { ProfileNameChecker } from '../../common/FormCheckers/ProfileNameChecker
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import { UserProfileType } from '../../../types/store-types';
 import { aboutMeLength120 } from '../../../utils/form_validators/profile_aboutme_validator';
+import { ProfileAboutMeChecker } from '../../common/FormCheckers/ProfileAboutMeChecker/ProfileAboutMeChecker';
 
 // export type newProfileDataType = {
 //   lookingForAJob: boolean;
@@ -75,7 +76,7 @@ const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
             name={'aboutMe'}
             placeholder={'Tell about yourself...'}
             type={'text'}
-            component={'component'}
+            component={ProfileAboutMeChecker}
             validate={[aboutMeLength120]}
           />
         </div>

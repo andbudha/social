@@ -4,23 +4,23 @@
   box-sizing: border-box;
 }
 
-.profile_contact_input {
+.profile_aboutme_input {
   outline: none;
-  margin: 5px 0 10px;
+  margin: 5px 0;
   border-radius: 4px;
   padding: 4px;
-  height: 32px;
+  height: 60px;
   width: 240px;
   color: #4b527e;
   font-size: medium;
   letter-spacing: 0.5px;
 }
-.profile_contact_input_error {
+.profile_aboutme_input_error {
   color: rose;
   font-size: small;
   text-shadow: red 1px 0 5px;
 }
 
-.input_background_color_errot {
+.input_background_color_error {
   color: red;
 }

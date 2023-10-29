@@ -24,6 +24,9 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
     console.log(profileImage);
     props.profileContainerProps.uploadProfileImg(profileImage);
   };
+
+  console.log(props.profileContainerProps.userProfile?.aboutMe);
+
   return (
     <div>
       <div className={styles.profile_box}>
@@ -95,10 +98,10 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                 </div>
               </div>
               <div className={styles.descriptive_item}>
-                <span className={styles.strong}>Get in touch: </span>
+                <span className={styles.strong}>About me: </span>
                 <div className={styles.details}>
-                  {props.profileContainerProps.userProfile?.contacts?.website
-                    ? props.profileContainerProps.userProfile?.contacts?.website
+                  {props.profileContainerProps.userProfile?.aboutMe
+                    ? props.profileContainerProps.userProfile?.aboutMe
                     : 'not available'}
                 </div>
               </div>
