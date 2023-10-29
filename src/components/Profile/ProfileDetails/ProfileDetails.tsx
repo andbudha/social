@@ -2,7 +2,7 @@ import styles from './ProfileDetails.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import defaultProfile from '../../../images/avatars/ava7.png';
 import { ProfileStatus } from './ProfileStatus';
-import { FormEvent, useState } from 'react';
+import { FormEvent, MouseEventHandler, useRef } from 'react';
 import { ProfileForm } from '../ProfileForm/ProfileForm';
 
 type ProfileDetailsPropsType = {
@@ -14,6 +14,13 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
   const profileFormHandler = () => {
     props.profileContainerProps.setProfileEditStatus(true);
   };
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
+
+  const uploadImageHandler: MouseEventHandler<HTMLDivElement> = () => {
+    const inputFile = hiddenFileInput.current;
+    if (!inputFile) return;
+    inputFile.click();
+  };
   const profileImgUploadHandler = (event: FormEvent<HTMLInputElement>) => {
     const currentTarget = event.currentTarget as HTMLInputElement & {
       files: FileList;
@@ -22,6 +29,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
     console.log(profileImage);
     props.profileContainerProps.uploadProfileImg(profileImage);
   };
+
   return (
     <div>
       <div className={styles.profile_box}>
@@ -38,12 +46,16 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           </div>
           <div className={styles.upload_profile_img_box}>
             {!props.isOwner && (
-              <input
-                type={'file'}
-                className={styles.profile_img_input}
-                id={'profile-img-input'}
-                onChange={profileImgUploadHandler}
-              />
+              <div>
+                <div onClick={uploadImageHandler}>upload img</div>
+                <input
+                  ref={hiddenFileInput}
+                  type={'file'}
+                  className={styles.profile_img_input}
+                  id={'profile-img-input'}
+                  onChange={profileImgUploadHandler}
+                />
+              </div>
             )}
           </div>
         </div>

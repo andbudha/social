@@ -53,6 +53,7 @@
 }
 .profile_img_input {
   width: 88px;
+  display: none;
 }
 .profile_detail_box {
   padding: 10px;
