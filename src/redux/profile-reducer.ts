@@ -14,7 +14,7 @@ const initialState: ProfilePageType = {
   userProfile: undefined,
   profileStatus: '',
   isUpdatingStatus: false,
-  profileFormEditStatus: false,
+  profileEditStatus: false,
 };
 
 export type ProfileReducerActionTypes =
@@ -24,7 +24,8 @@ export type ProfileReducerActionTypes =
   | setProfileStatusACType
   | isUpdatingStatusACType
   | uploadProfileImgACType
-  | updateProfileACType;
+  | updateProfileACType
+  | setProfileEditStatusACType;
 
 export const ProfileReducer = (
   state: ProfilePageType = initialState,
@@ -54,6 +55,9 @@ export const ProfileReducer = (
     }
     case 'profile-reducer/SET-STATUS-UPDATE-LOADER': {
       return { ...state, isUpdatingStatus: action.payload.updating };
+    }
+    case 'profile-reducer/SET-PROFILE-EDIT-STATUS': {
+      return { ...state, profileEditStatus: action.payload.profileEditStatus };
     }
     case 'profile-reducer/UPLOAD-PROFILE-IMAGE': {
       return {
@@ -132,6 +136,14 @@ export const updateProfileAC = (newProfileData: UserProfileType) => {
   return {
     type: 'profile-reducer/UPDATE-PROFILE',
     payload: { newProfileData },
+  } as const;
+};
+
+type setProfileEditStatusACType = ReturnType<typeof setProfileEditStatusAC>;
+export const setProfileEditStatusAC = (profileEditStatus: boolean) => {
+  return {
+    type: 'profile-reducer/SET-PROFILE-EDIT-STATUS',
+    payload: { profileEditStatus },
   } as const;
 };
 //thunks

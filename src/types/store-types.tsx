@@ -35,7 +35,7 @@ export type ProfilePageType = {
   userProfile: UserProfileType | undefined;
   profileStatus: string;
   isUpdatingStatus: boolean;
-  profileFormEditStatus: boolean;
+  profileEditStatus: boolean;
 };
 
 //dialogue reducer types

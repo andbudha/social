@@ -16,7 +16,7 @@ beforeEach(() => {
     userProfile: undefined,
     profileStatus: '',
     isUpdatingStatus: false,
-    profileFormEditStatus: false,
+    profileEditStatus: false,
   };
 });
 
