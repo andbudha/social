@@ -73,7 +73,7 @@ type mapDispatchToPropsType = {
   getProfileStatusThunk: (userID: string) => void;
   setProfileStatusThunk: (status: string) => void;
   uploadProfileImg: (profileImg: File) => void;
-  updateProfile: (newProfileData: UserProfileType) => void;
+  updateProfile: (newProfileData: UserProfileType, userID: string) => void;
 };
 const mapDispatchToProps = (
   dispatch: AppDispatchType
@@ -91,8 +91,8 @@ const mapDispatchToProps = (
     uploadProfileImg: (profileImg: File) => {
       dispatch(uploadProfileImgTC(profileImg));
     },
-    updateProfile: (newProfileData: UserProfileType) => {
-      dispatch(updateProfileTC(newProfileData));
+    updateProfile: (newProfileData: UserProfileType, userID: string) => {
+      dispatch(updateProfileTC(newProfileData, userID));
     },
   };
 };

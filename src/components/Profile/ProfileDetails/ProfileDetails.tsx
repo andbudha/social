@@ -24,9 +24,6 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
     console.log(profileImage);
     props.profileContainerProps.uploadProfileImg(profileImage);
   };
-
-  console.log(props.profileContainerProps.userProfile?.aboutMe);
-
   return (
     <div>
       <div className={styles.profile_box}>

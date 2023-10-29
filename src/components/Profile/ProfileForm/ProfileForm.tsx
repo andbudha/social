@@ -10,21 +10,14 @@ import { UserProfileType } from '../../../types/store-types';
 import { aboutMeLength120 } from '../../../utils/form_validators/profile_aboutme_validator';
 import { ProfileAboutMeChecker } from '../../common/FormCheckers/ProfileAboutMeChecker/ProfileAboutMeChecker';
 
-// export type newProfileDataType = {
-//   lookingForAJob: boolean;
-//   lookingForAJobDescription: string;
-//   contactSource: string;
-//   photos: ProfilePhotoType;
-// };
-
 type ProfileFormPropsType = {
   setProfileFormStatus: (profileFormStatus: boolean) => void;
   profileContainerProps: ProfileContainerPropsType;
 };
 export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
   const onSubmit = (newProfileData: UserProfileType) => {
-    console.log(newProfileData);
-    props.profileContainerProps.updateProfile(newProfileData);
+    const userID = props.profileContainerProps.loggedinUserID.toString();
+    props.profileContainerProps.updateProfile(newProfileData, userID);
     props.setProfileFormStatus(false);
   };
   return (
@@ -91,23 +84,3 @@ const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
 const ProfileReduxForm = reduxForm<UserProfileType>({
   form: 'profile-form',
 })(Form);
-
-// type ProfileFormContainerPropsType = mapStateToPropsType &
-//   mapDispatchToPropsType;
-
-// type mapStateToPropsType = {};
-// const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
-//   return {};
-// };
-
-// type mapDispatchToPropsType = {};
-// const mapDispatchToProps = (
-//   dispatch: AppDispatchType
-// ): mapDispatchToPropsType => {
-//   return {};
-// };
-
-// export const ProfileFormContainer = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(ProfileForm);

@@ -18,8 +18,8 @@
   margin: 15px;
 }
 .profile_img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   margin: 0 10px;
   border-radius: 50%;
   background-color: #fff;
@@ -31,7 +31,7 @@
   align-items: center;
 }
 .img {
-  width: 150px;
+  width: 120px;
   border-radius: 50%;
 }
 .upload_profile_img_box {
