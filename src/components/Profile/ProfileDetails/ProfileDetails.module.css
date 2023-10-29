@@ -54,15 +54,28 @@
 .profile_img_input {
   display: none;
 }
-
-.upload_icon {
-  height: 34px;
-  width: 34px;
-  padding: 4px;
-  border: 3px solid;
-  border-radius: 50%;
-  color: #2e4374;
+.upload_profile_img_btn {
+  height: 26px;
+  width: 96px;
+  margin: 5px auto;
+  border-radius: 4px;
+  background-color: #4b527e;
+  color: #fff;
+  border: 1px solid #fff;
+  letter-spacing: 1px;
+  font-size: small;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload_profile_img_btn:hover {
+  background-color: #4b527e;
+}
+
+.upload_profile_img_btn:active {
+  background-color: #7c81ad;
 }
 .profile_detail_box {
   padding: 10px;

@@ -48,8 +48,11 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           <div className={styles.upload_profile_img_box}>
             {!props.isOwner && (
               <div>
-                <div onClick={uploadImageHandler}>
-                  <FaArrowUpFromBracket className={styles.upload_icon} />
+                <div
+                  onClick={uploadImageHandler}
+                  className={styles.upload_profile_img_btn}
+                >
+                  <p>change img</p>
                 </div>
                 <input
                   ref={hiddenFileInput}
