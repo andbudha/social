@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.profile_position_input {
+.profile_name_input {
   outline: none;
   margin: 5px 0 10px;
   border-radius: 4px;
@@ -15,7 +15,7 @@
   font-size: medium;
   letter-spacing: 0.5px;
 }
-.profile_position_input_error {
+.profile_name_input_error {
   color: rose;
   font-size: small;
   text-shadow: red 1px 0 5px;

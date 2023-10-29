@@ -3,10 +3,11 @@ import styles from './ProfileForm.module.css';
 
 import { ProfilePositionChecker } from '../../common/FormCheckers/ProfilePositionChecker/ProfilePositionChecker';
 import { positionLength25 } from '../../../utils/form_validators/profile_position_validator';
-import { contactLength25 } from '../../../utils/form_validators/profile_contact_validator';
-import { ProfileContactChecker } from '../../common/FormCheckers/ProfileContactChecker/ProfileContactChecker';
+import { nameLength25 } from '../../../utils/form_validators/profile_name_validator';
+import { ProfileNameChecker } from '../../common/FormCheckers/ProfileNameChecker/ProfileNameChecker';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import { UserProfileType } from '../../../types/store-types';
+import { aboutMeLength120 } from '../../../utils/form_validators/profile_aboutme_validator';
 
 // export type newProfileDataType = {
 //   lookingForAJob: boolean;
@@ -22,6 +23,7 @@ type ProfileFormPropsType = {
 export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
   const onSubmit = (newProfileData: UserProfileType) => {
     console.log(newProfileData);
+    props.profileContainerProps.updateProfile(newProfileData);
     props.setProfileFormStatus(false);
   };
   return (
@@ -36,11 +38,21 @@ const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
     <div>
       <form onSubmit={props.handleSubmit}>
         <div>
+          <h4 className={styles.strong}>Name:</h4>
+          <Field
+            name={'fullName'}
+            placeholder={'Enter your name'}
+            type={'text'}
+            component={ProfileNameChecker}
+            validate={[nameLength25]}
+          />
+        </div>
+        <div>
           <h4 className={styles.strong}>Open for a job:</h4>
           <div className={styles.job_checkbox_box}>
             <Field
               className={styles.job_checkbox}
-              name={'open-for-job'}
+              name={'lookingForAJob'}
               type={'checkbox'}
               component={'input'}
             />
@@ -50,7 +62,7 @@ const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
         <div>
           <h4 className={styles.strong}>Position:</h4>
           <Field
-            name={'position'}
+            name={'lookingForAJobDescription'}
             placeholder={'Enter position'}
             type={'text'}
             component={ProfilePositionChecker}
@@ -58,13 +70,13 @@ const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
           />
         </div>
         <div>
-          <h4 className={styles.strong}>Get in touch:</h4>
+          <h4 className={styles.strong}>About me:</h4>
           <Field
-            name={'contact-source'}
-            placeholder={'Enter contact source'}
+            name={'aboutMe'}
+            placeholder={'Tell about yourself...'}
             type={'text'}
-            component={ProfileContactChecker}
-            validate={[contactLength25]}
+            component={'component'}
+            validate={[aboutMeLength120]}
           />
         </div>
         <div className={styles.save_changes_btn_box}>

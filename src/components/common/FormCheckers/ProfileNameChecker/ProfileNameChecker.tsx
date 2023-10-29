@@ -1,6 +1,6 @@
-import styles from './ProfileContactChecker.module.css';
+import styles from './ProfileNameChecker.module.css';
 
-export const ProfileContactChecker = ({
+export const ProfileNameChecker = ({
   input,
   placeholder,
   meta,
@@ -10,7 +10,7 @@ export const ProfileContactChecker = ({
     <div>
       <div
         className={`
-      ${meta.error && styles.profile_contact_input_error} `}
+      ${meta.error && styles.profile_name_input_error} `}
       >
         {input.value.length > 25 && meta.error}
       </div>
@@ -18,8 +18,8 @@ export const ProfileContactChecker = ({
         <input
           {...input}
           placeholder={placeholder}
-          className={`${styles.profile_contact_input} ${
-            meta.error && styles.input_background_color_errot
+          className={`${styles.profile_name_input} ${
+            meta.error && styles.input_background_color_error
           }`}
         />
       </div>

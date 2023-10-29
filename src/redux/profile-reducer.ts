@@ -66,7 +66,10 @@ export const ProfileReducer = (
     case 'profile-reducer/UPDATE-PROFILE': {
       return {
         ...state,
-        userProfile: { ...state.userProfile, ...action.payload.newProfileData },
+        userProfile: {
+          ...state.userProfile,
+          ...action.payload.newProfileData,
+        },
       };
     }
     default: {
