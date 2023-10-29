@@ -4,7 +4,7 @@ import {
   ProfilePhotoType,
   UserProfileType,
 } from '../types/store-types';
-import { AppDispatchType } from './redux-store';
+import { AppDispatchType, AppRootStateType } from './redux-store';
 
 const initialState: ProfilePageType = {
   posts: [
@@ -168,11 +168,12 @@ export const uploadProfileImgTC = (profileImg: File) => {
   };
 };
 
-export const updateProfileTC = (
-  newProfileData: UserProfileType,
-  userID: string
-) => {
-  return async (dispatch: AppDispatchType) => {
+export const updateProfileTC = (newProfileData: UserProfileType) => {
+  return async (
+    dispatch: AppDispatchType,
+    getState: () => AppRootStateType
+  ) => {
+    const userID: string = getState().authorisation.authData.id.toString();
     const response = await profileAPI.updateProfile(newProfileData);
     if (response.data.resultCode === 0) {
       dispatch(updateProfileAC(response.data.data));

@@ -26,7 +26,7 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
   };
 
   const inputValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setProfileStatus(event.currentTarget.value.trim());
+    setProfileStatus(event.currentTarget.value);
   };
   return (
     <div>

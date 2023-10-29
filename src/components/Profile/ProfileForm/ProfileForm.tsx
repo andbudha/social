@@ -16,8 +16,7 @@ type ProfileFormPropsType = {
 };
 export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
   const onSubmit = (newProfileData: UserProfileType) => {
-    const userID = props.profileContainerProps.loggedinUserID.toString();
-    props.profileContainerProps.updateProfile(newProfileData, userID);
+    props.profileContainerProps.updateProfile(newProfileData);
     props.setProfileFormStatus(false);
   };
   return (
