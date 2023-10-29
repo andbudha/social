@@ -52,7 +52,7 @@ export class ProfileAPIContainer extends React.Component<ProfileContainerPropsTy
   }
 }
 type mapStateToPropsType = {
-  userProfile: UserProfileType | null;
+  userProfile: UserProfileType | undefined;
   isAuthorised: boolean;
   profileStatus: string;
   isUpdatingStatus: boolean;

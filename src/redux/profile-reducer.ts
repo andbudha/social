@@ -11,7 +11,7 @@ const initialState: ProfilePageType = {
     { id: 1, message: 'Per aspera ad astra!', likeCount: 15 },
     { id: 2, message: 'Dum spiro spero!', likeCount: 25 },
   ],
-  userProfile: null,
+  userProfile: undefined,
   profileStatus: '',
   isUpdatingStatus: false,
 };

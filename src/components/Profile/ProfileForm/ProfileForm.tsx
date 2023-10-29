@@ -22,7 +22,10 @@ export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
   };
   return (
     <div>
-      <ProfileReduxForm onSubmit={onSubmit} />
+      <ProfileReduxForm
+        onSubmit={onSubmit}
+        initialValues={props.profileContainerProps.userProfile}
+      />
     </div>
   );
 };

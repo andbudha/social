@@ -15,7 +15,7 @@ export type ProfilePhotoType = {
   large: string;
 };
 export type UserProfileType = {
-  aboutMe?: null;
+  aboutMe?: undefined;
   contacts?: ProfileContactsType;
   lookingForAJob?: boolean;
   lookingForAJobDescription?: string;
@@ -32,7 +32,7 @@ export type PostType = {
 
 export type ProfilePageType = {
   posts: PostType[];
-  userProfile: UserProfileType | null;
+  userProfile: UserProfileType | undefined;
   profileStatus: string;
   isUpdatingStatus: boolean;
 };
