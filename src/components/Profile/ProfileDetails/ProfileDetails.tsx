@@ -4,6 +4,7 @@ import defaultProfile from '../../../images/avatars/ava7.png';
 import { ProfileStatus } from './ProfileStatus';
 import { FormEvent, MouseEventHandler, useRef } from 'react';
 import { ProfileForm } from '../ProfileForm/ProfileForm';
+import { FaArrowUpFromBracket } from 'react-icons/fa6';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -47,7 +48,9 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           <div className={styles.upload_profile_img_box}>
             {!props.isOwner && (
               <div>
-                <div onClick={uploadImageHandler}>upload img</div>
+                <div onClick={uploadImageHandler}>
+                  <FaArrowUpFromBracket className={styles.upload_icon} />
+                </div>
                 <input
                   ref={hiddenFileInput}
                   type={'file'}

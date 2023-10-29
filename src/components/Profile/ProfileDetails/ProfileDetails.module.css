@@ -52,8 +52,17 @@
   align-items: center;
 }
 .profile_img_input {
-  width: 88px;
   display: none;
+}
+
+.upload_icon {
+  height: 34px;
+  width: 34px;
+  padding: 4px;
+  border: 3px solid;
+  border-radius: 50%;
+  color: #2e4374;
+  cursor: pointer;
 }
 .profile_detail_box {
   padding: 10px;
