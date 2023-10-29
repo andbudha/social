@@ -1,7 +1,7 @@
 export const maxProfileNameLength = (maxLength: number) => (value: string) => {
   return value && value.length <= maxLength
     ? undefined
-    : 'Name must be 25 characters or less!';
+    : 'Do not exceed 25 characters!';
 };
 
 export const nameLength25 = maxProfileNameLength(25);

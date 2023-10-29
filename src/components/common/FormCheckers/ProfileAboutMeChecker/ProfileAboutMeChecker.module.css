@@ -9,11 +9,12 @@
   margin: 5px 0;
   border-radius: 4px;
   padding: 4px;
-  height: 60px;
-  width: 240px;
+  height: 100px;
+  width: 250px;
   color: #4b527e;
   font-size: medium;
-  letter-spacing: 0.5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 1px;
 }
 .profile_aboutme_input_error {
   color: rose;
