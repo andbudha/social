@@ -11,13 +11,11 @@ import { aboutMeLength120 } from '../../../utils/form_validators/profile_aboutme
 import { ProfileAboutMeChecker } from '../../common/FormCheckers/ProfileAboutMeChecker/ProfileAboutMeChecker';
 
 type ProfileFormPropsType = {
-  setProfileFormStatus: (profileFormStatus: boolean) => void;
   profileContainerProps: ProfileContainerPropsType;
 };
 export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
   const onSubmit = (newProfileData: UserProfileType) => {
     props.profileContainerProps.updateProfile(newProfileData);
-    props.setProfileFormStatus(false);
   };
   return (
     <div>

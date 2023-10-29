@@ -191,6 +191,7 @@ export const updateProfileTC = (newProfileData: UserProfileType) => {
     if (response.data.resultCode === 0) {
       dispatch(updateProfileAC(response.data.data));
       dispatch(setUserProfileTC(userID));
+      dispatch(setProfileEditStatusAC(false));
     }
   };
 };

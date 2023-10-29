@@ -5,6 +5,7 @@ import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { UserProfileType } from '../../types/store-types';
 import {
   getProfileStatusTC,
+  setProfileEditStatusAC,
   setProfileStatusTC,
   setUserProfileTC,
   updateProfileTC,
@@ -57,6 +58,7 @@ type mapStateToPropsType = {
   profileStatus: string;
   isUpdatingStatus: boolean;
   loggedinUserID: number;
+  profileEditStatus: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -65,6 +67,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     profileStatus: state.profiles.profileStatus,
     isUpdatingStatus: state.profiles.isUpdatingStatus,
     loggedinUserID: state.authorisation.authData.id,
+    profileEditStatus: state.profiles.profileEditStatus,
   };
 };
 
@@ -74,6 +77,7 @@ type mapDispatchToPropsType = {
   setProfileStatusThunk: (status: string) => void;
   uploadProfileImg: (profileImg: File) => void;
   updateProfile: (newProfileData: UserProfileType) => void;
+  setProfileEditStatus: (profileEditStatus: boolean) => void;
 };
 const mapDispatchToProps = (
   dispatch: AppDispatchType
@@ -93,6 +97,9 @@ const mapDispatchToProps = (
     },
     updateProfile: (newProfileData: UserProfileType) => {
       dispatch(updateProfileTC(newProfileData));
+    },
+    setProfileEditStatus: (profileEditStatus: boolean) => {
+      dispatch(setProfileEditStatusAC(profileEditStatus));
     },
   };
 };

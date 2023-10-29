@@ -11,10 +11,8 @@ type ProfileDetailsPropsType = {
 };
 
 export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
-  const [profileFormStatus, setProfileFormStatus] = useState(false);
-
   const profileFormHandler = () => {
-    setProfileFormStatus(true);
+    props.profileContainerProps.setProfileEditStatus(true);
   };
   const profileImgUploadHandler = (event: FormEvent<HTMLInputElement>) => {
     const currentTarget = event.currentTarget as HTMLInputElement & {
@@ -50,10 +48,9 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           </div>
         </div>
         <div className={styles.profile_detail_box}>
-          {profileFormStatus ? (
+          {props.profileContainerProps.profileEditStatus ? (
             <div>
               <ProfileForm
-                setProfileFormStatus={setProfileFormStatus}
                 profileContainerProps={props.profileContainerProps}
               />
             </div>
