@@ -6,6 +6,7 @@ import { BiSolidEdit, BiCheckCircle } from 'react-icons/bi';
 
 type ProfileStatusPropsType = {
   profileContainerProps: ProfileContainerPropsType;
+  isOwner: boolean;
 };
 export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
   const [editMode, setEditMode] = useState(false);
@@ -29,17 +30,21 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
     <div>
       <span className={styles.strong}>
         <div className={styles.edit_status_box}>
-          <div>Status / </div>
-          <div
-            className={styles.edit_status_icon_box}
-            onClick={displayStatusInputHandler}
-          >
-            {editMode ? (
-              <BiCheckCircle className={styles.edit_status_icon} />
-            ) : (
-              <BiSolidEdit className={styles.edit_status_icon} />
-            )}
-          </div>
+          <div>Status </div>
+          {!props.isOwner ? (
+            <div
+              className={styles.edit_status_icon_box}
+              onClick={displayStatusInputHandler}
+            >
+              {' '}
+              /
+              {editMode ? (
+                <BiCheckCircle className={styles.edit_status_icon} />
+              ) : (
+                <BiSolidEdit className={styles.edit_status_icon} />
+              )}
+            </div>
+          ) : null}
         </div>
       </span>
       <div>

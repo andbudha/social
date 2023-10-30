@@ -78,20 +78,10 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
             ) : (
               <div>
                 <div className={styles.descriptive_item}>
-                  {/* <span className={styles.strong}>
-                    <div className={styles.edit_status_box}>
-                      <div>Status / </div>
-                      <div
-                        className={styles.edit_status_icon_box}
-                        onClick={displayStatusInputHandler}
-                      >
-                        <BiSolidEdit className={styles.edit_status_icon} />
-                      </div>
-                    </div>
-                  </span> */}
                   <div className={styles.details}>
                     <ProfileStatus
                       profileContainerProps={props.profileContainerProps}
+                      isOwner={props.isOwner}
                     />
                   </div>
                 </div>
@@ -157,12 +147,14 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                   </div>
                 </div>
                 <div className={styles.edit_profile_btn_box}>
-                  <button
-                    className={styles.edit_profile_btn}
-                    onClick={profileFormHandler}
-                  >
-                    edit profile
-                  </button>
+                  {!props.isOwner ? (
+                    <button
+                      className={styles.edit_profile_btn}
+                      onClick={profileFormHandler}
+                    >
+                      edit profile
+                    </button>
+                  ) : null}
                 </div>
               </div>
             )}
