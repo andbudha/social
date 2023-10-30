@@ -126,7 +126,13 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                   <div className={styles.details}>
                     {props.profileContainerProps.userProfile?.contacts
                       ?.website ? (
-                      <div>
+                      <a
+                        href={
+                          props.profileContainerProps.userProfile.contacts
+                            .website
+                        }
+                        target="_blank"
+                      >
                         <BiLink
                           className={styles.contact_link_icon}
                           href={
@@ -134,7 +140,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                               .website
                           }
                         />
-                      </div>
+                      </a>
                     ) : (
                       'not available'
                     )}
