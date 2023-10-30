@@ -34,6 +34,28 @@
   justify-content: space-around;
   align-items: center;
 }
+.edit_status_box {
+  height: 30px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.edit_status_icon_box {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.edit_status_icon {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+.edit_status_icon:hover {
+  color: #fff;
+}
+.edit_status_icon:active {
+  color: #4b527e;
+}
 .profile_img {
   width: 200px;
   height: 200px;

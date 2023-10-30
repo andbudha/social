@@ -5,11 +5,12 @@
 }
 
 .profile_aboutme_input {
+  resize: none;
   outline: none;
   margin: 5px 0;
   border-radius: 4px;
   padding: 4px;
-  height: 100px;
+  height: 90px;
   width: 250px;
   color: #4b527e;
   font-size: medium;
