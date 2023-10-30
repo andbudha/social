@@ -32,7 +32,7 @@ export const ProfileForm: React.FC<ProfileFormPropsType> = (props) => {
 
 const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
   return (
-    <div>
+    <div className={styles.profile_form_box}>
       <form onSubmit={props.handleSubmit}>
         <div>
           <h4 className={styles.strong}>Name:</h4>

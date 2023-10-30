@@ -40,42 +40,40 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
               <img
                 className={styles.img}
                 src={
-                  props.profileContainerProps.userProfile?.photos.small ||
+                  props.profileContainerProps.userProfile?.photos.large ||
                   defaultProfile
                 }
                 alt="avatar"
               />
             </div>
-            <div className={styles.upload_profile_img_box}>
-              {!props.isOwner && (
-                <div>
-                  <div
-                    onClick={uploadImageHandler}
-                    className={styles.upload_profile_img_btn}
-                  >
-                    <p>change img</p>
-                  </div>
-                  <input
-                    ref={hiddenFileInput}
-                    type={'file'}
-                    className={styles.profile_img_input}
-                    id={'profile-img-input'}
-                    onChange={profileImgUploadHandler}
-                  />
-                </div>
-              )}
-            </div>
           </div>
-        </div>
-        <div className={styles.profile_sub_box_two}>
-          <div className={styles.profile_detail_box}>
-            {props.profileContainerProps.profileEditStatus ? (
+          <div className={styles.upload_profile_img_box}>
+            {!props.isOwner && (
               <div>
-                <ProfileForm
-                  profileContainerProps={props.profileContainerProps}
+                <div
+                  onClick={uploadImageHandler}
+                  className={styles.upload_profile_img_btn}
+                >
+                  <p>change img</p>
+                </div>
+                <input
+                  ref={hiddenFileInput}
+                  type={'file'}
+                  className={styles.profile_img_input}
+                  id={'profile-img-input'}
+                  onChange={profileImgUploadHandler}
                 />
               </div>
-            ) : (
+            )}
+          </div>
+        </div>
+        {props.profileContainerProps.profileEditStatus ? (
+          <div className={styles.profile_sub_box_two}>
+            <ProfileForm profileContainerProps={props.profileContainerProps} />
+          </div>
+        ) : (
+          <div className={styles.profile_sub_box_two}>
+            <div className={styles.profile_detail_box}>
               <div>
                 <div className={styles.descriptive_item}>
                   <div className={styles.details}>
@@ -146,20 +144,20 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                     )}
                   </div>
                 </div>
-                <div className={styles.edit_profile_btn_box}>
-                  {!props.isOwner ? (
-                    <button
-                      className={styles.edit_profile_btn}
-                      onClick={profileFormHandler}
-                    >
-                      edit profile
-                    </button>
-                  ) : null}
-                </div>
               </div>
-            )}
+            </div>
+            <div className={styles.edit_profile_btn_box}>
+              {!props.isOwner ? (
+                <button
+                  className={styles.edit_profile_btn}
+                  onClick={profileFormHandler}
+                >
+                  edit profile
+                </button>
+              ) : null}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
