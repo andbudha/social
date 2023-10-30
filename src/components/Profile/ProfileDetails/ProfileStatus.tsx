@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './ProfileStatus.module.css';
 import { ProfileContainerPropsType } from '../ProfileContainer';
 import { UpdatingLoader } from '../../common/Loaders/UpdatingLoader/UpdatingLoader';
+import { BiSolidEdit, BiCheckCircle } from 'react-icons/bi';
 
 type ProfileStatusPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -14,42 +15,55 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
     setProfileStatus(props.profileContainerProps.profileStatus);
   }, [props.profileContainerProps.profileStatus]);
 
-  const setOnEditModeHandler = () => {
-    setEditMode(true);
+  const inputValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setProfileStatus(event.currentTarget.value);
   };
 
-  const setOffEditModeHandler = () => {
-    setEditMode(false);
+  const displayStatusInputHandler = () => {
+    setEditMode(!editMode);
     if (profileStatus.length) {
       props.profileContainerProps.setProfileStatusThunk(profileStatus);
     }
   };
-
-  const inputValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setProfileStatus(event.currentTarget.value);
-  };
   return (
     <div>
-      {!editMode &&
-        (props.profileContainerProps.isUpdatingStatus ? (
-          <UpdatingLoader />
-        ) : (
-          <div onDoubleClick={setOnEditModeHandler}>
-            {props.profileContainerProps.profileStatus ||
-              'Double-click to add your new status'}
+      <span className={styles.strong}>
+        <div className={styles.edit_status_box}>
+          <div>Status / </div>
+          <div
+            className={styles.edit_status_icon_box}
+            onClick={displayStatusInputHandler}
+          >
+            {editMode ? (
+              <BiCheckCircle className={styles.edit_status_icon} />
+            ) : (
+              <BiSolidEdit className={styles.edit_status_icon} />
+            )}
           </div>
-        ))}
-      {editMode && (
-        <div onBlur={setOffEditModeHandler}>
-          <input
-            autoFocus
-            value={profileStatus}
-            onChange={inputValueGettingHandler}
-            className={styles.status_input}
-            type="text"
-          />
         </div>
-      )}
+      </span>
+      <div>
+        {!editMode &&
+          (props.profileContainerProps.isUpdatingStatus ? (
+            <UpdatingLoader />
+          ) : (
+            <div>
+              {props.profileContainerProps.profileStatus ||
+                'Add your status here.'}
+            </div>
+          ))}
+        {editMode && (
+          <div>
+            <input
+              autoFocus
+              value={profileStatus}
+              onChange={inputValueGettingHandler}
+              className={styles.status_input}
+              type="text"
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

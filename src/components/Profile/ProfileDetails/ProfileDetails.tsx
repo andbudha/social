@@ -4,7 +4,7 @@ import defaultProfile from '../../../images/avatars/ava7.png';
 import { ProfileStatus } from './ProfileStatus';
 import { FormEvent, MouseEventHandler, useRef } from 'react';
 import { ProfileForm } from '../ProfileForm/ProfileForm';
-import { BiLink, BiSolidEdit } from 'react-icons/bi';
+import { BiLink } from 'react-icons/bi';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -78,14 +78,17 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
             ) : (
               <div>
                 <div className={styles.descriptive_item}>
-                  <span className={styles.strong}>
+                  {/* <span className={styles.strong}>
                     <div className={styles.edit_status_box}>
                       <div>Status / </div>
-                      <div className={styles.edit_status_icon_box}>
+                      <div
+                        className={styles.edit_status_icon_box}
+                        onClick={displayStatusInputHandler}
+                      >
                         <BiSolidEdit className={styles.edit_status_icon} />
                       </div>
                     </div>
-                  </span>
+                  </span> */}
                   <div className={styles.details}>
                     <ProfileStatus
                       profileContainerProps={props.profileContainerProps}
