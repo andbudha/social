@@ -1,12 +1,9 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-//import { DialogueContainer } from './components/Dialogues/DialoguesContainer';
-//import { UsersContainer } from './components/Users/UsersContainer';
-//import { ProfileContainer } from './components/Profile/ProfileContainer';
 import { HeaderContainer } from './components/Header/HeaderContainer';
 import { LoginContainer } from './components/Login/Login';
 import { AppRootStateType, useAppDispatch } from './redux/redux-store';
@@ -15,6 +12,7 @@ import { setAuthDataTC } from './redux/auth-reducer';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/common/Loaders/Loader/Loader';
 import React from 'react';
+import { PageNotFound } from './components/PageNotFound/PageNotFound';
 
 const ProfileContainer = React.lazy(() =>
   import('./components/Profile/ProfileContainer').then(
@@ -60,69 +58,70 @@ const App: React.FC = () => {
       <HeaderContainer />
       <Navbar />
       <LoginContainer />
-
-      <Route
-        path="/profile/:userID?"
-        render={() => (
-          <div className="app_content_wrapper">
-            <React.Suspense fallback={<Loader />}>
-              <ProfileContainer />
-            </React.Suspense>
-          </div>
-        )}
-      />
-      {/* <Route
-        path="/login"
-        render={() => (
-          <div className="app_content_wrapper">
-            <LoginContainer />
-          </div>
-        )}
-      /> */}
-      <Route
-        path="/dialogues"
-        render={() => (
-          <div className="app_content_wrapper">
-            <React.Suspense fallback={<Loader />}>
-              <DialogueContainer />
-            </React.Suspense>
-          </div>
-        )}
-      />
-      <Route
-        path="/users"
-        render={() => (
-          <div className="app_content_wrapper">
-            <React.Suspense fallback={<Loader />}>
-              <UsersContainer />
-            </React.Suspense>
-          </div>
-        )}
-      />
-      <Route
-        path="/news"
-        render={() => (
-          <div className="app_content_wrapper">
-            <News />
-          </div>
-        )}
-      />
-      <Route
-        path="/music"
-        render={() => (
-          <div className="app_content_wrapper">
-            <Music />
-          </div>
-        )}
-      />
-      <Route
-        path="/settings"
-        render={() => (
-          <div className="app_content_wrapper">
-            <Settings />
-          </div>
-        )}
-      />
+      <Switch>
+        <Route
+          path="/profile/:userID?"
+          render={() => (
+            <div className="app_content_wrapper">
+              <React.Suspense fallback={<Loader />}>
+                <ProfileContainer />
+              </React.Suspense>
+            </div>
+          )}
+        />
+        <Route
+          path="/dialogues"
+          render={() => (
+            <div className="app_content_wrapper">
+              <React.Suspense fallback={<Loader />}>
+                <DialogueContainer />
+              </React.Suspense>
+            </div>
+          )}
+        />
+        <Route
+          path="/users"
+          render={() => (
+            <div className="app_content_wrapper">
+              <React.Suspense fallback={<Loader />}>
+                <UsersContainer />
+              </React.Suspense>
+            </div>
+          )}
+        />
+        <Route
+          path="/news"
+          render={() => (
+            <div className="app_content_wrapper">
+              <News />
+            </div>
+          )}
+        />
+        <Route
+          path="/musics"
+          render={() => (
+            <div className="app_content_wrapper">
+              <Music />
+            </div>
+          )}
+        />
+        <Route
+          path="/settings"
+          render={() => (
+            <div className="app_content_wrapper">
+              <Settings />
+            </div>
+          )}
+        />
+        <Route
+          path="*"
+          render={() => (
+            <div className="app_content_wrapper">
+              <PageNotFound />
+            </div>
+          )}
+        />
+      </Switch>
     </div>
   );
 };
