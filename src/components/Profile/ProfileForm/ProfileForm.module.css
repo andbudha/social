@@ -3,6 +3,13 @@
   margin: 0;
   box-sizing: border-box;
 }
+.profile_form_box {
+  height: 100%;
+  width: 100%;
+}
+.form_input_box {
+  height: 90%;
+}
 .strong {
   font-weight: bold;
   color: #2e4374;
@@ -28,11 +35,11 @@
   border: #7c81ad 1px solid;
 }
 .save_changes_btn_box {
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 5px 0 0;
 }
 .save_changes_btn {
   height: 32px;

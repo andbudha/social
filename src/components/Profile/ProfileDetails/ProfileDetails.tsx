@@ -140,7 +140,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
                         />
                       </a>
                     ) : (
-                      'not available'
+                      ' not available'
                     )}
                   </div>
                 </div>

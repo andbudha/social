@@ -34,56 +34,58 @@ const Form: React.FC<InjectedFormProps<UserProfileType>> = (props) => {
   return (
     <div className={styles.profile_form_box}>
       <form onSubmit={props.handleSubmit}>
-        <div>
-          <h4 className={styles.strong}>Name:</h4>
-          <Field
-            name={'fullName'}
-            placeholder={'Enter your name'}
-            type={'text'}
-            component={ProfileNameChecker}
-            validate={[nameLength25]}
-          />
-        </div>
-        <div>
-          <h4 className={styles.strong}>Open for a job:</h4>
-          <div className={styles.job_checkbox_box}>
+        <div className={styles.form_input_box}>
+          <div>
+            <h4 className={styles.strong}>Name:</h4>
             <Field
-              className={styles.job_checkbox}
-              name={'lookingForAJob'}
-              type={'checkbox'}
-              component={'input'}
+              name={'fullName'}
+              placeholder={'Enter your name'}
+              type={'text'}
+              component={ProfileNameChecker}
+              validate={[nameLength25]}
             />
-            <h4 className={styles.job_checkbox_answer}>Yes</h4>
           </div>
-        </div>
-        <div>
-          <h4 className={styles.strong}>Position:</h4>
-          <Field
-            name={'lookingForAJobDescription'}
-            placeholder={'Enter position'}
-            type={'text'}
-            component={ProfilePositionChecker}
-            validate={[positionLength25]}
-          />
-        </div>
-        <div>
-          <h4 className={styles.strong}>About me:</h4>
-          <Field
-            name={'aboutMe'}
-            placeholder={'Tell about yourself...'}
-            type={'text'}
-            component={ProfileAboutMeChecker}
-            validate={[aboutMeLength120]}
-          />
-        </div>
-        <div>
-          <h4 className={styles.strong}>Get in touch:</h4>
-          <Field
-            name={'contacts.website'}
-            placeholder={'Enter your website'}
-            type={'text'}
-            component={ProfileWebsiteChecker}
-          />
+          <div>
+            <h4 className={styles.strong}>Open for a job:</h4>
+            <div className={styles.job_checkbox_box}>
+              <Field
+                className={styles.job_checkbox}
+                name={'lookingForAJob'}
+                type={'checkbox'}
+                component={'input'}
+              />
+              <h4 className={styles.job_checkbox_answer}>Yes</h4>
+            </div>
+          </div>
+          <div>
+            <h4 className={styles.strong}>Position:</h4>
+            <Field
+              name={'lookingForAJobDescription'}
+              placeholder={'Enter position'}
+              type={'text'}
+              component={ProfilePositionChecker}
+              validate={[positionLength25]}
+            />
+          </div>
+          <div>
+            <h4 className={styles.strong}>About me:</h4>
+            <Field
+              name={'aboutMe'}
+              placeholder={'Tell about yourself...'}
+              type={'text'}
+              component={ProfileAboutMeChecker}
+              validate={[aboutMeLength120]}
+            />
+          </div>
+          <div>
+            <h4 className={styles.strong}>Get in touch:</h4>
+            <Field
+              name={'contacts.website'}
+              placeholder={'Enter your website'}
+              type={'text'}
+              component={ProfileWebsiteChecker}
+            />
+          </div>
         </div>
         <div className={styles.save_changes_btn_box}>
           <button className={styles.save_changes_btn}>save changes</button>
