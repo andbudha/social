@@ -105,11 +105,13 @@ export type AuthReducerInitialState = {
   authData: AuthResponseDataType;
   isAuthorised: boolean;
   isInitialised: boolean;
+  captchURL: string;
 };
 export type LoginDataType = {
   email: string;
   password: string;
   rememberMe: boolean;
+  captcha: string;
 };
 
 export type LoginErrorType = {
@@ -121,4 +123,9 @@ export type CommonUserProfileType<D = {}> = {
   resultCode: number;
   messages: string[];
   data: D;
+};
+
+//security - captcha
+export type captchaType = {
+  url: string;
 };

@@ -6,12 +6,13 @@ import {
 } from '../../utils/form_validators/login_validators';
 import { LoginPasswordFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginPasswordFormChecker';
 import { LoginEmailFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginEmailFormChecker';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { loginTC } from '../../redux/auth-reducer';
 import { LoginDataType } from '../../types/store-types';
 import { AppDispatchType, AppRootStateType } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
+import { LoginCaptchaFormChecker } from '../common/FormCheckers/LoginFormCheckers/LoginCaptchaFormChecker';
 
 export const Login: React.FC<LoginContainerPropsType> = ({
   loginThunk,
@@ -38,6 +39,9 @@ export const Login: React.FC<LoginContainerPropsType> = ({
 export const LoginForm: React.FC<InjectedFormProps<LoginDataType>> = (
   props
 ) => {
+  const captchaURL = useSelector<AppRootStateType, string>(
+    (state) => state.authorisation.captchURL
+  );
   const [checkedStatus, setCheckedStatus] = useState(false);
   const checkBoxHandler = () => {
     setCheckedStatus(!checkedStatus);
@@ -79,6 +83,23 @@ export const LoginForm: React.FC<InjectedFormProps<LoginDataType>> = (
           />
           Remember me
         </div>
+
+        {captchaURL && (
+          <div className={styles.captcha_box}>
+            <img src={captchaURL} className={styles.captcha_img} />
+          </div>
+        )}
+        {captchaURL && (
+          <div>
+            <Field
+              placeholder={'enter img-symbols'}
+              name={'captcha'}
+              type={'text'}
+              component={LoginCaptchaFormChecker}
+              validate={[requiredFieldValue]}
+            />
+          </div>
+        )}
         {props.error && (
           <div className={styles.login_server_error}>{props.error}</div>
         )}
@@ -96,10 +117,12 @@ const LoginReduxForm = reduxForm<LoginDataType>({
 type LoginContainerPropsType = MapDispatchToPropsType & mapStateToPropsType;
 type mapStateToPropsType = {
   isAuthorised: boolean;
+  captchURL: string;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     isAuthorised: state.authorisation.isAuthorised,
+    captchURL: state.authorisation.captchURL,
   };
 };
 type MapDispatchToPropsType = {

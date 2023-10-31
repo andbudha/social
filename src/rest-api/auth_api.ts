@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { AuthResponseType, LoginDataType } from '../types/store-types';
+import {
+  AuthResponseType,
+  LoginDataType,
+  captchaType,
+} from '../types/store-types';
 
 const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -19,9 +23,16 @@ export const authorisationAPI = {
       email: loginData.email,
       password: loginData.password,
       rememberMe: loginData.rememberMe,
+      captcha: loginData.captcha,
     });
   },
   logout() {
     return instance.delete<AuthResponseType>('auth/login');
+  },
+};
+
+export const securityAPI = {
+  getCaptcha() {
+    return instance.get<captchaType>('security/get-captcha-url');
   },
 };

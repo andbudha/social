@@ -55,6 +55,14 @@
   letter-spacing: 1px;
   color: #e0144c;
 }
+.captcha_img {
+  display: flex;
+  justify-content: center;
+}
+.captcha_img {
+  width: 150px;
+  margin: 0 auto;
+}
 .login_btn_box {
   width: 100%;
 }

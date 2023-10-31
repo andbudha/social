@@ -15,6 +15,7 @@ beforeEach(() => {
     },
     isAuthorised: false,
     isInitialised: false,
+    captchURL: '',
   };
 });
 

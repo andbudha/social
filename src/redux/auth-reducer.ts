@@ -1,5 +1,5 @@
 import { stopSubmit } from 'redux-form';
-import { authorisationAPI } from '../rest-api/auth_api';
+import { authorisationAPI, securityAPI } from '../rest-api/auth_api';
 import {
   AuthReducerInitialState,
   AuthResponseDataType,
@@ -16,6 +16,7 @@ const initialState: AuthReducerInitialState = {
   },
   isAuthorised: false,
   isInitialised: false,
+  captchURL: '',
 };
 
 export const AuthReducer = (
@@ -41,6 +42,9 @@ export const AuthReducer = (
     case 'auth-reducer/SET-INIIALISATION-STATUS': {
       return { ...state, isInitialised: action.payload.isInitialised };
     }
+    case 'auth-reducer/GET-CAPTCHA': {
+      return { ...state, captchURL: action.payload.newCaptcha };
+    }
     default: {
       return state;
     }
@@ -51,7 +55,8 @@ export type AuthReducerActionTypes =
   | setAuthDataType
   | resetAuthDataType
   | alterAuthorisationStatusACType
-  | setIntialisationStatusACType;
+  | setIntialisationStatusACType
+  | getCaptchaACType;
 type setAuthDataType = ReturnType<typeof setAuthDataAC>;
 export const setAuthDataAC = (authData: AuthResponseDataType) => {
   return { type: 'auth-reducer/SET-AUTH-DATA', payload: { authData } } as const;
@@ -82,6 +87,11 @@ export const setIntialisationStatusAC = (isInitialised: boolean) => {
     payload: { isInitialised },
   } as const;
 };
+
+type getCaptchaACType = ReturnType<typeof getCaptchaAC>;
+export const getCaptchaAC = (newCaptcha: string) => {
+  return { type: 'auth-reducer/GET-CAPTCHA', payload: { newCaptcha } } as const;
+};
 //thunks
 export const setAuthDataTC = () => {
   return async (dispatch: AppDispatchType) => {
@@ -100,6 +110,9 @@ export const loginTC = (loginData: LoginDataType) => {
     if (response.data.resultCode === 0) {
       dispatch(setAuthDataTC());
     } else {
+      if (response.data.resultCode === 10) {
+        dispatch(getCaptchaTC());
+      }
       const loginError =
         response.data.messages.length > 0
           ? response.data.messages[0]
@@ -116,5 +129,13 @@ export const logoutTC = () => {
     if (response.data.resultCode === 0) {
       dispatch(alterAuthorisationStatusAC(false));
     }
+  };
+};
+
+export const getCaptchaTC = () => {
+  return async (dispatch: AppDispatchType) => {
+    const response = await securityAPI.getCaptcha();
+    const captchaURL = response.data.url;
+    dispatch(getCaptchaAC(captchaURL));
   };
 };
