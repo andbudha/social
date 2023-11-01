@@ -41,6 +41,10 @@ const App: React.FC = () => {
     (state) => state.authorisation.isAuthorised
   );
 
+  const error = useSelector<AppRootStateType, null | string>(
+    (state) => state.app.error
+  );
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -56,7 +60,7 @@ const App: React.FC = () => {
   }
   return (
     <div className="app-wrapper">
-      <ErrorBar />
+      {error && <ErrorBar error={error} />}
       <HeaderContainer />
       <Navbar />
       <LoginContainer />

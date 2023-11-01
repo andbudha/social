@@ -21,7 +21,11 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
   };
 
   const displayStatusInputHandler = () => {
-    setEditMode(!editMode);
+    setEditMode(true);
+  };
+
+  const closeStatusInputHandler = () => {
+    setEditMode(false);
     if (profileStatus.length) {
       props.profileContainerProps.setProfileStatusThunk(profileStatus);
     }
@@ -32,16 +36,19 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
         <div className={styles.edit_status_box}>
           <div>Status </div>
           {!props.isOwner ? (
-            <div
-              className={styles.edit_status_icon_box}
-              onClick={displayStatusInputHandler}
-            >
+            <div className={styles.edit_status_icon_box}>
               {' '}
               /
               {editMode ? (
-                <BiCheckCircle className={styles.edit_status_icon} />
+                <BiCheckCircle
+                  className={styles.edit_status_icon}
+                  onClick={closeStatusInputHandler}
+                />
               ) : (
-                <BiSolidEdit className={styles.edit_status_icon} />
+                <BiSolidEdit
+                  className={styles.edit_status_icon}
+                  onClick={displayStatusInputHandler}
+                />
               )}
             </div>
           ) : null}

@@ -6,6 +6,7 @@ import {
   UserProfileType,
 } from '../types/store-types';
 import { AppDispatchType, AppRootStateType } from './redux-store';
+import { setAppErrorAC } from './app-reducer';
 
 const initialState: ProfilePageType = {
   posts: [
@@ -179,9 +180,13 @@ export const setProfileStatusTC = (status: string) => {
         console.log(data.data.messages[0]);
       }
     } catch (err) {
-      dispatch(isUpdatingStatusAC(false));
       const error = err as AxiosError;
       console.log(error.message);
+      dispatch(setAppErrorAC(error.message));
+      setTimeout(() => {
+        dispatch(isUpdatingStatusAC(false));
+        dispatch(setAppErrorAC(null));
+      }, 4000);
     }
   };
 };

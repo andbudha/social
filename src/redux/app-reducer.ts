@@ -20,6 +20,6 @@ export const AppReducer = (
 };
 
 type setAppErrorAcType = ReturnType<typeof setAppErrorAC>;
-export const setAppErrorAC = (error: string) => {
+export const setAppErrorAC = (error: null | string) => {
   return { type: 'app-reducer/SET-APP-ERROR', payload: { error } } as const;
 };

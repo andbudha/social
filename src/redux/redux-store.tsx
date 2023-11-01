@@ -9,13 +9,14 @@ import { AuthReducer, AuthReducerActionTypes } from './auth-reducer';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 import { useDispatch } from 'react-redux';
-import { AppReducerActionTypes } from './app-reducer';
+import { AppReducer, AppReducerActionTypes } from './app-reducer';
 
 const rootReducer = combineReducers({
   profiles: ProfileReducer,
   dialogues: DialogueReducer,
   users: UsersReducer,
   authorisation: AuthReducer,
+  app: AppReducer,
   form: formReducer,
 });
 
