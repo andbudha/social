@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { Loader } from './components/common/Loaders/Loader/Loader';
 import React from 'react';
 import { PageNotFound } from './components/PageNotFound/PageNotFound';
+import { ErrorBar } from './components/ErrorBar/ErrorBar';
 
 const ProfileContainer = React.lazy(() =>
   import('./components/Profile/ProfileContainer').then(
@@ -55,6 +56,7 @@ const App: React.FC = () => {
   }
   return (
     <div className="app-wrapper">
+      <ErrorBar />
       <HeaderContainer />
       <Navbar />
       <LoginContainer />

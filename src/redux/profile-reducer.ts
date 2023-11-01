@@ -1,3 +1,4 @@
+import axios, { AxiosError } from 'axios';
 import { profileAPI } from '../rest-api/profile_api';
 import {
   ProfilePageType,
@@ -156,18 +157,31 @@ export const setUserProfileTC = (userProfileID: string) => {
 
 export const getProfileStatusTC = (userID: string) => {
   return async (dispatch: AppDispatchType) => {
-    const status = await profileAPI.getProfileStatus(userID);
-    dispatch(getProfileStatusAC(status.data));
+    try {
+      const status = await profileAPI.getProfileStatus(userID);
+      dispatch(getProfileStatusAC(status.data));
+    } catch (err) {
+      const error = err as AxiosError;
+      console.log(error.message);
+    }
   };
 };
 
 export const setProfileStatusTC = (status: string) => {
   return async (dispatch: AppDispatchType) => {
     dispatch(isUpdatingStatusAC(true));
-    const data = await profileAPI.setProfileStatus(status);
-    if (data.data.resultCode === 0) {
+    try {
+      const data = await profileAPI.setProfileStatus(status);
+      if (data.data.resultCode === 0) {
+        dispatch(isUpdatingStatusAC(false));
+        dispatch(setProfileStatusAC(status));
+      } else {
+        console.log(data.data.messages[0]);
+      }
+    } catch (err) {
       dispatch(isUpdatingStatusAC(false));
-      dispatch(setProfileStatusAC(status));
+      const error = err as AxiosError;
+      console.log(error.message);
     }
   };
 };
