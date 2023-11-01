@@ -129,3 +129,9 @@ export type CommonUserProfileType<D = {}> = {
 export type captchaType = {
   url: string;
 };
+
+// app-reducer state-type
+
+export type AppReducerInitialStateType = {
+  error: null | string;
+};
