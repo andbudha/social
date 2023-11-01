@@ -98,7 +98,7 @@ const App: React.FC = () => {
           )}
         />
         <Route
-          path="/musics"
+          path="/music"
           render={() => (
             <div className="app_content_wrapper">
               <Music />

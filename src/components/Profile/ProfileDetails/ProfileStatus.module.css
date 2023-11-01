@@ -9,6 +9,11 @@
   display: inline;
   color: #2e4374;
 }
+
+.status_message_error {
+  text-shadow: red 1px 1px 1px;
+  font-size: small;
+}
 .status_input {
   outline: none;
   margin: 5px 0;
@@ -20,7 +25,9 @@
   font-size: medium;
   letter-spacing: 1px;
 }
-
+.status_input_error {
+  border: 2px solid red;
+}
 .edit_status_box {
   height: 30px;
   display: flex;

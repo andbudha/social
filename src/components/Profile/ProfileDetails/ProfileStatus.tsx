@@ -59,11 +59,18 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
           ))}
         {editMode && (
           <div>
+            {profileStatus.length > 50 && (
+              <p className={styles.status_message_error}>
+                Must be 50 characters or less!
+              </p>
+            )}
             <input
               autoFocus
               value={profileStatus}
               onChange={inputValueGettingHandler}
-              className={styles.status_input}
+              className={`${styles.status_input} ${
+                profileStatus.length > 50 && styles.status_input_error
+              }`}
               type="text"
             />
           </div>
