@@ -60,8 +60,9 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
             <UpdatingLoader />
           ) : (
             <div>
-              {props.profileContainerProps.profileStatus ||
-                'Add your status here.'}
+              {props.profileContainerProps.profileStatus || (
+                <div className={styles.no_status}>status not added</div>
+              )}
             </div>
           ))}
         {editMode && (

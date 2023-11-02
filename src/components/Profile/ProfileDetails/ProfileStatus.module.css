@@ -10,6 +10,9 @@
   color: #2e4374;
 }
 
+.no_status {
+  text-shadow: #2e4374 2px 3px 5px;
+}
 .status_message_error {
   text-shadow: red 1px 1px 1px;
   font-size: small;

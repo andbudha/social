@@ -164,6 +164,11 @@ export const getProfileStatusTC = (userID: string) => {
     } catch (err) {
       const error = err as AxiosError;
       console.log(error.message);
+      dispatch(setAppErrorAC(error.message));
+      setTimeout(() => {
+        dispatch(isUpdatingStatusAC(false));
+        dispatch(setAppErrorAC(null));
+      }, 4000);
     }
   };
 };
@@ -177,11 +182,10 @@ export const setProfileStatusTC = (status: string) => {
         dispatch(isUpdatingStatusAC(false));
         dispatch(setProfileStatusAC(status));
       } else {
-        console.log(data.data.messages[0]);
+        dispatch(setAppErrorAC(data.data.messages[0]));
       }
     } catch (err) {
       const error = err as AxiosError;
-      console.log(error.message);
       dispatch(setAppErrorAC(error.message));
       setTimeout(() => {
         dispatch(isUpdatingStatusAC(false));

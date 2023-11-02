@@ -20,7 +20,7 @@ export const profileAPI = {
   },
 
   setProfileStatus(status: string) {
-    return instance.put<CommonUserProfileType>(`profile/statusus`, {
+    return instance.put<CommonUserProfileType>(`profile/status`, {
       status: status,
     });
   },
