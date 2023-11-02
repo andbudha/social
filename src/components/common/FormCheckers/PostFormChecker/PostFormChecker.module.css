@@ -4,17 +4,33 @@
   box-sizing: border-box;
 }
 
+.textarea_box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .post_textarea {
-  width: 200px;
+  width: 95%;
   height: 50px;
   outline: none;
-  border-radius: 5px;
   padding: 8px;
+  border-radius: 5px;
+  border: 2px solid #7c81ad;
+  resize: none;
+  color: #4b527e;
+  font-size: medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 1px;
 }
 
 .post_textarea_error {
   border: 3px solid crimson;
 }
 .error_message {
-  color: crimson;
+  color: #fff;
+  font-size: small;
+  margin-bottom: 5px;
+  text-shadow: red 1px 0 5px;
 }

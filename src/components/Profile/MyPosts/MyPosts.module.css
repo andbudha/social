@@ -5,24 +5,32 @@
 }
 .myposts_box {
   height: 100%;
-  width: 340px;
-  padding: 10px;
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.post_box {
-  width: 340px;
-  margin-top: 15px;
+.post_list_box {
+  width: 100%;
+  height: 70%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   color: #fff;
+  padding: 15px;
 }
 
+.post_form_box {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 .myposts_list_title {
   width: 100%;
   display: flex;
@@ -30,31 +38,77 @@
 }
 
 .add_post_box {
-  width: 340px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.add_post_fom_box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .add_post_btn {
+  background-color: #4b527e;
+  color: #fff;
+  font-size: medium;
   height: 32px;
-  width: 150px;
-  margin: 5px auto;
+  width: 130px;
+
   border-radius: 4px;
   padding: 4px;
-  background-color: #7c81ad;
-  color: #fff;
-  border: 1px solid #4b527e;
+  border: 1px solid #fff;
   letter-spacing: 1px;
-  font-size: medium;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add_post_btn:hover {
-  background-color: #4b527e;
+  background-color: #7c81ad;
 }
 
 .add_post_btn:active {
+  background-color: #4b527e;
+}
+
+.write_new_post_btn_box {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.write_new_post_btn {
+  background-color: #4b527e;
+  color: #fff;
+  font-size: medium;
+  height: 32px;
+  width: 130px;
+  border-radius: 4px;
+  padding: 4px;
+  border: 1px solid #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.write_new_post_btn:hover {
   background-color: #7c81ad;
+}
+
+.write_new_post_btn:active {
+  background-color: #4b527e;
 }

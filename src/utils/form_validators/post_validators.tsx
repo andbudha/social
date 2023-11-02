@@ -1,7 +1,7 @@
 export const maxPostLength = (maxLength: number) => (value: string) => {
   return value && value.length < maxLength
     ? undefined
-    : 'Posts must be 100 characters or less!';
+    : 'Only 50 characters or less!';
 };
 
-export const postLength100 = maxPostLength(100);
+export const postLength50 = maxPostLength(50);

@@ -7,7 +7,10 @@ export const PostFormChecker = ({
   ...props
 }: any) => {
   return (
-    <div>
+    <div className={styles.textarea_box}>
+      {input.value.length > 50 && (
+        <div className={`${styles.error_message}`}>{meta.warning}</div>
+      )}
       <textarea
         {...input}
         name=""
@@ -16,12 +19,9 @@ export const PostFormChecker = ({
         rows={4}
         placeholder={placeholder}
         className={`${styles.post_textarea} ${
-          input.value.length > 100 && styles.post_textarea_error
+          input.value.length > 50 && styles.post_textarea_error
         }`}
       />
-      {input.value.length > 100 && (
-        <div className={`${styles.error_message}`}>{meta.warning}</div>
-      )}
     </div>
   );
 };
