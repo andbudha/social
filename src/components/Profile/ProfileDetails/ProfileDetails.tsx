@@ -164,6 +164,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
               </div>
             </div>
           )}
+          <div className={styles.profile_sub_box_three}></div>
         </div>
       )}
     </div>
