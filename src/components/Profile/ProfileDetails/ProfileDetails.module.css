@@ -8,13 +8,12 @@
   border-radius: 8px;
   border: 1px solid #2e4374;
   background-color: #7c81ad;
-  width: 98%;
+  width: 100%;
   height: 440px;
   display: flex;
   justify-content: center;
   justify-content: space-around;
   align-items: center;
-  margin: 15px;
 }
 .profile_sub_box_one {
   height: 100%;

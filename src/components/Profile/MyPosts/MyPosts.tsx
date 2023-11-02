@@ -16,15 +16,14 @@ export const MyPosts: React.FC<MyPostsContainerPropsType> = (props) => {
   };
 
   return (
-    <div className={styles.myposts_block}>
-      <MyPostsReduxForm onSubmit={handleSubmit} />
-
-      <div className={styles.post_block}>
+    <div className={styles.myposts_box}>
+      <div className={styles.post_box}>
         <div className={styles.myposts_list_title}>
           <h3> My Posts</h3>
         </div>
         <div>{postList}</div>
       </div>
+      <MyPostsReduxForm onSubmit={handleSubmit} />
     </div>
   );
 };

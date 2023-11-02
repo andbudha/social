@@ -3,25 +3,30 @@
   margin: 0;
   box-sizing: border-box;
 }
-.myposts_block {
+.myposts_box {
+  height: 100%;
   width: 340px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.post_block {
+.post_box {
   width: 340px;
   margin-top: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
+  color: #fff;
 }
 
 .myposts_list_title {
   width: 100%;
   display: flex;
   justify-content: center;
-  color: #4b527e;
 }
 
 .add_post_box {
@@ -34,7 +39,7 @@
 
 .add_post_btn {
   height: 32px;
-  width: 324px;
+  width: 150px;
   margin: 5px auto;
   border-radius: 4px;
   padding: 4px;

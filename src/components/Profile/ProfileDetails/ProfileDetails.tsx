@@ -6,6 +6,7 @@ import { FormEvent, MouseEventHandler, useRef } from 'react';
 import { ProfileForm } from '../ProfileForm/ProfileForm';
 import { BiLink } from 'react-icons/bi';
 import { Loader } from '../../common/Loaders/Loader/Loader';
+import { MyPostsContainer } from '../MyPosts/MyPostsContainer';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -164,7 +165,9 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
               </div>
             </div>
           )}
-          <div className={styles.profile_sub_box_three}></div>
+          <div className={styles.profile_sub_box_three}>
+            <MyPostsContainer />
+          </div>
         </div>
       )}
     </div>

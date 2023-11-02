@@ -5,8 +5,10 @@
 }
 
 .post_textarea {
+  width: 200px;
+  height: 50px;
   outline: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 8px;
 }
 

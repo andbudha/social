@@ -1,4 +1,4 @@
-import profileImage from '../../../../images/avatars/ava7.png';
+import { BiMessageDetail } from 'react-icons/bi';
 import { PostType } from '../../../../types/store-types';
 import styles from './Post.module.css';
 
@@ -9,8 +9,8 @@ type PostPropsType = {
 export const Post: React.FC<PostPropsType> = (props) => {
   return (
     <div className={styles.post}>
-      <div>
-        <img className={styles.avatar} src={profileImage} alt="avatar lion" />
+      <div className={styles.post_icon_box}>
+        <BiMessageDetail className={styles.post_icon} />
       </div>
       <div>
         <div>{props.post.message}</div>

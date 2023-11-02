@@ -1,4 +1,3 @@
-import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 import { ProfileContainerPropsType } from './ProfileContainer';
 import { ProfileDetails } from './ProfileDetails/ProfileDetails';
 import styles from './Profile.module.css';
@@ -13,7 +12,6 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
         profileContainerProps={props.profileContainerProps}
         isOwner={props.isOwner}
       />
-      <MyPostsContainer />
     </div>
   );
 };
