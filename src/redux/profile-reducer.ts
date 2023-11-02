@@ -6,7 +6,7 @@ import {
   UserProfileType,
 } from '../types/store-types';
 import { AppDispatchType, AppRootStateType } from './redux-store';
-import { setAppErrorAC } from './app-reducer';
+import { setAppErrorAC, setIsLoadingStatusAC } from './app-reducer';
 
 const initialState: ProfilePageType = {
   posts: [
@@ -151,8 +151,10 @@ export const setProfileEditStatusAC = (profileEditStatus: boolean) => {
 //thunks
 export const setUserProfileTC = (userProfileID: string) => {
   return async (dispatch: AppDispatchType) => {
+    dispatch(setIsLoadingStatusAC(true));
     try {
       const response = await profileAPI.settingUserProfile(userProfileID);
+      dispatch(setIsLoadingStatusAC(false));
       dispatch(setUserProfileAC(response.data));
     } catch (err) {
       const error = err as AxiosError;
@@ -161,6 +163,7 @@ export const setUserProfileTC = (userProfileID: string) => {
       setTimeout(() => {
         dispatch(isUpdatingStatusAC(false));
         dispatch(setAppErrorAC(null));
+        dispatch(setIsLoadingStatusAC(false));
       }, 4000);
     }
   };
