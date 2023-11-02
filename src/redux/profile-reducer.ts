@@ -151,8 +151,18 @@ export const setProfileEditStatusAC = (profileEditStatus: boolean) => {
 //thunks
 export const setUserProfileTC = (userProfileID: string) => {
   return async (dispatch: AppDispatchType) => {
-    const response = await profileAPI.settingUserProfile(userProfileID);
-    dispatch(setUserProfileAC(response.data));
+    try {
+      const response = await profileAPI.settingUserProfile(userProfileID);
+      dispatch(setUserProfileAC(response.data));
+    } catch (err) {
+      const error = err as AxiosError;
+      console.log(error.message);
+      dispatch(setAppErrorAC(error.message));
+      setTimeout(() => {
+        dispatch(isUpdatingStatusAC(false));
+        dispatch(setAppErrorAC(null));
+      }, 4000);
+    }
   };
 };
 
@@ -163,7 +173,6 @@ export const getProfileStatusTC = (userID: string) => {
       dispatch(getProfileStatusAC(status.data));
     } catch (err) {
       const error = err as AxiosError;
-      console.log(error.message);
       dispatch(setAppErrorAC(error.message));
       setTimeout(() => {
         dispatch(isUpdatingStatusAC(false));
