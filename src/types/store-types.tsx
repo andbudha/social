@@ -134,4 +134,5 @@ export type captchaType = {
 
 export type AppReducerInitialStateType = {
   error: null | string;
+  isLoading: boolean;
 };

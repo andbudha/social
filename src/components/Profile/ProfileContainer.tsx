@@ -59,6 +59,7 @@ type mapStateToPropsType = {
   isUpdatingStatus: boolean;
   loggedinUserID: number;
   profileEditStatus: boolean;
+  isLoading: boolean;
 };
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -68,6 +69,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     isUpdatingStatus: state.profiles.isUpdatingStatus,
     loggedinUserID: state.authorisation.authData.id,
     profileEditStatus: state.profiles.profileEditStatus,
+    isLoading: state.app.isLoading,
   };
 };
 
