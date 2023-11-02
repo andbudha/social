@@ -28,7 +28,7 @@ export const profileAPI = {
     const formData = new FormData();
     formData.append('image', profileImg);
     return instance.put<CommonUserProfileType<UserProfileType>>(
-      `profile/photo`,
+      `profile/photos`,
       formData,
       {
         headers: {

@@ -161,7 +161,6 @@ export const setUserProfileTC = (userProfileID: string) => {
       console.log(error.message);
       dispatch(setAppErrorAC(error.message));
       setTimeout(() => {
-        dispatch(isUpdatingStatusAC(false));
         dispatch(setAppErrorAC(null));
         dispatch(setIsLoadingStatusAC(false));
       }, 4000);
@@ -178,7 +177,6 @@ export const getProfileStatusTC = (userID: string) => {
       const error = err as AxiosError;
       dispatch(setAppErrorAC(error.message));
       setTimeout(() => {
-        dispatch(isUpdatingStatusAC(false));
         dispatch(setAppErrorAC(null));
       }, 4000);
     }
@@ -209,9 +207,21 @@ export const setProfileStatusTC = (status: string) => {
 
 export const uploadProfileImgTC = (profileImg: File) => {
   return async (dispatch: AppDispatchType) => {
-    const response = await profileAPI.uloadProfileImg(profileImg);
-    if (response.data.resultCode === 0) {
-      dispatch(uploadProfileImgAC(response.data.data.photos));
+    dispatch(setIsLoadingStatusAC(true));
+    try {
+      const response = await profileAPI.uloadProfileImg(profileImg);
+      if (response.data.resultCode === 0) {
+        dispatch(uploadProfileImgAC(response.data.data.photos));
+      } else {
+        dispatch(setAppErrorAC(response.data.messages[0]));
+      }
+    } catch (err) {
+      const error = err as AxiosError;
+      dispatch(setAppErrorAC(error.message));
+      setTimeout(() => {
+        dispatch(setIsLoadingStatusAC(false));
+        dispatch(setAppErrorAC(null));
+      }, 4000);
     }
   };
 };

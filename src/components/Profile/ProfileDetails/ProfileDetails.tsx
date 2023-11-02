@@ -7,6 +7,8 @@ import { ProfileForm } from '../ProfileForm/ProfileForm';
 import { BiLink } from 'react-icons/bi';
 import { Loader } from '../../common/Loaders/Loader/Loader';
 import { MyPostsContainer } from '../MyPosts/MyPostsContainer';
+import { useSelector } from 'react-redux';
+import { AppRootStateType } from '../../../redux/redux-store';
 
 type ProfileDetailsPropsType = {
   profileContainerProps: ProfileContainerPropsType;
@@ -14,6 +16,9 @@ type ProfileDetailsPropsType = {
 };
 
 export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
+  const isLoading = useSelector<AppRootStateType>(
+    (state) => state.app.isLoading
+  );
   const profileFormHandler = () => {
     props.profileContainerProps.setProfileEditStatus(true);
   };
@@ -29,7 +34,7 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
       files: FileList;
     };
     const profileImage = currentTarget.files[0];
-    console.log(profileImage);
+
     props.profileContainerProps.uploadProfileImg(profileImage);
   };
 
@@ -42,14 +47,18 @@ export const ProfileDetails: React.FC<ProfileDetailsPropsType> = (props) => {
           <div className={styles.profile_sub_box_one}>
             <div className={styles.profile_img_box}>
               <div className={styles.profile_img}>
-                <img
-                  className={styles.img}
-                  src={
-                    props.profileContainerProps.userProfile?.photos.large ||
-                    defaultProfile
-                  }
-                  alt="avatar"
-                />
+                {isLoading ? (
+                  <Loader />
+                ) : (
+                  <img
+                    className={styles.img}
+                    src={
+                      props.profileContainerProps.userProfile?.photos.large ||
+                      defaultProfile
+                    }
+                    alt="avatar"
+                  />
+                )}
               </div>
             </div>
             <div className={styles.upload_profile_img_box}>
